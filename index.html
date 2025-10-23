@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>La Carte — Ton Bar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 id="bar-name">Bar Le Comptoir</h1>
+      <nav id="top-nav">
+        <a href="#menu">Carte</a>
+        <a href="#infos">Infos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="hero">
+      <p class="tagline">Scannez le QR sur votre table pour ouvrir la carte</p>
+      <a class="download-btn" id="download-pdf" href="#">Télécharger la carte (PDF)</a>
+    </section>
+
+    <section id="menu" class="card">
+      <h2>La Carte</h2>
+      <div id="filters">
+        <button data-cat="all" class="active">Tout</button>
+        <button data-cat="boissons">Boissons</button>
+        <button data-cat="cocktails">Cocktails</button>
+        <button data-cat="snacks">Snacks</button>
+      </div>
+
+      <div id="items" class="grid">
+        <!-- Exemple d'item -->
+        <article class="item" data-cat="cocktails">
+          <h3>Mojito</h3>
+          <p class="desc">Rhum, menthe, citron vert, sucre, eau gazeuse</p>
+          <p class="price">8€</p>
+        </article>
+        <article class="item" data-cat="boissons">
+          <h3>Bières pression</h3>
+          <p class="desc">Demi / Pint</p>
+          <p class="price">4€ / 7€</p>
+        </article>
+        <!-- Ajoute autant d'articles que nécessaire -->
+      </div>
+    </section>
+
+    <section id="infos" class="card">
+      <h2>Infos</h2>
+      <p>Horaires : Lun–Dim 17:00–02:00</p>
+      <p>Adresse : 123 Rue Exemple, 75000 Paris</p>
+      <p>Événements & soirées : consultez notre page Instagram</p>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <p>Tél : 01 23 45 67 89</p>
+      <p>Email : contact@lecomptoir.example</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Bar Le Comptoir — Scannez pour la carte</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
