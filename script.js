@@ -13,7 +13,7 @@
 /* Mise en page générale */
 body {
   margin: 0;
-  background: var(--bois) url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background: var(--bois) url('https://github.com/cbcht40/Carte-Bar-Blondes/blob/f3b870b5c453df3019617af0661056e034ad4b19/IMG_0645.jpeg');
   background-size: auto;
   color: var(--texte);
 }
