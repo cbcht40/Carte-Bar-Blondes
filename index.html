@@ -1,72 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>La Carte — Ton Bar</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Blondes — Carte</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <h1 id="bar-name">Bar Le Comptoir</h1>
-      <nav id="top-nav">
-        <a href="#menu">Carte</a>
-        <a href="#infos">Infos</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
+    <h1>Café Blondes</h1>
+    <p class="subtitle">24 pressions – ambiance rustique et conviviale 🍺</p>
   </header>
 
-  <main class="container">
-    <section id="hero">
-      <p class="tagline">Scannez le QR sur votre table pour ouvrir la carte</p>
-      <a class="download-btn" id="download-pdf" href="#">Télécharger la carte (PDF)</a>
+  <main class="menu-container">
+    <!-- Section Bières -->
+    <section class="menu-section" id="bieres">
+      <h2>Bières Pression</h2>
+      <ul>
+        <li>Prior Bernardus</li>
+        <li>Blanche Bernardus</li>
+        <li>Triple Bernardus</li>
+        <li>Ypra Lefort</li>
+        <li>Trappe Blonde</li>
+        <li>Trappe Triple</li>
+        <li>Vitus</li>
+        <li>Delta</li>
+        <li>Estaminet</li>
+        <li>Ibex</li>
+        <li>Bitburger 0%</li>
+        <li>Rouge Max</li>
+        <li>Kriek</li>
+        <li>Neipa</li>
+        <li>Tarot d'Or</li>
+        <li>Milkshake IPA</li>
+        <li>Blackheart</li>
+        <li>St Idesbald</li>
+        <li>Fouillote Blonde</li>
+        <li>Brunehaut</li>
+        <li>Timut</li>
+      </ul>
     </section>
 
-    <section id="menu" class="card">
-      <h2>La Carte</h2>
-      <div id="filters">
-        <button data-cat="all" class="active">Tout</button>
-        <button data-cat="boissons">Boissons</button>
-        <button data-cat="cocktails">Cocktails</button>
-        <button data-cat="snacks">Snacks</button>
-      </div>
-
-      <div id="items" class="grid">
-        <!-- Exemple d'item -->
-        <article class="item" data-cat="cocktails">
-          <h3>Mojito</h3>
-          <p class="desc">Rhum, menthe, citron vert, sucre, eau gazeuse</p>
-          <p class="price">8€</p>
-        </article>
-        <article class="item" data-cat="boissons">
-          <h3>Bières pression</h3>
-          <p class="desc">Demi / Pint</p>
-          <p class="price">4€ / 7€</p>
-        </article>
-        <!-- Ajoute autant d'articles que nécessaire -->
-      </div>
+    <!-- Section Softs -->
+    <section class="menu-section" id="softs">
+      <h2>Softs</h2>
+      <ul>
+        <li>Coca, Coca Zéro, Coca Cherry</li>
+        <li>Ginger Beer</li>
+        <li>Diabolos (menthe, grenadine, citron, fraise, kiwi, pêche…)</li>
+        <li>Sirop (menthe, fraise, citron, kiwi, cassis, grenadine…)</li>
+        <li>Thé glacé (pêche, citron, fruits rouges…)</li>
+        <li>Schweppes Tonic / Agrum</li>
+        <li>Spunky</li>
+        <li>Jus de fruits (abricot, ananas, orange, tomate, pomme…)</li>
+      </ul>
     </section>
 
-    <section id="infos" class="card">
-      <h2>Infos</h2>
-      <p>Horaires : Lun–Dim 17:00–02:00</p>
-      <p>Adresse : 123 Rue Exemple, 75000 Paris</p>
-      <p>Événements & soirées : consultez notre page Instagram</p>
+    <!-- Section Cocktails -->
+    <section class="menu-section" id="cocktails">
+      <h2>Cocktails</h2>
+      <ul>
+        <li>Aperol Spritz</li>
+        <li>Hugo Spritz</li>
+        <li>Spritz Framboise</li>
+        <li>Lillet Spritz (rouge, blanc ou rosé)</li>
+      </ul>
     </section>
 
-    <section id="contact" class="card">
-      <h2>Contact</h2>
-      <p>Tél : 01 23 45 67 89</p>
-      <p>Email : contact@lecomptoir.example</p>
+    <!-- Section Vins -->
+    <section class="menu-section" id="vins">
+      <h2>Vins</h2>
+      <ul>
+        <li>Blanc sec : St Véran, Chardonnay</li>
+        <li>Blanc fruité : Viognier</li>
+        <li>Blanc sucré : Horgelus</li>
+        <li>Rosé : Château Beaulieu</li>
+        <li>Rouge : Côtes du Rhône, Pinot Noir</li>
+      </ul>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <small>© <span id="year"></span> Bar Le Comptoir — Scannez pour la carte</small>
-    </div>
+    <p>© <span id="year"></span> Café Blondes — 24 pressions, convivialité & bonne humeur 🍻</p>
   </footer>
 
   <script src="script.js"></script>
