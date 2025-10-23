@@ -1,29 +1,20 @@
-:root{
-  --accent:#b02e2e;
-  --bg:#ffffff;
-  --muted:#6b6b6b;
-  --card:#fbfbfb;
-  --radius:12px;
-  --container-padding:20px;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+// === SCRIPT CAFÉ BLONDES ===
+
+// Met à jour automatiquement l'année dans le footer
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Effet d’apparition douce au scroll
+const elements = document.querySelectorAll('.menu-section, .menu-section li');
+
+function showOnScroll() {
+  const triggerBottom = window.innerHeight * 0.85;
+  elements.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < triggerBottom) {
+      el.classList.add('visible');
+    }
+  });
 }
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#111;line-height:1.4}
-.container{max-width:1000px;margin:0 auto;padding:var(--container-padding)}
-.site-header{background:#111;color:#fff;padding:14px 0}
-.site-header .container{display:flex;align-items:center;justify-content:space-between}
-.site-header h1{margin:0;font-size:1.25rem}
-#top-nav a{color:#fff;margin-left:12px;text-decoration:none;font-size:0.95rem}
-.tagline{margin:20px 0;font-weight:600;color:var(--muted)}
-.download-btn{display:inline-block;padding:10px 16px;border-radius:10px;background:var(--accent);color:#fff;text-decoration:none}
-.card{background:var(--card);padding:18px;border-radius:var(--radius);margin:20px 0;box-shadow:0 6px 20px rgba(0,0,0,0.06)}
-#filters button{margin-right:8px;padding:8px 12px;border-radius:8px;border:1px solid #ddd;background:#fff;cursor:pointer}
-#filters button.active{background:var(--accent);color:#fff;border-color:transparent}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:12px}
-.item{padding:12px;border-radius:10px;border:1px solid #eee;background:#fff}
-.item h3{margin:0 0 6px 0}
-.price{font-weight:700;margin-top:8px}
-.site-footer{padding:18px 0;text-align:center;color:var(--muted);font-size:0.9rem}
-@media (max-width:600px){
-  .site-header .container{flex-direction:column;gap:8px;align-items:flex-start}
-}
+
+window.addEventListener('scroll', showOnScroll);
+window.addEventListener('load', showOnScroll);
