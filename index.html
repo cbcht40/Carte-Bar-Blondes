@@ -4,100 +4,234 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Café Blondes — Carte</title>
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ----------- Style global ----------- */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+      background-color: #3e2a16;
+      background-repeat: repeat;
+      color: #2b1a0a;
+    }
+
+    h1, h2 {
+      font-family: 'Merriweather', serif;
+    }
+
+    /* ----------- Section d’accueil ----------- */
+    header {
+      position: relative;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #ffcc00;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+    }
+
+    .scroll-button {
+      margin-top: 2rem;
+      background-color: #ffcc00;
+      border: none;
+      color: #2b1a0a;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      font-weight: 600;
+    }
+
+    .scroll-button:hover {
+      background-color: #ffdb4d;
+    }
+
+    /* ----------- Section carte ----------- */
+    .menu {
+      background: rgba(255, 255, 240, 0.9);
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      border-radius: 16px;
+      margin-top: -4rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    details {
+      margin-bottom: 1rem;
+      background: #f8e3a2;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    summary {
+      background: linear-gradient(90deg, #e0a500, #ffcc00);
+      color: #2b1a0a;
+      font-weight: bold;
+      padding: 1rem;
+      cursor: pointer;
+      list-style: none;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary::after {
+      content: "▼";
+      transition: transform 0.3s ease;
+    }
+
+    details[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    details p {
+      background-color: #fff9e6;
+      margin: 0;
+      padding: 0.8rem 1.2rem;
+      border-top: 1px solid #e0c066;
+      font-size: 0.95rem;
+    }
+
+    /* ----------- Carrousel ambiance ----------- */
+    .carrousel {
+      margin-top: 3rem;
+      background-color: rgba(20, 20, 20, 0.95);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .carrousel h2 {
+      color: #ffcc00;
+      margin-bottom: 1rem;
+    }
+
+    .carrousel-images {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+
+    .carrousel-images img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 0 10px;
+      flex-shrink: 0;
+    }
+
+    /* ----------- Footer ----------- */
+    footer {
+      background-color: #2b1a0a;
+      color: #ffcc00;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    /* ----------- Bouton retour haut ----------- */
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ffcc00;
+      color: #2b1a0a;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
+
 <body>
-  <header class="hero">
-    <div class="hero-content">
-      <h1>Café Blondes</h1>
-      <p>24 pressions – Une ambiance rustique & conviviale 🍺</p>
-      <a href="#menu" class="menu-link">Accéder au menu ↓</a>
-    </div>
+
+  <header>
+    <h1>Café Blondes</h1>
+    <p>24 pressions – ambiance rustique & conviviale 🍻</p>
+    <button class="scroll-button" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+      Accéder au menu ↓
+    </button>
   </header>
 
-  <main>
-    <section class="menu" id="menu">
-      <div class="menu-item">
-        <button class="menu-btn">BIÈRES PRESSION 🍻</button>
-        <ul class="menu-content">
-          <li>Prior Bernardus</li>
-          <li>Blanche Bernardus</li>
-          <li>Triple Bernardus</li>
-          <li>Ypra Lefort</li>
-          <li>Trappe Blonde</li>
-          <li>Trappe Triple</li>
-          <li>Vitus</li>
-          <li>Delta</li>
-          <li>Estaminet</li>
-          <li>Ibex</li>
-          <li>Bitburger 0%</li>
-          <li>Rouge Max</li>
-          <li>Kriek</li>
-          <li>Neipa</li>
-          <li>Tarot d’or</li>
-          <li>Milkshake IPA</li>
-          <li>Blackheart</li>
-          <li>St Idesbald</li>
-          <li>Fouillotte blonde</li>
-          <li>Brunehaut</li>
-          <li>Timut</li>
-        </ul>
-      </div>
+  <section id="menu" class="menu">
+    <details>
+      <summary>🍺 Bières pression</summary>
+      <p>Prior Bernardus, Blanche Bernardus, Triple Bernardus, Ypra Lefort, Trappe Blonde, Trappe Triple, Vitus, Delta, Estaminet, Ibex, Bitburger 0%, Rouge Max, Kriek, Neipa, Tarot d’Or, Milkshake IPA, Blackheart, St Idesbald, Fouillote Blonde, Brunehaut, Timut.</p>
+    </details>
 
-      <div class="menu-item">
-        <button class="menu-btn">SOFTS 🥤</button>
-        <ul class="menu-content">
-          <li>Coca, Coca Zéro, Coca Cherry</li>
-          <li>Ginger Beer</li>
-          <li>Diabolos (citron, fraise, menthe, grenadine...)</li>
-          <li>Sirops (pêche, cerise, cassis...)</li>
-          <li>Thés glacés (pêche, citron...)</li>
-          <li>Schweppes tonic, agrum</li>
-          <li>Spunky</li>
-          <li>Jus (abricot, ananas, orange, tomate, pomme)</li>
-        </ul>
-      </div>
+    <details>
+      <summary>🥤 Softs</summary>
+      <p>Coca, Coca Zéro, Coca Cherry, Ginger Beer, Diabolos (citron, fraise, menthe, grenadine…), Sirops (pêche, cerise, cassis…), Thés glacés (pêche, citron…), Schweppes tonic, agrum, Spunky, Jus (abricot, ananas, orange, tomate, pomme).</p>
+    </details>
 
-      <div class="menu-item">
-        <button class="menu-btn">COCKTAILS 🍹</button>
-        <ul class="menu-content">
-          <li>Aperol Spritz</li>
-          <li>Ugo Spritz</li>
-          <li>Spritz Framboise</li>
-          <li>Lillet (rouge, blanc, rosé) Spritz</li>
-        </ul>
-      </div>
+    <details>
+      <summary>🍹 Cocktails</summary>
+      <p>Aperol Spritz, Ugo Spritz, Spritz Framboise, Lillet (rouge, blanc, rosé) Spritz.</p>
+    </details>
 
-      <div class="menu-item">
-        <button class="menu-btn">VINS 🍷</button>
-        <ul class="menu-content">
-          <li>Blanc sec : St Véran, Chardonnay</li>
-          <li>Blanc fruité : Viognier</li>
-          <li>Blanc sucré : Horgelus</li>
-          <li>Rosé : Château Beaulieu</li>
-          <li>Rouge : Côtes du Rhône, Pinot Noir</li>
-        </ul>
-      </div>
-    </section>
+    <details>
+      <summary>🍷 Vins</summary>
+      <p>Blanc sec : St Véran, Chardonnay — Blanc fruité : Viognier — Blanc sucré : Horgelus — Rosé : Château Beaulieu — Rouge : Côtes du Rhône, Pinot Noir.</p>
+    </details>
+  </section>
 
-    <section class="gallery">
-      <h2>Ambiance du bar</h2>
-      <div class="carousel">
-        <img src="IMG_0765.jpeg" alt="Bar Café Blondes">
-        <img src="IMG_0766.jpeg" alt="Décor rustique">
-        <img src="IMG_0768.jpeg" alt="Comptoir du bar">
-        <img src="IMG_0769.jpeg" alt="Étagère bouteilles">
-        <img src="IMG_0773.jpeg" alt="Affiches bières">
-        <img src="IMG_0775.jpeg" alt="BBP enseigne">
-        <img src="IMG_0776.jpeg" alt="Brewdog enseigne">
-      </div>
-    </section>
-  </main>
+  <section class="carrousel">
+    <h2>Ambiance du bar</h2>
+    <div class="carrousel-images" id="carrousel">
+      <img src="IMG_0765.jpeg" alt="Bar Café Blondes">
+      <img src="IMG_0766.jpeg" alt="Ambiance Café Blondes">
+      <img src="IMG_0768.jpeg" alt="Comptoir Café Blondes">
+      <img src="IMG_0769.jpeg" alt="Détails du bar">
+      <img src="IMG_0773.jpeg" alt="Décor rustique">
+      <img src="IMG_0775.jpeg" alt="Panneaux bière">
+      <img src="IMG_0776.jpeg" alt="Enseigne Brewdog">
+    </div>
+  </section>
 
   <footer>
-    <p>© 2025 Café Blondes — 24 pressions, convivialité & bonne humeur 🍻</p>
+    © 2025 Café Blondes — 24 pressions, convivialité & bonne humeur 🍺
   </footer>
 
-  <script src="script.js"></script>
+  <button id="topBtn" onclick="scrollTo({top:0, behavior:'smooth'})">↑</button>
+
+  <script>
+    // Affiche le bouton haut quand on défile
+    window.onscroll = () => {
+      document.getElementById("topBtn").style.display = window.scrollY > 400 ? "block" : "none";
+    };
+
+    // Carrousel automatique
+    const carrousel = document.getElementById("carrousel");
+    setInterval(() => {
+      carrousel.scrollBy({ left: 310, behavior: "smooth" });
+      if (carrousel.scrollLeft + carrousel.clientWidth >= carrousel.scrollWidth) {
+        carrousel.scrollTo({ left: 0, behavior: "smooth" });
+      }
+    }, 2500);
+  </script>
+
 </body>
 </html>
