@@ -22,16 +22,30 @@
     /* --- Accueil --- */
     header {
       position: relative;
-      min-height: 100dvh; /* meilleure compatibilité mobile */
+      min-height: 100dvh;
       background: url('IMG_0768.jpeg') center/cover no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       color: white;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       text-align: center;
       padding: 0 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+
+    /* Voile sombre */
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 0;
+    }
+
+    header h1, header p, .scroll-button {
+      position: relative;
+      z-index: 1;
     }
 
     header h1 {
@@ -110,6 +124,16 @@
       border-top: 1px solid #e0c066;
       list-style: disc;
       font-size: 0.95rem;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: slideDown 0.4s ease forwards;
+    }
+
+    @keyframes slideDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     details li {
@@ -181,6 +205,7 @@
       display: flex;
       overflow-x: auto;
       scroll-behavior: smooth;
+      padding: 1rem;
     }
 
     .carrousel-images img {
@@ -190,6 +215,12 @@
       border-radius: 10px;
       margin: 0 10px;
       flex-shrink: 0;
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+
+    .carrousel-images img:hover {
+      transform: scale(1.05);
+      filter: brightness(1.2);
     }
 
     footer {
