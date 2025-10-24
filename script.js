@@ -1,26 +1,21 @@
-// Année automatique
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// Accordéon menus
-const toggles = document.querySelectorAll('.menu-toggle');
-toggles.forEach(btn => {
+// --- Menus déroulants ---
+document.querySelectorAll('.menu-btn').forEach(btn => {
   btn.addEventListener('click', () => {
-    btn.classList.toggle('active');
-    btn.nextElementSibling.classList.toggle('open');
+    const content = btn.nextElementSibling;
+    content.classList.toggle('open');
   });
 });
 
-// Carrousel auto
+// --- Carrousel auto ---
 const carousel = document.querySelector('.carousel');
-let scrollPos = 0;
-function autoScroll() {
-  if (!carousel) return;
-  scrollPos += 1;
-  if (scrollPos >= carousel.scrollWidth - carousel.clientWidth) scrollPos = 0;
-  carousel.scrollTo({ left: scrollPos, behavior: 'smooth' });
-}
-setInterval(autoScroll, 60);
-// --- Bouton retour en haut ---
+setInterval(() => {
+  carousel.scrollBy({ left: 270, behavior: 'smooth' });
+  if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth) {
+    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+  }
+}, 3000);
+
+// --- Bouton retour haut ---
 const backToTop = document.createElement('button');
 backToTop.id = 'backToTop';
 backToTop.textContent = '↑';
@@ -33,4 +28,9 @@ window.addEventListener('scroll', () => {
 
 backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// --- Animation de fondu au chargement ---
+window.addEventListener('load', () => {
+  document.body.classList.add('loaded');
 });
