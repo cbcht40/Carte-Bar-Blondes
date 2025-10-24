@@ -4,7 +4,7 @@
   --beige: #f9f3e7;
 }
 
-/* --- RESET --- */
+/* RESET */
 body, html {
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body, html {
   scroll-behavior: smooth;
 }
 
-/* --- FONDU D’APPARITION DE LA PAGE --- */
+/* FONDU AU CHARGEMENT */
 body {
   background-color: var(--beige);
   opacity: 0;
@@ -22,7 +22,7 @@ body.loaded {
   opacity: 1;
 }
 
-/* --- HERO --- */
+/* HERO */
 .hero {
   background: url('IMG_0768.jpeg') center/cover no-repeat;
   height: 100vh;
@@ -53,7 +53,25 @@ body.loaded {
   font-size: 1.2rem;
 }
 
-/* --- MENU SECTION --- */
+/* BOUTON ACCÉDER AU MENU */
+.menu-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  background: var(--jaune);
+  color: var(--noir);
+  padding: 0.8rem 1.4rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.3s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+.menu-link:hover {
+  background: #ffdb4d;
+  transform: translateY(-3px);
+}
+
+/* MENU */
 .menu {
   max-width: 800px;
   margin: 3rem auto;
@@ -97,7 +115,7 @@ body.loaded {
   display: block;
 }
 
-/* --- ANIMATION MENUS --- */
+/* ANIMATION MENUS */
 .menu-content.open li {
   animation: fadeIn 0.4s ease forwards;
 }
@@ -106,7 +124,7 @@ body.loaded {
   to {opacity:1; transform: translateY(0);}
 }
 
-/* --- GALLERY --- */
+/* GALLERY */
 .gallery {
   background: var(--noir);
   color: var(--jaune);
@@ -134,7 +152,7 @@ body.loaded {
   opacity: 1;
 }
 
-/* --- BOUTON RETOUR HAUT --- */
+/* BOUTON RETOUR HAUT */
 #backToTop {
   position: fixed;
   bottom: 25px;
@@ -157,7 +175,7 @@ body.loaded {
 }
 #backToTop.show { opacity: 1; }
 
-/* --- FOOTER --- */
+/* FOOTER */
 footer {
   background: var(--noir);
   color: var(--beige);
