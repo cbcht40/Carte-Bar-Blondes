@@ -15,11 +15,9 @@
       scroll-behavior: smooth;
     }
 
-    h1, h2 {
-      font-family: 'Merriweather', serif;
-    }
+    h1, h2 { font-family: 'Merriweather', serif; }
 
-    /* ----------- Section d’accueil ----------- */
+    /* --- Accueil --- */
     header {
       position: relative;
       height: 100vh;
@@ -38,9 +36,7 @@
       margin-bottom: 0.5rem;
     }
 
-    header p {
-      font-size: 1.2rem;
-    }
+    header p { font-size: 1.2rem; }
 
     .scroll-button {
       margin-top: 2rem;
@@ -55,18 +51,18 @@
       font-weight: 600;
     }
 
-    .scroll-button:hover {
-      background-color: #ffdb4d;
-    }
+    .scroll-button:hover { background-color: #ffdb4d; }
 
-    /* ----------- Section carte ----------- */
+    /* --- Carte --- */
     .menu {
-      background: rgba(255, 255, 240, 0.97);
+      background: rgba(255,255,240,0.97);
       max-width: 800px;
-      margin: -4rem auto 0 auto;
+      margin: 2rem auto;
       padding: 2rem;
       border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 2;
     }
 
     details {
@@ -95,9 +91,7 @@
       transition: transform 0.3s ease;
     }
 
-    details[open] summary::after {
-      transform: rotate(180deg);
-    }
+    details[open] summary::after { transform: rotate(180deg); }
 
     details ul {
       background-color: #fff9e6;
@@ -119,7 +113,7 @@
       text-decoration: underline;
     }
 
-    /* ----------- Modale d’info bière ----------- */
+    /* --- Modale bière --- */
     .modal {
       display: none;
       position: fixed;
@@ -155,23 +149,18 @@
       font-weight: 600;
     }
 
-    .modal-content button:hover {
-      background: #ffdb4d;
-    }
+    .modal-content button:hover { background: #ffdb4d; }
 
-    /* ----------- Carrousel ambiance ----------- */
+    /* --- Carrousel ambiance --- */
     .carrousel {
       margin-top: 3rem;
-      background-color: rgba(20, 20, 20, 0.95);
+      background-color: rgba(20,20,20,0.95);
       color: white;
       padding: 2rem 0;
       text-align: center;
     }
 
-    .carrousel h2 {
-      color: #ffcc00;
-      margin-bottom: 1rem;
-    }
+    .carrousel h2 { color: #ffcc00; margin-bottom: 1rem; }
 
     .carrousel-images {
       display: flex;
@@ -224,8 +213,9 @@
     </button>
   </header>
 
+  <!-- Carte -->
   <section id="menu" class="menu">
-    <details open>
+    <details>
       <summary>🍺 Bières pression</summary>
       <ul id="beerList">
         <li>Prior Bernardus</li>
@@ -288,16 +278,12 @@
     </details>
   </section>
 
+  <!-- Modale bière -->
   <div class="modal" id="beerModal">
-    <div class="modal-content" id="beerDetails">
-      <h3>Nom de la bière</h3>
-      <p><strong>Origine :</strong> Belgique</p>
-      <p><strong>Degré :</strong> 6.5%</p>
-      <p><strong>Description :</strong> Une blonde fruitée et équilibrée avec des notes maltées et épicées.</p>
-      <button onclick="closeModal()">Fermer</button>
-    </div>
+    <div class="modal-content" id="beerDetails"></div>
   </div>
 
+  <!-- Ambiance -->
   <section class="carrousel">
     <h2>Ambiance du bar</h2>
     <div class="carrousel-images" id="carrousel">
@@ -311,54 +297,51 @@
     </div>
   </section>
 
-  <footer>
-    © 2025 Café Blondes — 24 pressions, convivialité & bonne humeur 🍺
-  </footer>
-
+  <footer>© 2025 Café Blondes — 24 pressions, convivialité & bonne humeur 🍺</footer>
   <button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
 
   <script>
-    // Bouton retour haut
+    // --- Bouton retour haut ---
     window.onscroll = () => {
       document.getElementById("topBtn").style.display = window.scrollY > 400 ? "block" : "none";
     };
 
-    // Données bières
+    // --- Données bières ---
     const beers = {
-      "Prior Bernardus": { degre: "8%", origine: "Belgique", description: "Une abbaye belge au goût malté et légèrement caramelisée." },
-      "Blanche Bernardus": { degre: "5.5%", origine: "Belgique", description: "Blanche rafraîchissante, notes d’agrumes et de coriandre." },
+      "Prior Bernardus": { degre: "8%", origine: "Belgique", description: "Abbaye belge au goût malté et légèrement sucré." },
+      "Blanche Bernardus": { degre: "5.5%", origine: "Belgique", description: "Blanche rafraîchissante, notes d’agrumes et coriandre." },
       "Triple Bernardus": { degre: "9%", origine: "Belgique", description: "Triple dense et dorée, avec une belle amertume houblonnée." },
-      "Ypra Lefort": { degre: "8.5%", origine: "Belgique", description: "Bière blonde complexe aux notes houblonnées." },
-      "Trappe Blonde": { degre: "6.5%", origine: "Pays-Bas", description: "Blonde trappiste équilibrée, douce et légèrement florale." },
-      "Trappe Triple": { degre: "8%", origine: "Pays-Bas", description: "Puissante et ronde, avec des arômes de fruits mûrs et d’épices." },
-      "Vitus": { degre: "7.7%", origine: "Allemagne", description: "Weizenbock riche et douce, aux saveurs de banane et clou de girofle." },
-      "Delta": { degre: "6.5%", origine: "Belgique", description: "IPA belge fraîche, agrumes et notes épicées typiques de la levure belge." },
-      "Estaminet": { degre: "5.2%", origine: "Belgique", description: "Pilsner blonde fine et désaltérante." },
-      "Ibex": { degre: "6%", origine: "France", description: "Bière artisanale équilibrée, malt caramel et fruits secs." },
+      "Ypra Lefort": { degre: "8.5%", origine: "Belgique", description: "Ambrée complexe, notes caramélisées et fruitées." },
+      "Trappe Blonde": { degre: "6.5%", origine: "Pays-Bas", description: "Blonde trappiste équilibrée et florale." },
+      "Trappe Triple": { degre: "8%", origine: "Pays-Bas", description: "Riche et ronde, arômes de fruits mûrs et d’épices." },
+      "Vitus": { degre: "7.7%", origine: "Allemagne", description: "Weizenbock douce, banane et clou de girofle." },
+      "Delta": { degre: "6.5%", origine: "Belgique", description: "IPA belge fraîche, agrumes et levure épicée." },
+      "Estaminet": { degre: "5.2%", origine: "Belgique", description: "Pilsner fine et désaltérante." },
+      "Ibex": { degre: "6%", origine: "France", description: "Malt caramel et fruits secs, équilibrée." },
       "Bitburger 0%": { degre: "0%", origine: "Allemagne", description: "Sans alcool, légère et croustillante." },
-      "Rouge Max": { degre: "8%", origine: "Belgique", description: "Bière rouge douce, aux notes de cerise et de malt." },
-      "Kriek": { degre: "4%", origine: "Belgique", description: "Lambic à la cerise, acidulée et fruitée." },
-      "Neipa": { degre: "6.8%", origine: "USA", description: "IPA trouble et juteuse, arômes tropicaux explosifs." },
-      "Tarot d’Or": { degre: "7%", origine: "France", description: "Blonde dorée aux notes de miel et de céréales." },
-      "Milkshake IPA": { degre: "6.5%", origine: "France", description: "Crémeuse, fruitée et houblonnée avec une touche de vanille." },
+      "Rouge Max": { degre: "8%", origine: "Belgique", description: "Rouge douce aux notes de cerise et malt." },
+      "Kriek": { degre: "4%", origine: "Belgique", description: "Lambic cerise, acidulée et fruitée." },
+      "Neipa": { degre: "6.8%", origine: "USA", description: "IPA trouble et juteuse, arômes tropicaux." },
+      "Tarot d’Or": { degre: "7%", origine: "France", description: "Blonde dorée, miel et céréales." },
+      "Milkshake IPA": { degre: "6.5%", origine: "France", description: "Crémeuse, fruitée et houblonnée." },
       "Blackheart": { degre: "8.5%", origine: "Angleterre", description: "Stout intense, café torréfié et chocolat noir." },
-      "St Idesbald": { degre: "7.5%", origine: "Belgique", description: "Bière d’abbaye douce, maltée et légèrement épicée." },
-      "Fouillote Blonde": { degre: "5.8%", origine: "France", description: "Bière locale douce et florale, légèrement amère." },
+      "St Idesbald": { degre: "7.5%", origine: "Belgique", description: "Abbaye douce, maltée et épicée." },
+      "Fouillote Blonde": { degre: "5.8%", origine: "France", description: "Locale douce et florale, légèrement amère." },
       "Brunehaut": { degre: "6.5%", origine: "Belgique", description: "Bio et sans gluten, maltée et équilibrée." },
       "Timut": { degre: "6%", origine: "France", description: "IPA au poivre Timut, agrumes et épices exotiques." }
     };
 
-    // Clic sur une bière
+    // --- Interaction bière ---
     document.querySelectorAll("#beerList li").forEach(li => {
       li.addEventListener("click", () => {
-        const beer = beers[li.textContent];
+        const b = beers[li.textContent];
         const modal = document.getElementById("beerModal");
-        const details = document.getElementById("beerDetails");
-        details.innerHTML = `
+        const box = document.getElementById("beerDetails");
+        box.innerHTML = `
           <h3>${li.textContent}</h3>
-          <p><strong>Origine :</strong> ${beer.origine}</p>
-          <p><strong>Degré :</strong> ${beer.degre}</p>
-          <p><strong>Description :</strong> ${beer.description}</p>
+          <p><strong>Origine :</strong> ${b.origine}</p>
+          <p><strong>Degré :</strong> ${b.degre}</p>
+          <p><strong>Description :</strong> ${b.description}</p>
           <button onclick="closeModal()">Fermer</button>`;
         modal.style.display = "flex";
       });
@@ -368,15 +351,13 @@
       document.getElementById("beerModal").style.display = "none";
     }
 
-    // Carrousel automatique
+    // --- Carrousel auto ---
     const carrousel = document.getElementById("carrousel");
     setInterval(() => {
       carrousel.scrollBy({ left: 310, behavior: "smooth" });
-      if (carrousel.scrollLeft + carrousel.clientWidth >= carrousel.scrollWidth) {
+      if (carrousel.scrollLeft + carrousel.clientWidth >= carrousel.scrollWidth)
         carrousel.scrollTo({ left: 0, behavior: "smooth" });
-      }
     }, 2500);
   </script>
-
 </body>
 </html>
