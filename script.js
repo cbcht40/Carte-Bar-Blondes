@@ -1,20 +1,12 @@
-// === SCRIPT CAFÉ BLONDES ===
+// Met à jour l'année dans le footer
+document.getElementById('year').textContent = new Date().getFullYear();
 
-// Met à jour automatiquement l'année dans le footer
-document.getElementById("year").textContent = new Date().getFullYear();
+// Gestion des menus déroulants
+const toggles = document.querySelectorAll('.menu-toggle');
 
-// Effet d’apparition douce au scroll
-const elements = document.querySelectorAll('.menu-section, .menu-section li');
-
-function showOnScroll() {
-  const triggerBottom = window.innerHeight * 0.85;
-  elements.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < triggerBottom) {
-      el.classList.add('visible');
-    }
+toggles.forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const content = toggle.nextElementSibling;
+    content.classList.toggle('open');
   });
-}
-
-window.addEventListener('scroll', showOnScroll);
-window.addEventListener('load', showOnScroll);
+});
