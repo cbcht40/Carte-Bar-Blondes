@@ -34,7 +34,6 @@
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
 
-    /* Voile sombre */
     header::before {
       content: "";
       position: absolute;
@@ -247,7 +246,6 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
 
-    /* --- Responsive --- */
     @media (max-width: 768px) {
       header h1 {
         font-size: 2.2rem;
@@ -279,7 +277,6 @@
     </button>
   </header>
 
-  <!-- Carte -->
   <section id="menu" class="menu">
     <details>
       <summary>🍺 Bières pression</summary>
@@ -288,23 +285,24 @@
         <li>Blanche Bernardus</li>
         <li>Triple Bernardus</li>
         <li>Ypra Lefort</li>
+        <li>Whisky Infused</li>
         <li>Trappe Blonde</li>
-        <li>Trappe Triple</li>
-        <li>Vitus</li>
-        <li>Delta</li>
+        <li>Weihenstephaner Vitus</li>
+        <li>Delta IPA</li>
         <li>Estaminet</li>
         <li>Ibex</li>
+        <li>Neipa</li>
+        <li>Shorba</li>
         <li>Bitburger 0%</li>
+        <li>Cidre Noble Coz</li>
         <li>Rouge Max</li>
         <li>Kriek</li>
-        <li>Neipa</li>
-        <li>Tarot d’Or</li>
         <li>Milkshake IPA</li>
         <li>Blackheart</li>
         <li>St Idesbald</li>
-        <li>Fouillote Blonde</li>
         <li>Brunehaut</li>
         <li>Timut</li>
+        <li>Fouillote Blonde</li>
       </ul>
     </details>
 
@@ -344,12 +342,10 @@
     </details>
   </section>
 
-  <!-- Modale bière -->
   <div class="modal" id="beerModal">
     <div class="modal-content" id="beerDetails"></div>
   </div>
 
-  <!-- Ambiance -->
   <section class="carrousel">
     <h2>Ambiance du bar</h2>
     <div class="carrousel-images" id="carrousel">
@@ -368,40 +364,39 @@
   <button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
 
   <script>
-    // Bouton retour haut
     window.onscroll = () => {
       document.getElementById("topBtn").style.display = window.scrollY > 400 ? "block" : "none";
     };
 
-    // Données bières
     const beers = {
       "Prior Bernardus": { degre: "8%", origine: "Belgique", description: "Abbaye belge au goût malté et légèrement sucré." },
       "Blanche Bernardus": { degre: "5.5%", origine: "Belgique", description: "Blanche rafraîchissante, notes d’agrumes et coriandre." },
       "Triple Bernardus": { degre: "9%", origine: "Belgique", description: "Triple dense et dorée, avec une belle amertume houblonnée." },
-      "Ypra Lefort": { degre: "8.5%", origine: "Belgique", description: "Ambrée complexe, notes caramélisées et fruitées." },
+      "Ypra Lefort": { degre: "8.5%", origine: "Belgique", description: "Triple belge ambrée, arômes fruités et maltés, finale douce." },
+      "Whisky Infused": { degre: "7.5%", origine: "France", description: "Bière ambrée infusée au whisky, notes boisées, vanillées et fumées." },
       "Trappe Blonde": { degre: "6.5%", origine: "Pays-Bas", description: "Blonde trappiste équilibrée et florale." },
-      "Trappe Triple": { degre: "8%", origine: "Pays-Bas", description: "Riche et ronde, arômes de fruits mûrs et d’épices." },
-      "Vitus": { degre: "7.7%", origine: "Allemagne", description: "Weizenbock douce, banane et clou de girofle." },
-      "Delta": { degre: "6.5%", origine: "Belgique", description: "IPA belge fraîche, agrumes et levure épicée." },
+      "Weihenstephaner Vitus": { degre: "7.7%", origine: "Allemagne", description: "Weizenbock douce, arômes de banane et clou de girofle." },
+      "Delta IPA": { degre: "6.5%", origine: "Belgique", description: "IPA belge fraîche, agrumes et levure épicée." },
       "Estaminet": { degre: "5.2%", origine: "Belgique", description: "Pilsner fine et désaltérante." },
-      "Ibex": { degre: "6%", origine: "France", description: "Malt caramel et fruits secs, équilibrée." },
-      "Bitburger 0%": { degre: "0%", origine: "Allemagne", description: "Sans alcool, légère et croustillante." },
-      "Rouge Max": { degre: "8%", origine: "Belgique", description: "Rouge douce aux notes de cerise et malt." },
-      "Kriek": { degre: "4%", origine: "Belgique", description: "Lambic cerise, acidulée et fruitée." },
+      "Ibex": { degre: "6%", origine: "France", description: "Ambrée aux notes de caramel et fruits secs, équilibrée." },
       "Neipa": { degre: "6.8%", origine: "USA", description: "IPA trouble et juteuse, arômes tropicaux." },
-      "Tarot d’Or": { degre: "7%", origine: "France", description: "Blonde dorée, miel et céréales." },
-      "Milkshake IPA": { degre: "6.5%", origine: "France", description: "Crémeuse, fruitée et houblonnée." },
+      "Shorba": { degre: "6.2%", origine: "France (Piggy Brewing)", description: "IPA aromatique, houblonnée et fruitée avec des touches d'épices." },
+      "Bitburger 0%": { degre: "0%", origine: "Allemagne", description: "Sans alcool, légère, croustillante et maltée." },
+      "Cidre Noble Coz": { degre: "5%", origine: "Bretagne, France", description: "Cidre artisanal brut et fruité, équilibre entre acidité et douceur." },
+      "Rouge Max": { degre: "8%", origine: "Belgique", description: "Rouge douce, arômes de cerise et malt sucré." },
+      "Kriek": { degre: "4%", origine: "Belgique", description: "Lambic à la cerise, acidulée et fruitée." },
+      "Milkshake IPA": { degre: "6.5%", origine: "France", description: "IPA crémeuse et fruitée, texture onctueuse." },
       "Blackheart": { degre: "8.5%", origine: "Angleterre", description: "Stout intense, café torréfié et chocolat noir." },
       "St Idesbald": { degre: "7.5%", origine: "Belgique", description: "Abbaye douce, maltée et épicée." },
-      "Fouillote Blonde": { degre: "5.8%", origine: "France", description: "Locale douce et florale, légèrement amère." },
       "Brunehaut": { degre: "6.5%", origine: "Belgique", description: "Bio et sans gluten, maltée et équilibrée." },
-      "Timut": { degre: "6%", origine: "France", description: "IPA au poivre Timut, agrumes et épices exotiques." }
+      "Timut": { degre: "6%", origine: "France", description: "IPA au poivre Timut, agrumes et épices exotiques." },
+      "Fouillote Blonde": { degre: "5.8%", origine: "France", description: "Locale douce et florale, légèrement amère." }
     };
 
-    // Interaction bières
     document.querySelectorAll("#beerList li").forEach(li => {
       li.addEventListener("click", () => {
         const b = beers[li.textContent];
+        if (!b) return;
         const modal = document.getElementById("beerModal");
         const box = document.getElementById("beerDetails");
         box.innerHTML = `
@@ -418,7 +413,6 @@
       document.getElementById("beerModal").style.display = "none";
     }
 
-    // Carrousel automatique
     const carrousel = document.getElementById("carrousel");
     setInterval(() => {
       carrousel.scrollBy({ left: 310, behavior: "smooth" });
