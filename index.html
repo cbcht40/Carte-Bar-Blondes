@@ -222,6 +222,54 @@
       filter: brightness(1.2);
     }
 
+    /* --- À propos --- */
+    .about {
+      background: rgba(255,255,240,0.95);
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .about img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .about h2 {
+      color: #b8860b;
+      margin-bottom: 1rem;
+    }
+
+    .about p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .info {
+      font-weight: 500;
+      color: #3e2a16;
+      margin-bottom: 0.5rem;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      color: #b8860b;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .socials a:hover {
+      color: #ffcc00;
+    }
+
     footer {
       background-color: #2b1a0a;
       color: #ffcc00;
@@ -244,25 +292,6 @@
       cursor: pointer;
       display: none;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2.2rem;
-        line-height: 2.4rem;
-      }
-      header p {
-        font-size: 1rem;
-        max-width: 90%;
-      }
-      .scroll-button {
-        font-size: 0.9rem;
-        padding: 0.8rem 1.6rem;
-      }
-      .menu {
-        margin: 1.5rem;
-        padding: 1.5rem;
-      }
     }
   </style>
 </head>
@@ -356,6 +385,22 @@
       <img src="IMG_0773.jpeg" alt="Décor rustique">
       <img src="IMG_0775.jpeg" alt="Panneaux bière">
       <img src="IMG_0776.jpeg" alt="Enseigne Brewdog">
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <h2>À propos du Café Blondes</h2>
+    <img src="IMG_0765.jpeg" alt="Photo du bar">
+    <p>Situé au cœur de Nancy, le <strong>Café Blondes</strong> est un bar à bières d’exception où l’on célèbre la convivialité et le goût authentique. Avec ses 24 pressions et son ambiance boisée et rustique, c’est le lieu idéal pour découvrir des bières uniques, partager un bon moment et profiter d’un service chaleureux.</p>
+
+    <div class="info">📍 18 rue de la Faïencerie — Nancy</div>
+    <div class="info">🕓 Horaires :</div>
+    <p>🗓️ Lundi–Mercredi : 17h30–00h<br>
+       🗓️ Jeudi–Vendredi : 17h30–2h<br>
+       🗓️ Samedi : 14h–2h</p>
+
+    <div class="socials">
+      <a href="https://www.instagram.com/blonde_beer_bar/" target="_blank">📸 Instagram</a>
     </div>
   </section>
 
