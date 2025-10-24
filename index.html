@@ -1,81 +1,100 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Café Blondes — Carte</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="hero">
-    <div class="hero-overlay">
+    <div class="hero-content">
       <h1>Café Blondes</h1>
       <p>24 pressions – ambiance rustique & conviviale 🍺</p>
     </div>
   </header>
 
-  <main class="menu-container">
-    <!-- Menu déroulant -->
-    <section class="menu-section">
-      <button class="menu-toggle">Bières Pression 🍻</button>
-      <ul class="menu-content">
-        <li>Prior Bernardus</li><li>Blanche Bernardus</li><li>Triple Bernardus</li>
-        <li>Ypra Lefort</li><li>Trappe Blonde</li><li>Trappe Triple</li>
-        <li>Vitus</li><li>Delta</li><li>Estaminet</li><li>Ibex</li>
-        <li>Bitburger 0 %</li><li>Rouge Max</li><li>Kriek</li><li>Neipa</li>
-        <li>Tarot d'Or</li><li>Milkshake IPA</li><li>Blackheart</li>
-        <li>St Idesbald</li><li>Fouillote Blonde</li><li>Brunehaut</li><li>Timut</li>
-      </ul>
+  <main>
+    <section class="menu">
+      <div class="menu-item">
+        <button class="menu-btn">BIÈRES PRESSION 🍻</button>
+        <ul class="menu-content">
+          <li>Prior Bernardus</li>
+          <li>Blanche Bernardus</li>
+          <li>Triple Bernardus</li>
+          <li>Ypra Lefort</li>
+          <li>Trappe Blonde</li>
+          <li>Trappe Triple</li>
+          <li>Vitus</li>
+          <li>Delta</li>
+          <li>Estaminet</li>
+          <li>Ibex</li>
+          <li>Bitburger 0%</li>
+          <li>Rouge Max</li>
+          <li>Kriek</li>
+          <li>Neipa</li>
+          <li>Tarot d’or</li>
+          <li>Milkshake IPA</li>
+          <li>Blackheart</li>
+          <li>St Idesbald</li>
+          <li>Fouillotte blonde</li>
+          <li>Brunehaut</li>
+          <li>Timut</li>
+        </ul>
+      </div>
+
+      <div class="menu-item">
+        <button class="menu-btn">SOFTS 🥤</button>
+        <ul class="menu-content">
+          <li>Coca, Coca Zéro, Coca Cherry</li>
+          <li>Ginger Beer</li>
+          <li>Diabolos (citron, fraise, menthe, grenadine...)</li>
+          <li>Sirops (pêche, cerise, cassis...)</li>
+          <li>Thés glacés (pêche, citron...)</li>
+          <li>Schweppes tonic, agrum</li>
+          <li>Spunky</li>
+          <li>Jus (abricot, ananas, orange, tomate, pomme)</li>
+        </ul>
+      </div>
+
+      <div class="menu-item">
+        <button class="menu-btn">COCKTAILS 🍹</button>
+        <ul class="menu-content">
+          <li>Aperol Spritz</li>
+          <li>Ugo Spritz</li>
+          <li>Spritz Framboise</li>
+          <li>Lillet (rouge, blanc, rosé) Spritz</li>
+        </ul>
+      </div>
+
+      <div class="menu-item">
+        <button class="menu-btn">VINS 🍷</button>
+        <ul class="menu-content">
+          <li>Blanc sec : St Véran, Chardonnay</li>
+          <li>Blanc fruité : Viognier</li>
+          <li>Blanc sucré : Horgelus</li>
+          <li>Rosé : Château Beaulieu</li>
+          <li>Rouge : Côtes du Rhône, Pinot Noir</li>
+        </ul>
+      </div>
     </section>
 
-    <section class="menu-section">
-      <button class="menu-toggle">Softs 🥤</button>
-      <ul class="menu-content">
-        <li>Coca / Coca Zéro / Coca Cherry</li><li>Ginger Beer</li>
-        <li>Diabolos (menthe, grenadine, citron, fraise, kiwi, pêche…)</li>
-        <li>Sirop (menthe, fraise, citron, kiwi, cassis, grenadine…)</li>
-        <li>Thé glacé (pêche, citron, fruits rouges…)</li>
-        <li>Schweppes Tonic / Agrum</li><li>Spunky</li>
-        <li>Jus de fruits (abricot, ananas, orange, tomate, pomme…)</li>
-      </ul>
-    </section>
-
-    <section class="menu-section">
-      <button class="menu-toggle">Cocktails 🍹</button>
-      <ul class="menu-content">
-        <li>Aperol Spritz</li><li>Hugo Spritz</li>
-        <li>Spritz Framboise</li><li>Lillet Spritz (rouge, blanc, rosé)</li>
-      </ul>
-    </section>
-
-    <section class="menu-section">
-      <button class="menu-toggle">Vins 🍷</button>
-      <ul class="menu-content">
-        <li>Blanc sec : St Véran, Chardonnay</li>
-        <li>Blanc fruité : Viognier</li>
-        <li>Blanc sucré : Horgelus</li>
-        <li>Rosé : Château Beaulieu</li>
-        <li>Rouge : Côtes du Rhône, Pinot Noir</li>
-      </ul>
+    <section class="gallery">
+      <h2>Ambiance du bar</h2>
+      <div class="carousel">
+        <img src="IMG_0765.jpeg" alt="Bar Café Blondes">
+        <img src="IMG_0766.jpeg" alt="Décor rustique">
+        <img src="IMG_0768.jpeg" alt="Comptoir du bar">
+        <img src="IMG_0769.jpeg" alt="Étagère bouteilles">
+        <img src="IMG_0773.jpeg" alt="Affiches bières">
+        <img src="IMG_0775.jpeg" alt="BBP enseigne">
+        <img src="IMG_0776.jpeg" alt="Brewdog enseigne">
+      </div>
     </section>
   </main>
 
-  <!-- Galerie / carrousel -->
-  <section class="gallery">
-    <h2>Ambiance du bar</h2>
-    <div class="carousel">
-      <img src="IMG_0765.jpeg" alt="bar" />
-      <img src="IMG_0766.jpeg" alt="intérieur" />
-      <img src="IMG_0768.jpeg" alt="bar2" />
-      <img src="IMG_0769.jpeg" alt="détails" />
-      <img src="IMG_0773.jpeg" alt="mur bières" />
-      <img src="IMG_0775.jpeg" alt="enseigne" />
-      <img src="IMG_0776.jpeg" alt="brew dog" />
-    </div>
-  </section>
-
-  <footer class="site-footer">
-    <p>© <span id="year"></span> Café Blondes – 24 pressions, convivialité & bonne humeur 🍻</p>
+  <footer>
+    <p>© 2025 Café Blondes — 24 pressions, convivialité & bonne humeur 🍻</p>
   </footer>
 
   <script src="script.js"></script>
