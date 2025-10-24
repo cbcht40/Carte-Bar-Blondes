@@ -15,12 +15,14 @@
       scroll-behavior: smooth;
     }
 
-    h1, h2 { font-family: 'Merriweather', serif; }
+    h1, h2 {
+      font-family: 'Merriweather', serif;
+    }
 
     /* --- Accueil --- */
     header {
       position: relative;
-      height: 100vh;
+      min-height: 100dvh; /* meilleure compatibilité mobile */
       background: url('IMG_0768.jpeg') center/cover no-repeat;
       display: flex;
       flex-direction: column;
@@ -28,6 +30,8 @@
       align-items: center;
       color: white;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      text-align: center;
+      padding: 0 1rem;
     }
 
     header h1 {
@@ -36,7 +40,9 @@
       margin-bottom: 0.5rem;
     }
 
-    header p { font-size: 1.2rem; }
+    header p {
+      font-size: 1.2rem;
+    }
 
     .scroll-button {
       margin-top: 2rem;
@@ -51,9 +57,11 @@
       font-weight: 600;
     }
 
-    .scroll-button:hover { background-color: #ffdb4d; }
+    .scroll-button:hover {
+      background-color: #ffdb4d;
+    }
 
-    /* --- Carte --- */
+    /* --- Section carte --- */
     .menu {
       background: rgba(255,255,240,0.97);
       max-width: 800px;
@@ -91,7 +99,9 @@
       transition: transform 0.3s ease;
     }
 
-    details[open] summary::after { transform: rotate(180deg); }
+    details[open] summary::after {
+      transform: rotate(180deg);
+    }
 
     details ul {
       background-color: #fff9e6;
@@ -149,7 +159,9 @@
       font-weight: 600;
     }
 
-    .modal-content button:hover { background: #ffdb4d; }
+    .modal-content button:hover {
+      background: #ffdb4d;
+    }
 
     /* --- Carrousel ambiance --- */
     .carrousel {
@@ -160,7 +172,10 @@
       text-align: center;
     }
 
-    .carrousel h2 { color: #ffcc00; margin-bottom: 1rem; }
+    .carrousel h2 {
+      color: #ffcc00;
+      margin-bottom: 1rem;
+    }
 
     .carrousel-images {
       display: flex;
@@ -199,6 +214,26 @@
       cursor: pointer;
       display: none;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+        line-height: 2.4rem;
+      }
+      header p {
+        font-size: 1rem;
+        max-width: 90%;
+      }
+      .scroll-button {
+        font-size: 0.9rem;
+        padding: 0.8rem 1.6rem;
+      }
+      .menu {
+        margin: 1.5rem;
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -298,15 +333,16 @@
   </section>
 
   <footer>© 2025 Café Blondes — 24 pressions, convivialité & bonne humeur 🍺</footer>
+
   <button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
 
   <script>
-    // --- Bouton retour haut ---
+    // Bouton retour haut
     window.onscroll = () => {
       document.getElementById("topBtn").style.display = window.scrollY > 400 ? "block" : "none";
     };
 
-    // --- Données bières ---
+    // Données bières
     const beers = {
       "Prior Bernardus": { degre: "8%", origine: "Belgique", description: "Abbaye belge au goût malté et légèrement sucré." },
       "Blanche Bernardus": { degre: "5.5%", origine: "Belgique", description: "Blanche rafraîchissante, notes d’agrumes et coriandre." },
@@ -331,7 +367,7 @@
       "Timut": { degre: "6%", origine: "France", description: "IPA au poivre Timut, agrumes et épices exotiques." }
     };
 
-    // --- Interaction bière ---
+    // Interaction bières
     document.querySelectorAll("#beerList li").forEach(li => {
       li.addEventListener("click", () => {
         const b = beers[li.textContent];
@@ -351,7 +387,7 @@
       document.getElementById("beerModal").style.display = "none";
     }
 
-    // --- Carrousel auto ---
+    // Carrousel automatique
     const carrousel = document.getElementById("carrousel");
     setInterval(() => {
       carrousel.scrollBy({ left: 310, behavior: "smooth" });
@@ -359,5 +395,6 @@
         carrousel.scrollTo({ left: 0, behavior: "smooth" });
     }, 2500);
   </script>
+
 </body>
 </html>
