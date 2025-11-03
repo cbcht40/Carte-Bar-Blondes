@@ -1,4 +1,5 @@
 <script>
+document.addEventListener("DOMContentLoaded", () => {
   const questions = [
     { text: "Quelle couleur de bière préfères-tu ?", options: [
       { text: "Blanche", value: "blanche" },
@@ -56,7 +57,7 @@
       </div>`;
   }
 
-  function select(v) {
+  window.select = function(v) {
     answers.push(v);
     step++;
     if (step < questions.length) renderQuestion();
@@ -67,7 +68,6 @@
     const combo = answers.join('-');
     let beer, note = "";
 
-    // logiques réalistes
     if (combo.includes("blanche")) {
       if (combo.includes("forte")) { note = phrases.incoherent[1]; beer = beers.vitus; }
       else beer = beers.blanche;
@@ -99,16 +99,17 @@
     `;
   }
 
-  function toggleDesc() {
+  window.toggleDesc = function() {
     const desc = document.getElementById("desc");
     desc.style.display = desc.style.display === "block" ? "none" : "block";
   }
 
-  function restartQuiz() {
+  window.restartQuiz = function() {
     step = 0;
     answers.length = 0;
     renderQuestion();
   }
 
   renderQuestion();
+});
 </script>
