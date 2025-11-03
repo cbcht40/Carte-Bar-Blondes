@@ -9,12 +9,11 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(rgba(25, 15, 8, 0.8), rgba(10, 6, 3, 0.95)), 
+      background: radial-gradient(rgba(15, 10, 5, 0.8), rgba(0, 0, 0, 0.95)),
                   url('IMG_0768.jpeg') center/cover no-repeat fixed;
-      background-attachment: fixed;
       backdrop-filter: blur(6px);
       color: #fdfdfd;
-      transition: background 1s ease;
+      scroll-behavior: smooth;
     }
 
     h1 {
@@ -22,7 +21,7 @@
       color: #ffcc00;
       font-family: 'Merriweather', serif;
       font-size: 2.4rem;
-      margin: 2rem 0 0.5rem;
+      margin: 2rem 0 0.3rem;
     }
 
     h2 {
@@ -33,149 +32,128 @@
     }
 
     .hint {
-      text-align: center;
-      color: #2b1a0a;
-      background: rgba(255, 204, 0, 0.9);
-      border-radius: 8px;
       display: none;
+      text-align: center;
+      background: rgba(255, 204, 0, 0.9);
+      color: #2b1a0a;
       font-weight: 600;
-      max-width: 400px;
-      margin: 0 auto 1.5rem;
-      padding: 0.6rem 1rem;
-      box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+      max-width: 450px;
+      margin: 0.5rem auto 2rem;
+      padding: 0.7rem 1rem;
+      border-radius: 10px;
       animation: pulse 2s infinite ease-in-out;
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
     }
 
     @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 10px rgba(255, 204, 0, 0.4); }
-      50% { box-shadow: 0 0 20px rgba(255, 204, 0, 0.8); }
+      0%, 100% { box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); }
+      50% { box-shadow: 0 0 25px rgba(255, 204, 0, 0.7); }
     }
 
     .menu-container {
-      max-width: 850px;
+      max-width: 900px;
       margin: 0 auto 4rem;
-      background: rgba(40, 25, 10, 0.7);
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      padding: 1rem 1.5rem;
-      backdrop-filter: blur(3px);
+      background: rgba(20, 12, 5, 0.85);
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     }
 
     .section {
       background: #ffcc00;
-      border-radius: 10px;
+      color: #2b1a0a;
+      font-weight: 600;
       padding: 1rem;
+      border-radius: 10px;
       margin-top: 1.5rem;
       cursor: pointer;
-      font-weight: 600;
-      color: #2b1a0a;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.4);
       transition: 0.3s;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
     }
 
     .section:hover {
       background: #ffdb4d;
-      transform: scale(1.01);
+      transform: scale(1.02);
     }
 
     .content {
       display: none;
-      padding: 1rem;
-      background: rgba(255,255,255,0.05);
-      border-radius: 8px;
-      margin-top: 0.5rem;
-      animation: fadeSlide 0.5s ease forwards;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin-top: 0.6rem;
+      animation: fadeIn 0.4s ease;
     }
 
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(-15px); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* BIÈRES */
     .beer-list {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
       gap: 1rem;
     }
 
     .beer-item {
-      background: rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 0.8rem 1.2rem;
+      background: rgba(255, 255, 255, 0.07);
+      border-radius: 12px;
+      padding: 0.9rem 1.2rem;
+      cursor: pointer;
       transition: all 0.3s ease;
       border-left: 4px solid transparent;
-      cursor: pointer;
       position: relative;
     }
 
     .beer-item:hover {
-      background: rgba(255,204,0,0.12);
-      border-left-color: #ffcc00;
-      box-shadow: 0 0 12px rgba(255,204,0,0.3);
-    }
-
-    .beer-item:hover .beer-header span:first-child {
-      color: #ffcc00;
-    }
-
-    .beer-item:hover .icon {
-      opacity: 1;
-      transform: translateX(0);
+      border-left: 4px solid #ffcc00;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+      background: rgba(255, 204, 0, 0.12);
+      transform: scale(1.02);
     }
 
     .beer-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: 600;
       color: #f8f8f8;
+      font-weight: 600;
       position: relative;
-    }
-
-    .icon {
-      color: #ffcc00;
-      opacity: 0;
-      transform: translateX(-10px);
-      transition: all 0.3s ease;
     }
 
     .beer-body {
       max-height: 0;
       overflow: hidden;
-      color: #f0e4b3;
+      opacity: 0;
       font-size: 0.9rem;
       line-height: 1.4;
-      transition: all 0.5s ease;
-      opacity: 0;
-      margin-top: 0.3rem;
-    }
-
-    .beer-item.active {
-      background: rgba(255,204,0,0.12);
-      box-shadow: 0 0 15px rgba(255,204,0,0.3);
+      color: #f0e4b3;
+      margin-top: 0.4rem;
+      transition: all 0.4s ease;
     }
 
     .beer-item.active .beer-body {
-      max-height: 200px;
+      max-height: 150px;
       opacity: 1;
-      margin-top: 0.6rem;
     }
 
     ul {
       list-style: none;
       padding: 0;
       margin: 0;
+      color: #f0e4b3;
     }
 
-    li { margin-bottom: 8px; color: #f0e4b3; }
+    li { margin: 0.4rem 0; }
 
     footer {
       text-align: center;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0, 0, 0, 0.85);
       color: #ffcc00;
       padding: 2rem 1rem;
       font-size: 0.9rem;
+      border-top: 2px solid rgba(255, 204, 0, 0.3);
     }
 
     footer a {
@@ -198,30 +176,78 @@
     <div id="bieres" class="content">
       <div class="beer-list">
         <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header">
-            <span>Fouillotte Blonde</span><span>🇫🇷 4°</span><span class="icon">👉</span>
-          </div>
-          <div class="beer-body">Blonde légère brassée avec des branches de sapin 🌲, goût résineux et boisé.</div>
+          <div class="beer-header"><span>Fouillotte Blonde</span><span>🇫🇷 4°</span></div>
+          <div class="beer-body">Blonde légère brassée avec des branches de sapin 🌲, goût boisé et résineux.</div>
         </div>
 
         <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Blanche Bernardus</span><span>🇧🇪 6°</span><span class="icon">👉</span></div>
+          <div class="beer-header"><span>Blanche Bernardus</span><span>🇧🇪 6°</span></div>
           <div class="beer-body">Blanche douce et épicée, aux notes d’agrumes et de coriandre.</div>
         </div>
 
         <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Weihenstephaner Vitus</span><span>🇩🇪 7.7°</span><span class="icon">👉</span></div>
+          <div class="beer-header"><span>Weihenstephaner Vitus</span><span>🇩🇪 7.7°</span></div>
           <div class="beer-body">Blanche riche et fruitée, banane et clou de girofle.</div>
         </div>
 
         <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Trappe Blonde</span><span>🇳🇱 6.5°</span><span class="icon">👉</span></div>
+          <div class="beer-header"><span>Trappe Blonde</span><span>🇳🇱 6.5°</span></div>
           <div class="beer-body">Blonde trappiste florale, fine et équilibrée.</div>
         </div>
 
         <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Ypra Lefort</span><span>🇧🇪 10°</span><span class="icon">👉</span></div>
-          <div class="beer-body">Triple belge dorée, fruitée et généreuse, finale puissante et douce.</div>
+          <div class="beer-header"><span>Ypra Lefort</span><span>🇧🇪 10°</span></div>
+          <div class="beer-body">Triple belge dorée, fruitée et généreuse.</div>
+        </div>
+
+        <div class="beer-item" onclick="toggleBeer(this)">
+          <div class="beer-header"><span>Timut</span><span>🇫🇷 4°</span></div>
+          <div class="beer-body">Blonde légère au citron et poivre de Timut, rafraîchissante et subtilement épicée.</div>
+        </div>
+
+        <div class="beer-item" onclick="toggleBeer(this)">
+          <div class="beer-header"><span>Delta IPA</span><span>🇧🇪 6°</span></div>
+          <div class="beer-body">IPA équilibrée, amertume florale et notes d’agrumes.</div>
+        </div>
+
+        <div class="beer-item" onclick="toggleBeer(this)">
+          <div class="beer-header"><span>Milkshake IPA</span><span>🇫🇷 5.7°</span></div>
+          <div class="beer-body">IPA douce et crémeuse, aux notes de vanille et fruits tropicaux.</div>
+        </div>
+
+        <div class="beer-item" onclick="toggleBeer(this)">
+          <div class="beer-header"><span>Whisky Infused</span><span>🇫🇷 12.7°</span></div>
+          <div class="beer-body">Ambrée infusée au whisky, intense et boisée.</div>
+        </div>
+
+        <div class="beer-item" onclick="toggleBeer(this)">
+          <div class="beer-header"><span>Prior Bernardus</span><span>🇧🇪 8°</span></div>
+          <div class="beer-body">Brune double maltée, ronde et puissante.</div>
+        </div>
+
+        <div class="beer-item" onclick="toggleBeer(this)">
+          <div class="beer-header"><span>Blackheart</span><span>🏴 4.4°</span></div>
+          <div class="beer-body">Stout légère, torréfiée et sèche.</div>
+        </div>
+
+        <div class="beer-item" onclick="toggleBeer(this)">
+          <div class="beer-header"><span>Rouge Max</span><span>🇧🇪 8°</span></div>
+          <div class="beer-body">Rouge douce et fruitée, cerise mûre et fruits rouges.</div>
+        </div>
+
+        <div class="beer-item" onclick="toggleBeer(this)">
+          <div class="beer-header"><span>Kriek</span><span>🇧🇪 5.5°</span></div>
+          <div class="beer-body">Rouge à la cerise, acidulée et sucrée.</div>
+        </div>
+
+        <div class="beer-item" onclick="toggleBeer(this)">
+          <div class="beer-header"><span>Noble Coz Cidre</span><span>🇫🇷 8°</span></div>
+          <div class="beer-body">Cidre artisanal de Bretagne, puissant et sec.</div>
+        </div>
+
+        <div class="beer-item" onclick="toggleBeer(this)">
+          <div class="beer-header"><span>Brunehaut</span><span>🇧🇪 5°</span></div>
+          <div class="beer-body">Blonde sans gluten, ronde et équilibrée.</div>
         </div>
       </div>
     </div>
