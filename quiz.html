@@ -160,7 +160,6 @@
   </div>
 
   <script>
-    /* --- Questions --- */
     const quizData = [
       {
         question: "🎨 Quel type de bière t’attire le plus ?",
@@ -216,7 +215,6 @@
       }
     ];
 
-    /* --- Base de données bières --- */
     const beers = [
       { name: "Fouillotte Blonde", tags: ["blonde", "doux", "legere", "detente", "decouverte"] },
       { name: "Blanche Bernardus", tags: ["blanche", "fruite", "moyenne", "detente", "douce"] },
@@ -272,20 +270,22 @@
         score: answers.reduce((s, a) => s + (b.tags.includes(a) ? 1 : 0), 0)
       }));
 
+      const maxScore = quizData.length;
       let best = scores.sort((a, b) => b.score - a.score)[0];
       let beer = beers.find(b => b.name === best.name);
+      let percent = Math.round((best.score / maxScore) * 100);
 
       if (beer.tags[0] !== colorChoice) {
         const sameColor = scores.filter(s => s.color === colorChoice);
         if (sameColor.length > 0) {
           best = sameColor.sort((a, b) => b.score - a.score)[0];
           beer = beers.find(b => b.name === best.name);
+          percent = Math.round((best.score / maxScore) * 100);
           quizEl.innerHTML = `
             <div class="result">
               <h2>🍺 ${beer.name}</h2>
-              <p>Aucune ${colorChoice} ne correspond parfaitement à ton profil…<br>
-              Mais voici une ${colorChoice} qui devrait te plaire 👇</p>
-              <button class="btn" onclick="window.location.href='carte.html#${beer.name.replaceAll(' ', '-').toLowerCase()}'">Découvrir sur la carte</button>
+              <p>Aucune ${colorChoice} ne correspond parfaitement à ton profil...<br>
+              Mais voici une ${colorChoice} qui colle à <strong>${percent}%</strong> avec tes goûts !</p>
               <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
               <button class="btn" onclick="restartQuiz()">🔁 Recommencer</button>
             </div>`;
@@ -296,8 +296,7 @@
       quizEl.innerHTML = `
         <div class="result">
           <h2>🍺 ${beer.name}</h2>
-          <p>Voilà la bière qui te correspond le mieux ! Découvre-la dans notre carte 🍻</p>
-          <button class="btn" onclick="window.location.href='carte.html#${beer.name.replaceAll(' ', '-').toLowerCase()}'">Découvrir sur la carte</button>
+          <p>Elle correspond à <strong>${percent}%</strong> à ton profil !</p>
           <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
           <button class="btn" onclick="restartQuiz()">🔁 Recommencer</button>
         </div>`;
