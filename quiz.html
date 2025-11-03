@@ -163,7 +163,7 @@
     /* --- Questions --- */
     const quizData = [
       {
-        question: "🎨 Quelle type de bière t’attire le plus ?",
+        question: "🎨 Quel type de bière t’attire le plus ?",
         options: [
           { text: "🍯 Blonde", value: "blonde" },
           { text: "🌿 IPA", value: "ipa" },
@@ -287,6 +287,7 @@
               Mais voici une ${colorChoice} qui devrait te plaire 👇</p>
               <button class="btn" onclick="window.location.href='carte.html#${beer.name.replaceAll(' ', '-').toLowerCase()}'">Découvrir sur la carte</button>
               <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
+              <button class="btn" onclick="restartQuiz()">🔁 Recommencer</button>
             </div>`;
           return;
         }
@@ -298,7 +299,15 @@
           <p>Voilà la bière qui te correspond le mieux ! Découvre-la dans notre carte 🍻</p>
           <button class="btn" onclick="window.location.href='carte.html#${beer.name.replaceAll(' ', '-').toLowerCase()}'">Découvrir sur la carte</button>
           <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
+          <button class="btn" onclick="restartQuiz()">🔁 Recommencer</button>
         </div>`;
+    }
+
+    function restartQuiz() {
+      current = 0;
+      answers = [];
+      progressEl.style.width = "0%";
+      showQuestion();
     }
 
     showQuestion();
