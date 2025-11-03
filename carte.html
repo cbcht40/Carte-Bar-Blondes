@@ -1,64 +1,167 @@
 <div class="section" onclick="toggleSection('bieres')">🍻 Bières pression</div>
 <div id="bieres" class="content">
-  <ul>
-    <li><strong>Fouillotte Blonde</strong> — 🇫🇷 4°  
-      <br><em>Blonde légère brassée avec des branches de sapin 🌲, au goût résineux et boisé.</em>
+  <ul class="beer-list">
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Fouillotte Blonde</div>
+      <div class="beer-details">
+        <p><strong>4° — 🇫🇷 France</strong></p>
+        <p>Blonde légère brassée avec des branches de sapin 🌲, au goût résineux et boisé.</p>
+      </div>
     </li>
 
-    <li><strong>Blanche Bernardus</strong> — 🇧🇪 6°  
-      <br><em>Blanche douce et épicée, aux notes d’agrumes et de coriandre.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Blanche Bernardus</div>
+      <div class="beer-details">
+        <p><strong>6° — 🇧🇪 Belgique</strong></p>
+        <p>Blanche douce et épicée, aux notes d’agrumes et de coriandre.</p>
+      </div>
     </li>
 
-    <li><strong>Weihenstephaner Vitus</strong> — 🇩🇪 7.7°  
-      <br><em>Blanche riche et fruitée, aux arômes de banane et clou de girofle.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Weihenstephaner Vitus</div>
+      <div class="beer-details">
+        <p><strong>7.7° — 🇩🇪 Allemagne</strong></p>
+        <p>Blanche riche et fruitée, banane et clou de girofle.</p>
+      </div>
     </li>
 
-    <li><strong>Trappe Blonde</strong> — 🇳🇱 6.5°  
-      <br><em>Blonde trappiste florale, fine et équilibrée.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Trappe Blonde</div>
+      <div class="beer-details">
+        <p><strong>6.5° — 🇳🇱 Pays-Bas</strong></p>
+        <p>Blonde trappiste florale, fine et équilibrée.</p>
+      </div>
     </li>
 
-    <li><strong>Ypra Lefort</strong> — 🇧🇪 10°  
-      <br><em>Triple belge dorée, fruitée et généreuse, finale puissante et douce.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Ypra Lefort</div>
+      <div class="beer-details">
+        <p><strong>10° — 🇧🇪 Belgique</strong></p>
+        <p>Triple belge dorée, fruitée et généreuse, finale puissante et douce.</p>
+      </div>
     </li>
 
-    <li><strong>Timut</strong> — 🇫🇷 4°  
-      <br><em>Blonde légère au citron et poivre de Timut, fraîche et surprenante.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Timut</div>
+      <div class="beer-details">
+        <p><strong>4° — 🇫🇷 France</strong></p>
+        <p>Blonde légère au citron et poivre de Timut, fraîche et surprenante.</p>
+      </div>
     </li>
 
-    <li><strong>Delta IPA</strong> — 🇧🇪 6°  
-      <br><em>IPA équilibrée, amertume florale et notes d’agrumes.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Delta IPA</div>
+      <div class="beer-details">
+        <p><strong>6° — 🇧🇪 Belgique</strong></p>
+        <p>IPA équilibrée, amertume florale et notes d’agrumes.</p>
+      </div>
     </li>
 
-    <li><strong>Milkshake IPA</strong> — 🇫🇷 5.7°  
-      <br><em>IPA douce et crémeuse, avec des notes de vanille et fruits tropicaux.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Milkshake IPA</div>
+      <div class="beer-details">
+        <p><strong>5.7° — 🇫🇷 France</strong></p>
+        <p>IPA douce et crémeuse, avec des notes de vanille et fruits tropicaux.</p>
+      </div>
     </li>
 
-    <li><strong>Whisky Infused</strong> — 🇫🇷 12.7°  
-      <br><em>Ambrée infusée au whisky, intense, ronde et boisée.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Whisky Infused</div>
+      <div class="beer-details">
+        <p><strong>12.7° — 🇫🇷 France</strong></p>
+        <p>Ambrée infusée au whisky, intense, ronde et boisée.</p>
+      </div>
     </li>
 
-    <li><strong>Prior Bernardus</strong> — 🇧🇪 8°  
-      <br><em>Brune double maltée et ronde, typiquement belge.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Prior Bernardus</div>
+      <div class="beer-details">
+        <p><strong>8° — 🇧🇪 Belgique</strong></p>
+        <p>Brune double maltée et ronde, typiquement belge.</p>
+      </div>
     </li>
 
-    <li><strong>Blackheart</strong> — 🏴 4.4°  
-      <br><em>Stout écossaise légère, torréfiée et sèche.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Blackheart</div>
+      <div class="beer-details">
+        <p><strong>4.4° — 🏴 Écosse</strong></p>
+        <p>Stout écossaise légère, torréfiée et sèche.</p>
+      </div>
     </li>
 
-    <li><strong>Rouge Max</strong> — 🇧🇪 8°  
-      <br><em>Rouge douce et fruitée, aux arômes de cerise et mûre.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Rouge Max</div>
+      <div class="beer-details">
+        <p><strong>8° — 🇧🇪 Belgique</strong></p>
+        <p>Rouge douce et fruitée, aux arômes de cerise et mûre.</p>
+      </div>
     </li>
 
-    <li><strong>Kriek</strong> — 🇧🇪 5.5°  
-      <br><em>Rouge à la cerise, acidulée et sucrée.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Kriek</div>
+      <div class="beer-details">
+        <p><strong>5.5° — 🇧🇪 Belgique</strong></p>
+        <p>Rouge à la cerise, acidulée et sucrée.</p>
+      </div>
     </li>
 
-    <li><strong>Noble Coz Cidre</strong> — 🇫🇷 8°  
-      <br><em>Cidre artisanal breton, puissant et sec.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Noble Coz Cidre</div>
+      <div class="beer-details">
+        <p><strong>8° — 🇫🇷 France</strong></p>
+        <p>Cidre artisanal breton, puissant et sec.</p>
+      </div>
     </li>
 
-    <li><strong>Brunehaut</strong> — 🇧🇪 5°  
-      <br><em>Blonde sans gluten, ronde et équilibrée.</em>
+    <li onclick="toggleBeer(this)">
+      <div class="beer-header">🍺 Brunehaut</div>
+      <div class="beer-details">
+        <p><strong>5° — 🇧🇪 Belgique</strong></p>
+        <p>Blonde sans gluten, ronde et équilibrée.</p>
+      </div>
     </li>
   </ul>
 </div>
+
+<script>
+function toggleBeer(el) {
+  const info = el.querySelector('.beer-details');
+  info.style.display = info.style.display === 'block' ? 'none' : 'block';
+}
+</script>
+
+<style>
+.beer-list {
+  list-style: none;
+  padding: 0;
+}
+.beer-list li {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.beer-list li:hover {
+  background: #fff7cc;
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+  transform: scale(1.01);
+}
+.beer-header {
+  font-weight: 600;
+  color: #2b1a0a;
+}
+.beer-details {
+  display: none;
+  padding-top: 8px;
+  color: #3b2a1a;
+  font-size: 0.9rem;
+  animation: slideDown 0.4s ease forwards;
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
