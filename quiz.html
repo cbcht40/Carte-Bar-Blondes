@@ -1,150 +1,183 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ma bière idéale 🍺 | Café Blondes</title>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --gold: #ffcc00;
-      --wood: #3e2a16;
+      --gold: #f5c542;
+      --wood: #2e1d0e;
+      --text: #fffdf7;
       --lightwood: #fff8dc;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      color: white;
       background: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), var(--wood);
       background-size: cover;
+      color: var(--text);
+      font-family: 'Poppins', sans-serif;
       text-align: center;
       overflow-x: hidden;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 0;
-      backdrop-filter: blur(3px);
-    }
-    .wrap {
-      position: relative;
-      z-index: 1;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+      min-height: 100vh;
     }
     h1 {
       font-family: 'Merriweather', serif;
       color: var(--gold);
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       font-size: 2.4rem;
-      margin-bottom: 1rem;
-      animation: fadeIn 1s ease;
+      margin-top: 2rem;
+      position: relative;
+      text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
+      overflow: hidden;
     }
-    .sub {
-      color: #f8f8f8;
-      margin-bottom: 2rem;
-      animation: fadeIn 1.2s ease;
+    h1::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shine 10s infinite;
+    }
+    @keyframes shine {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
     }
 
-    .card {
-      background: rgba(255, 255, 240, 0.95);
-      color: var(--wood);
-      border-radius: 16px;
+    .quiz-container {
+      margin: 2rem auto;
+      max-width: 600px;
+      background: rgba(0,0,0,0.6);
       padding: 2rem;
-      max-width: 500px;
+      border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      text-align: center;
-      animation: slideIn 0.6s ease;
+      position: relative;
+      overflow: hidden;
     }
-    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-    @keyframes slideIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
 
-    button.option {
-      background: var(--gold);
+    .question {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {opacity: 0; transform: translateX(40px);}
+      to {opacity: 1; transform: translateX(0);}
+    }
+
+    .options button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem auto;
+      padding: 1rem;
       border: none;
       border-radius: 10px;
-      padding: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: .7rem;
-      transition: 0.25s;
-    }
-    button.option:hover { background: #ffdb4d; transform: scale(1.03); }
-
-    .beer-result {
+      background: var(--gold);
       color: var(--wood);
-      font-weight: 700;
-      font-family: 'Merriweather', serif;
-      font-size: 1.3rem;
+      font-weight: 600;
+      font-size: 1rem;
       cursor: pointer;
-      transition: color 0.3s;
+      transition: all 0.3s ease;
     }
-    .beer-result:hover { color: #b8860b; }
 
-    .desc {
-      margin-top: 1rem;
-      display: none;
-      background: var(--lightwood);
-      border-radius: 10px;
-      padding: 1rem;
-      text-align: left;
-      color: #2b1a0a;
-      box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+    .options button:hover {
+      background: #ffd966;
+      transform: translateY(-2px);
+      box-shadow: 0 0 10px rgba(255, 230, 150, 0.6);
+    }
+
+    .progress {
+      font-size: 1rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: .5rem;
       animation: fadeIn 0.6s ease;
     }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .beer-result {
+      font-family: 'Merriweather', serif;
+      color: var(--gold);
+      font-size: 1.4rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+    .beer-result:hover {
+      color: #fff4a3;
+      text-shadow: 0 0 8px rgba(255, 220, 120, 0.8);
+    }
+
+    .desc {
+      display: none;
+      background: rgba(255,255,240,0.9);
+      color: var(--wood);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-top: 1rem;
+      font-size: 1rem;
+      text-align: left;
+      animation: fadeIn 0.6s ease;
+    }
+
     .cta {
       display: none;
-      margin-top: 1.5rem;
       background: var(--gold);
-      border: none;
-      border-radius: 50px;
-      padding: 0.8rem 1.6rem;
-      font-weight: 700;
-      cursor: pointer;
       color: var(--wood);
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      padding: 0.8rem 1.5rem;
+      margin-top: 1.2rem;
+      cursor: pointer;
       transition: 0.3s;
     }
-    .cta:hover { background: #ffdb4d; }
+    .cta:hover {
+      background: #ffd966;
+      transform: scale(1.05);
+    }
 
     footer {
       color: var(--gold);
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
+      margin-top: 2rem;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>🍺 Trouve ta bière idéale</h1>
-    <p class="sub">Réponds à quelques questions et découvre la bière qui te correspond le mieux…</p>
-    <div id="quiz" class="card"></div>
+  <h1>Ma bière idéale 🍺</h1>
+  <div class="quiz-container" id="quiz">
+    <div class="progress" id="progress">Question 1 / 3</div>
   </div>
+
   <footer>© 2025 Café Blondes — Nancy</footer>
 
   <script>
     const questions = [
+      { text: "Quelle couleur de bière préfères-tu ?", options: [
+        { text: "Blanche", value: "blanche" },
+        { text: "Blonde", value: "blonde" },
+        { text: "Ambrée / Brune", value: "ambrée" },
+        { text: "Rouge", value: "rouge" }
+      ]},
       { text: "Tu veux une bière plutôt…", options: [
         { text: "Douce et facile à boire", value: "douce" },
         { text: "Amère et expressive", value: "amere" },
         { text: "Fruitée et originale", value: "fruitee" },
         { text: "Puissante et maltée", value: "forte" }
       ]},
-      { text: "Tu préfères une couleur…", options: [
-        { text: "Blanche", value: "blanche" },
-        { text: "Blonde", value: "blonde" },
-        { text: "Ambrée / Brune", value: "ambrée" },
-        { text: "Rouge", value: "rouge" }
-      ]},
-      { text: "Ton humeur du moment ?", options: [
+      { text: "Et ton humeur du moment ?", options: [
         { text: "Je veux me rafraîchir 🍋", value: "legere" },
         { text: "Je veux découvrir 🌿", value: "originale" },
         { text: "Je veux faire la fête 🔥", value: "forte" },
@@ -152,31 +185,35 @@
       ]}
     ];
 
-    // Pondération simplifiée : associer profils aux bières réelles
     const beers = {
       "blanche": {name:"Blanche Bernardus (6°, Belgique)", desc:"Blanche belge douce et épicée, aux notes d’agrumes et de coriandre."},
+      "blanche-forte": {name:"Weihenstephaner Vitus (7.7°, Allemagne)", desc:"Weizenbock riche, aux arômes de banane, miel et clou de girofle."},
       "blonde-douce": {name:"Trappe Blonde (6.5°, Pays-Bas)", desc:"Blonde trappiste florale et équilibrée, légèrement sucrée et ronde."},
       "blonde-legere": {name:"Fouillotte Blonde (4°, France)", desc:"Blonde artisanale brassée avec des branches de sapin 🌲, au petit goût résineux et boisé."},
       "blonde-forte": {name:"Ypra Lefort (10°, Belgique)", desc:"Triple belge dorée, complexe et fruitée, aux notes caramélisées."},
       "ambrée": {name:"Prior Bernardus (8°, Belgique)", desc:"Double belge maltée et ronde, arômes de fruits secs et caramel."},
+      "ambrée-forte": {name:"Whisky Infused (12.7°, France)", desc:"Ambrée infusée au whisky, intense, boisée et vanillée."},
       "stout": {name:"Blackheart (4.1°, Écosse)", desc:"Stout légère et crémeuse, arômes de café et cacao."},
       "ipa": {name:"Delta IPA (6°, Belgique)", desc:"IPA fruitée et houblonnée, arômes d’agrumes et de fruits tropicaux."},
       "fruitée": {name:"Rouge Max (8°, Belgique)", desc:"Rouge douce et fruitée, saveurs de cerise mûre et fruits rouges."},
-      "cidre": {name:"Noble Coz (8°, France)", desc:"Cidre fort et acidulé, goût de pomme mûre et pointe tannique."},
       "neipa": {name:"NEIPA Sainte Cru (6°, France)", desc:"IPA trouble et juteuse, avec une belle fin de bouche florale."},
-      "whisky": {name:"Whisky Infused (12.7°, France)", desc:"Ambrée infusée au whisky, intense, boisée et vanillée."}
+      "cidre": {name:"Noble Coz (8°, France)", desc:"Cidre fort et acidulé, goût de pomme mûre et pointe tannique."}
     };
 
     let step = 0;
     const answers = [];
     const quiz = document.getElementById("quiz");
+    const progress = document.getElementById("progress");
 
     function renderQuestion() {
+      progress.textContent = `Question ${step+1} / ${questions.length}`;
       const q = questions[step];
       quiz.innerHTML = `
-        <h2>${q.text}</h2>
-        ${q.options.map(o => `<button class="option" onclick="select('${o.value}')">${o.text}</button>`).join('')}
-      `;
+        <div class="progress">${progress.textContent}</div>
+        <div class="question">${q.text}</div>
+        <div class="options">
+          ${q.options.map(o => `<button onclick="select('${o.value}')">${o.text}</button>`).join('')}
+        </div>`;
     }
 
     function select(v) {
@@ -187,31 +224,30 @@
     }
 
     function showResult() {
-      const values = answers.join('-');
-      let beerKey = "blonde-douce";
+      const val = answers.join('-');
+      let key = "blonde-douce";
 
-      if (values.includes("blanche")) beerKey = "blanche";
-      else if (values.includes("rouge")) beerKey = "fruitée";
-      else if (values.includes("ambrée") || values.includes("ronde")) beerKey = "ambrée";
-      else if (values.includes("forte")) beerKey = "blonde-forte";
-      else if (values.includes("legere") && values.includes("blonde")) beerKey = "blonde-legere";
-      else if (values.includes("amere") || values.includes("originale")) beerKey = "ipa";
-      else if (values.includes("stout")) beerKey = "stout";
-      else if (values.includes("cidre")) beerKey = "cidre";
+      if (val.includes("blanche")) key = val.includes("forte") ? "blanche-forte" : "blanche";
+      else if (val.includes("blonde") && val.includes("forte")) key = "blonde-forte";
+      else if (val.includes("blonde") && val.includes("legere")) key = "blonde-legere";
+      else if (val.includes("blonde")) key = "blonde-douce";
+      else if (val.includes("ambrée") && val.includes("forte")) key = "ambrée-forte";
+      else if (val.includes("ambrée")) key = "ambrée";
+      else if (val.includes("stout")) key = "stout";
+      else if (val.includes("ipa") || val.includes("amere") || val.includes("originale")) key = "ipa";
+      else if (val.includes("rouge")) key = "fruitée";
 
-      const b = beers[beerKey];
+      const b = beers[key];
       quiz.innerHTML = `
-        <div class="beer-result" onclick="revealDesc()">${b.name}</div>
+        <h2 class="beer-result" onclick="revealDesc()">${b.name}</h2>
         <div class="desc" id="desc">${b.desc}</div>
         <button class="cta" id="cta" onclick="location.href='carte.html#menu'">📜 Voir sur la carte</button>
       `;
     }
 
     function revealDesc() {
-      const d = document.getElementById("desc");
-      const cta = document.getElementById("cta");
-      d.style.display = "block";
-      cta.style.display = "inline-block";
+      document.getElementById("desc").style.display = "block";
+      document.getElementById("cta").style.display = "inline-block";
     }
 
     renderQuestion();
