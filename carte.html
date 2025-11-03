@@ -1,180 +1,129 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Café Blondes — Carte</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(rgba(10, 6, 3, 0.85), rgba(0, 0, 0, 0.95)),
-                  url('IMG_0768.jpeg') center/cover no-repeat fixed;
-      backdrop-filter: blur(6px);
-      color: #fdfdfd;
-      scroll-behavior: smooth;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café Blondes - Carte</title>
 
-    h1 {
-      text-align: center;
-      color: #ffcc00;
-      font-family: 'Merriweather', serif;
-      font-size: 2.4rem;
-      margin: 2rem 0 0.3rem;
-    }
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background:
+    linear-gradient(rgba(15,8,3,0.85), rgba(15,8,3,0.85)),
+    url('IMG_0765.jpeg') no-repeat center/cover;
+  background-attachment: fixed;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
 
-    h2 {
-      text-align: center;
-      color: #ffcc00;
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
+/* TITRE PRINCIPAL */
+h1 {
+  margin-top: 40px;
+  font-size: 2.5em;
+  color: #f4d35e;
+  text-shadow: 0 0 10px rgba(244,211,94,0.5);
+}
 
-    .menu-container {
-      max-width: 900px;
-      margin: 0 auto 4rem;
-      background: rgba(25, 15, 8, 0.88);
-      border-radius: 15px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
-    }
+/* SECTIONS */
+.section {
+  font-size: 1.5em;
+  background: rgba(244,211,94,0.15);
+  color: #f4d35e;
+  margin: 25px auto 0;
+  padding: 15px;
+  width: 90%;
+  max-width: 700px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 0 10px rgba(244,211,94,0.3);
+}
+.section:hover {
+  background: rgba(244,211,94,0.25);
+}
 
-    .section {
-      background: #ffcc00;
-      color: #2b1a0a;
-      font-weight: 600;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-top: 1.5rem;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
-      text-align: center;
-    }
+/* CONTENU DÉPLIANT */
+.content {
+  display: none;
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto 25px;
+  background: rgba(25,15,5,0.9);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  animation: fadeIn 0.5s ease;
+}
 
-    .section:hover {
-      background: #ffdb4d;
-      transform: scale(1.02);
-    }
+.beer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
-    .content {
-      display: none;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 1.2rem;
-      border-radius: 10px;
-      margin-top: 0.6rem;
-      animation: fadeIn 0.4s ease;
-    }
+/* ÉLÉMENTS (BIÈRES / PLANCHES) */
+.beer-item {
+  background: rgba(244,211,94,0.1);
+  border-radius: 12px;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.beer-item:hover {
+  background: rgba(244,211,94,0.2);
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.beer-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #f4d35e;
+  font-size: 1.1em;
+}
 
-    .beer-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-      gap: 1rem;
-    }
+.beer-body {
+  display: none;
+  font-size: 0.95em;
+  color: #fff;
+  margin-top: 8px;
+  text-align: left;
+  line-height: 1.4em;
+}
 
-    .beer-item {
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 12px;
-      padding: 0.9rem 1.2rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      border-left: 4px solid transparent;
-      position: relative;
-    }
+/* ANIMATION */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
 
-    .beer-item:hover {
-      border-left: 4px solid #ffcc00;
-      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
-      background: rgba(255, 204, 0, 0.12);
-      transform: scale(1.02);
-    }
-
-    .beer-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: #f8f8f8;
-      font-weight: 600;
-    }
-
-    .beer-body {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      font-size: 0.9rem;
-      line-height: 1.4;
-      color: #f0e4b3;
-      margin-top: 0.4rem;
-      transition: all 0.4s ease;
-    }
-
-    .beer-item.active .beer-body {
-      max-height: 150px;
-      opacity: 1;
-    }
-
-    .quiz-btn {
-      display: block;
-      background: #ffcc00;
-      color: #2b1a0a;
-      text-align: center;
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      margin: 2rem auto 0;
-      width: fit-content;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
-    }
-
-    .quiz-btn:hover {
-      background: #ffdb4d;
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      color: #f0e4b3;
-    }
-
-    li { margin: 0.4rem 0; }
-
-    footer {
-      text-align: center;
-      background: rgba(0, 0, 0, 0.85);
-      color: #ffcc00;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      border-top: 2px solid rgba(255, 204, 0, 0.3);
-    }
-
-    footer a {
-      color: #ffcc00;
-      text-decoration: none;
-    }
-
-    footer a:hover { text-decoration: underline; }
-  </style>
+/* MOBILE */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.6em;
+  }
+  .section {
+    font-size: 1.2em;
+    padding: 12px;
+  }
+  .beer-header {
+    font-size: 1em;
+  }
+  .beer-body {
+    font-size: 0.9em;
+  }
+}
+</style>
 </head>
 
 <body>
-  <h1>Café Blondes</h1>
-  <h2>24 pressions — Une ambiance rustique & conviviale 🍺</h2>
 
-  <div class="menu-container">
-    <!-- BIÈRES -->
-    <div class="section" id="beer-title" onclick="toggleSection('bieres')">🍻 Bières pression</div>
-    <div id="bieres" class="content">
+<h1>🍻 Carte du Café Blondes</h1>
+
+<!-- BIÈRES -->
+<div class="section" id="beer-title" onclick="toggleSection('bieres')">🍺 Bières pression</div>
+<div id="bieres" class="content">
   <div class="beer-list">
     <div class="beer-item" onclick="toggleBeer(this)">
       <div class="beer-header"><span>Fouillotte Blonde</span><span>🇫🇷 4°</span></div>
@@ -222,11 +171,6 @@
     </div>
 
     <div class="beer-item" onclick="toggleBeer(this)">
-      <div class="beer-header"><span>Prior Bernardus</span><span>🇧🇪 8°</span></div>
-      <div class="beer-body">Brune double maltée, généreuse, ronde et légèrement caramélisée.</div>
-    </div>
-
-    <div class="beer-item" onclick="toggleBeer(this)">
       <div class="beer-header"><span>Blackheart</span><span>🏴 4.4°</span></div>
       <div class="beer-body">Stout écossaise, torréfiée et sèche avec des notes de café.</div>
     </div>
@@ -247,24 +191,8 @@
     </div>
 
     <div class="beer-item" onclick="toggleBeer(this)">
-      <div class="beer-header"><span>Brunehaut</span><span>🇧🇪 5°</span></div>
-      <div class="beer-body">Blonde sans gluten, ronde et équilibrée.</div>
-    </div>
-
-    <!-- nouvelles bières ajoutées -->
-    <div class="beer-item" onclick="toggleBeer(this)">
-      <div class="beer-header"><span>St Idesbald Blonde</span><span>🇧🇪 6.5°</span></div>
-      <div class="beer-body">Blonde d’abbaye douce et maltée, aux notes légèrement épicées et fruitées.</div>
-    </div>
-
-    <div class="beer-item" onclick="toggleBeer(this)">
-      <div class="beer-header"><span>Tarot</span><span>🇧🇪 8°</span></div>
-      <div class="beer-body">Bière belges aux gout de mangue et de fruit de la passion.</div>
-    </div>
-
-    <div class="beer-item" onclick="toggleBeer(this)">
       <div class="beer-header"><span>Shorba</span><span>🇫🇷 6°</span></div>
-      <div class="beer-body">Sour à la frambroise joliement acidulée.</div>
+      <div class="beer-body">Sour à la framboise joliment acidulée.</div>
     </div>
 
     <div class="beer-item" onclick="toggleBeer(this)">
@@ -279,63 +207,18 @@
 
     <div class="beer-item" onclick="toggleBeer(this)">
       <div class="beer-header"><span>Triple Bernardus</span><span>🇧🇪 8°</span></div>
-      <div class="beer-body">Triple belge dorée et puissante où l’amertume et la douceur se côtoient en parfaite harmonie. </div>
+      <div class="beer-body">Triple belge dorée et puissante où l’amertume et la douceur se côtoient en parfaite harmonie.</div>
     </div>
-  </div>
-
-  <!-- Bouton Quiz -->
-  <div class="quiz-btn" onclick="location.href='quiz.html'">
-    🎯 Trouve ta bière idéale
   </div>
 </div>
-
-
-    <!-- SOFTS -->
-    <div class="section" onclick="toggleSection('softs')">🥤 Softs</div>
-    <div id="softs" class="content">
-      <ul>
-        <li>Coca, Coca Zéro, Coca Cherry</li>
-        <li>Ginger Beer</li>
-        <li>Diabolos (citron, fraise, menthe...)</li>
-        <li>Thés glacés (pêche, citron...)</li>
-        <li>Schweppes Tonic, Agrum</li>
-        <li>Spunky</li>
-        <li>Jus (abricot, ananas, pomme...)</li>
-      </ul>
-    </div>
-
-    <!-- COCKTAILS -->
-    <div class="section" onclick="toggleSection('cocktails')">🍹 Cocktails</div>
-    <div id="cocktails" class="content">
-      <ul>
-        <li>Aperol Spritz</li>
-        <li>Ugo Spritz</li>
-        <li>Spritz Framboise</li>
-        <li>Lillet (rouge, blanc, rosé) Spritz</li>
-      </ul>
-    </div>
-
-    <!-- VINS -->
-    <div class="section" onclick="toggleSection('vins')">🍷 Vins</div>
-    <div id="vins" class="content">
-      <ul>
-        <li>Blanc sec : St Véran, Chardonnay</li>
-        <li>Blanc fruité : Viognier</li>
-        <li>Blanc sucré : Horgelus</li>
-        <li>Rosé : Château Beaulieu</li>
-        <li>Rouge : Côtes du Rhône, Pinot Noir</li>
-      </ul>
-    </div>
-  </div>
 
 <!-- PLANCHES -->
 <div class="section" id="planche-title" onclick="toggleSection('planches')">🧀 Planches à partager</div>
 <div id="planches" class="content">
   <div class="beer-list">
-
     <div class="beer-item" onclick="toggleBeer(this)">
       <div class="beer-header"><span>Planche saucisson</span></div>
-      <div class="beer-body">Saucisson provençal, girolle, et lardon fumé 🥓 — un trio parfait pour l’apéro !</div>
+      <div class="beer-body">Saucisson provençal, girolle et lardon fumé 🥓 — un trio parfait pour l’apéro !</div>
     </div>
 
     <div class="beer-item" onclick="toggleBeer(this)">
@@ -352,49 +235,22 @@
       <div class="beer-header"><span>Planche terrine</span></div>
       <div class="beer-body">Terrine maison accompagnée de pain de campagne 🍞 — généreuse et savoureuse.</div>
     </div>
-
   </div>
 </div>
 
-  
-  <footer>
-    <p>📍 18 rue de la Faïencerie, Nancy</p>
-    <p>🕐 Lun–Mer : 17h30–00h | Jeu–Ven : 17h30–2h | Sam : 14h–2h</p>
-    <p><a href="https://www.instagram.com/blonde_beer_bar/" target="_blank">📸 Suis-nous sur Instagram</a></p>
-    <p>© 2025 Café Blondes — Nancy</p>
-  </footer>
+<script>
+function toggleSection(id) {
+  const section = document.getElementById(id);
+  section.style.display = section.style.display === "block" ? "none" : "block";
+}
 
-  <script>
-    function toggleSection(id) {
-      const section = document.getElementById(id);
-      const beerTitle = document.getElementById('beer-title');
-      const isBeer = id === 'bieres';
+function toggleBeer(el) {
+  const body = el.querySelector(".beer-body");
+  const allBodies = document.querySelectorAll(".beer-body");
+  allBodies.forEach(b => { if (b !== body) b.style.display = "none"; });
+  body.style.display = body.style.display === "block" ? "none" : "block";
+}
+</script>
 
-      // Si la section est déjà visible → on la ferme
-      if (section.style.display === 'block') {
-        section.style.display = 'none';
-        if (isBeer) beerTitle.innerHTML = "🍻 Bières pression";
-        return;
-      }
-
-      // Ferme toutes les autres sections
-      document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
-      document.querySelectorAll('.section').forEach(s => {
-        if (s.id === 'beer-title') s.innerHTML = "🍻 Bières pression";
-      });
-
-      // Ouvre la section choisie
-      section.style.display = 'block';
-      if (isBeer) {
-        beerTitle.innerHTML = "👉 Clique sur une bière pour découvrir sa description 🍺";
-      }
-    }
-
-    function toggleBeer(item) {
-      const active = item.classList.contains('active');
-      document.querySelectorAll('.beer-item').forEach(el => el.classList.remove('active'));
-      if (!active) item.classList.add('active');
-    }
-  </script>
 </body>
 </html>
