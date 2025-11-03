@@ -1,113 +1,51 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const questions = [
-    { text: "Quelle couleur de bière préfères-tu ?", options: [
-      { text: "Blanche", value: "blanche" },
-      { text: "Blonde", value: "blonde" },
-      { text: "Ambrée / Brune", value: "ambrée" },
-      { text: "Rouge", value: "rouge" }
-    ]},
-    { text: "Tu veux une bière plutôt…", options: [
-      { text: "Douce et facile à boire", value: "douce" },
-      { text: "Amère et expressive", value: "amere" },
-      { text: "Fruitée et originale", value: "fruitee" },
-      { text: "Puissante et maltée", value: "forte" }
-    ]},
-    { text: "Et ton humeur du moment ?", options: [
-      { text: "Je veux me rafraîchir 🍋", value: "legere" },
-      { text: "Je veux découvrir 🌿", value: "originale" },
-      { text: "Je veux faire la fête 🔥", value: "forte" },
-      { text: "Je veux me détendre 🍂", value: "ronde" }
-    ]}
-  ];
+const quizContainer = document.getElementById('quiz');
 
-  const beers = {
-    blanche: {name:"Blanche Bernardus (6°, Belgique)", desc:"Blanche belge douce et épicée, aux notes d’agrumes et de coriandre."},
-    vitus: {name:"Weihenstephaner Vitus (7.7°, Allemagne)", desc:"Weizenbock riche et fruitée, banane et clou de girofle."},
-    fouillotte: {name:"Fouillotte Blonde (4°, France)", desc:"Blonde artisanale brassée avec des branches de sapin 🌲, au petit goût résineux et boisé."},
-    trappe: {name:"Trappe Blonde (6.5°, Pays-Bas)", desc:"Blonde trappiste florale et équilibrée, légèrement sucrée et ronde."},
-    timut: {name:"Timut (4°, France)", desc:"Blonde légère et citronnée au poivre de Timut, exotique et rafraîchissante."},
-    ypra: {name:"Ypra Lefort (10°, Belgique)", desc:"Triple belge dorée, complexe et fruitée, aux notes caramélisées."},
-    prior: {name:"Prior Bernardus (8°, Belgique)", desc:"Double belge maltée et ronde, arômes de fruits secs et caramel."},
-    whisky: {name:"Whisky Infused (12.7°, France)", desc:"Ambrée infusée au whisky, intense, boisée et vanillée."},
-    rouge: {name:"Rouge Max (8°, Belgique)", desc:"Rouge douce et fruitée, saveurs de cerise mûre et fruits rouges."},
-    kriek: {name:"Kriek (5.5°, Belgique)", desc:"Rouge à la cerise, acidulée et sucrée, typiquement belge."}
-  };
+const questions = [
+  { question: "Tu préfères une bière blonde, brune, blanche ou IPA ?", answers: ["Blonde", "Brune", "Blanche", "IPA"] },
+  { question: "Plutôt légère et désaltérante ou puissante et complexe ?", answers: ["Légère", "Puissante"] },
+  { question: "Tu veux une bière avec une touche fruitée ?", answers: ["Oui", "Non"] },
+  { question: "Tu veux une bière amère ?", answers: ["Oui", "Non"] }
+];
 
-  const phrases = {
-    incoherent: [
-      "Ah, ça c’est rare chez nous 😄 On est un gros bar à bières, mais ce style-là on ne le fait pas vraiment.",
-      "Pas commun ça 😅 Chez nous, on reste sur des classiques bien faits, pas de mélange improbable !",
-      "Ouh, pas sûr que ça existe vraiment 😆 Mais j’ai mieux à te proposer…",
-      "Même avec nos 24 pressions, celle-là on ne l’a pas encore inventée 🍻"
-    ]
-  };
+let currentQuestion = 0;
+let answers = [];
 
-  let step = 0;
-  const answers = [];
-  const quiz = document.getElementById("quiz");
+function showQuestion() {
+  const q = questions[currentQuestion];
+  quizContainer.innerHTML = `
+    <h2>${q.question}</h2>
+    ${q.answers.map(a => `<button onclick="answer('${a}')">${a}</button>`).join('')}
+    <p>${currentQuestion + 1} / ${questions.length}</p>
+  `;
+}
 
-  function renderQuestion() {
-    const q = questions[step];
-    quiz.innerHTML = `
-      <div class="progress">Question ${step+1} / ${questions.length}</div>
-      <div class="question">${q.text}</div>
-      <div class="options">
-        ${q.options.map(o => `<button onclick="select('${o.value}')">${o.text}</button>`).join('')}
-      </div>`;
+function answer(a) {
+  answers.push(a);
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  const [color, body, fruity, bitter] = answers;
+  let beer = "Fouillotte Blonde";
+
+  if (color === "Brune") beer = "Prior Bernardus";
+  else if (color === "IPA") beer = bitter === "Oui" ? "Delta IPA" : "Milkshake IPA";
+  else if (color === "Blanche") beer = fruity === "Oui" ? "Weihenstephaner Vitus" : "Blanche Bernardus";
+  else if (color === "Blonde") {
+    if (body === "Légère") beer = fruity === "Oui" ? "Timut" : "Fouillotte Blonde";
+    else beer = "Ypra Lefort";
   }
 
-  window.select = function(v) {
-    answers.push(v);
-    step++;
-    if (step < questions.length) renderQuestion();
-    else showResult();
-  }
+  quizContainer.innerHTML = `
+    <h2>🍺 Ta bière idéale : <span style="color:#f5c542">${beer}</span></h2>
+    <button onclick="location.reload()">🔄 Rejouer</button>
+    <button onclick="window.location.href='index.html#menu'">📜 Voir la carte</button>
+  `;
+}
 
-  function showResult() {
-    const combo = answers.join('-');
-    let beer, note = "";
-
-    if (combo.includes("blanche")) {
-      if (combo.includes("forte")) { note = phrases.incoherent[1]; beer = beers.vitus; }
-      else beer = beers.blanche;
-    } else if (combo.includes("blonde")) {
-      if (combo.includes("forte")) beer = beers.ypra;
-      else if (combo.includes("legere")) beer = beers.fouillotte;
-      else if (combo.includes("fruitee") || combo.includes("originale")) beer = beers.timut;
-      else beer = beers.trappe;
-    } else if (combo.includes("ambrée")) {
-      if (combo.includes("forte")) beer = beers.whisky;
-      else beer = beers.prior;
-    } else if (combo.includes("rouge")) {
-      if (combo.includes("douce")) beer = beers.rouge;
-      else beer = beers.kriek;
-    } else {
-      note = phrases.incoherent[3];
-      beer = beers.trappe;
-    }
-
-    quiz.innerHTML = `
-      <h2 class="beer-result">${beer.name}</h2>
-      ${note ? `<div class="note">${note}</div>` : ""}
-      <div class="options">
-        <button class="cta" onclick="toggleDesc()">📖 Détails de la bière</button>
-        <button class="cta" onclick="location.href='index.html#menu'">📜 Voir sur la carte</button>
-        <button class="cta" onclick="restartQuiz()">🔄 Refaire le quiz</button>
-      </div>
-      <div class="desc" id="desc">${beer.desc}</div>
-    `;
-  }
-
-  window.toggleDesc = function() {
-    const desc = document.getElementById("desc");
-    desc.style.display = desc.style.display === "block" ? "none" : "block";
-  }
-
-  window.restartQuiz = function() {
-    step = 0;
-    answers.length = 0;
-    renderQuestion();
-  }
-
-  renderQuestion();
-});
+showQuestion();
