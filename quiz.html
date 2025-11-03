@@ -102,11 +102,12 @@
       margin-top: 0.5em;
     }
 
-    .result p {
-      color: #fff;
-      font-size: 1.1em;
-      margin: 1em 0;
-      line-height: 1.5em;
+    .percent {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #f4d35e;
+      margin: 15px 0;
+      text-shadow: 0 0 15px rgba(244,211,94,0.4);
     }
 
     .btn {
@@ -257,10 +258,25 @@
       quizEl.innerHTML = `
         <div class="result">
           <h2>🍺 ${beer.name}</h2>
-          <p>Elle correspond à <strong>${percent}%</strong> à ton profil !</p>
+          <div class="percent" id="percent">0%</div>
+          <p>Elle correspond à ton profil !</p>
           <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
           <button class="btn" onclick="restartQuiz()">🔁 Recommencer</button>
         </div>`;
+
+      animatePercent(percent);
+    }
+
+    function animatePercent(target) {
+      const el = document.getElementById("percent");
+      let current = 0;
+      const step = () => {
+        current += 2;
+        el.textContent = current + "%";
+        if (current < target) requestAnimationFrame(step);
+        else el.textContent = target + "%";
+      };
+      requestAnimationFrame(step);
     }
 
     function restartQuiz() {
