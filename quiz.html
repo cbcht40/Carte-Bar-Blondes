@@ -124,38 +124,18 @@ button.option:hover {
 }
 
 /* ---------- RESULT ---------- */
-.percent-container {
-  position: relative;
-  width: 130px; height: 130px;
-  margin: 25px auto;
-}
-.circle {
-  width: 130px; height: 130px;
-  border-radius: 50%;
-  border: 5px solid rgba(244,211,94,0.2);
-  position: absolute; top: 0; left: 0;
-}
-.circle-fill {
-  width: 130px; height: 130px;
-  border-radius: 50%;
-  border: 5px solid #f4d35e;
-  clip-path: polygon(50% 50%, 50% 0, 100% 0, 100% 100%, 0 100%, 0 0, 50% 0);
-  transform: rotate(0deg);
-  transform-origin: center;
-  transition: transform 1s ease-out;
+.result h2 {
+  color: #f4d35e;
+  font-size: 1.7em;
+  margin-top: 0.5em;
 }
 .percent-text {
-  position: absolute;
-  top: 45%; left: 50%;
-  transform: translate(-50%,-50%);
-  font-size: 2em;
+  font-size: 3em;
   font-weight: bold;
   color: #f4d35e;
-  text-shadow: 0 0 10px rgba(244,211,94,0.4);
+  margin: 30px 0;
+  text-shadow: 0 0 15px rgba(244,211,94,0.5);
 }
-
-.result h2 { color: #f4d35e; font-size: 1.7em; margin-top: 0.5em; }
-.result p { color: #fff; font-size: 1.1em; margin: 1em 0; line-height: 1.5em; }
 
 .btn {
   display: inline-block;
@@ -204,7 +184,7 @@ button.option:hover {
   </div>
 
 <script>
-const quizData=[ /* mêmes questions que précédemment */ 
+const quizData=[
 {question:"🎨 Quel type de bière t’attire le plus ?",options:[
 {text:"🍯 Blonde",value:"blonde"},{text:"🌿 IPA",value:"ipa"},
 {text:"🍫 Brune",value:"brune"},{text:"🌾 Blanche",value:"blanche"},
@@ -227,14 +207,14 @@ const quizData=[ /* mêmes questions que précédemment */
 {text:"⚡ Audacieuse et intense",value:"intense"}]}];
 
 const beers=[
-{name:"Fouillotte Blonde",type:"blonde",phrase:"Tu brilles sans en faire trop ☀️"},
-{name:"Delta IPA",type:"ipa",phrase:"Tu ne fais jamais dans la demi-mesure 🌿"},
-{name:"Whisky Infused",type:"brune",phrase:"Fort à l’extérieur, doux à l’intérieur 🍫"},
-{name:"Blanche Bernardus",type:"blanche",phrase:"Toujours frais, jamais stress 🍋"},
-{name:"Rouge Max",type:"rouge",phrase:"Tu mets de la couleur partout où tu passes 🍒"},
-{name:"Blackheart",type:"stout",phrase:"Mystérieux mais attachant ☕"},
-{name:"Shorba",type:"sour",phrase:"Un petit grain d’acidité bien placé 🍓"},
-{name:"Noble Coz Cidre",type:"cidre",phrase:"Simple, pétillant et toujours cool 🍏"}];
+{name:"Fouillotte Blonde",type:"blonde"},
+{name:"Delta IPA",type:"ipa"},
+{name:"Whisky Infused",type:"brune"},
+{name:"Blanche Bernardus",type:"blanche"},
+{name:"Rouge Max",type:"rouge"},
+{name:"Blackheart",type:"stout"},
+{name:"Shorba",type:"sour"},
+{name:"Noble Coz Cidre",type:"cidre"}];
 
 let current=0,answers=[];
 const quizEl=document.getElementById("quiz");
@@ -257,12 +237,7 @@ function showResult(){
  quizEl.innerHTML=`
  <div class="result">
    <h2>🍺 ${beer.name}</h2>
-   <div class="percent-container">
-     <div class="circle"></div>
-     <div class="circle-fill" id="circleFill"></div>
-     <div class="percent-text" id="percentText">0%</div>
-   </div>
-   <p>${beer.phrase}</p>
+   <div class="percent-text" id="percentText">0%</div>
    <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
    <button class="btn" onclick="restartQuiz()">🔁 Recommencer</button>
  </div>`;
@@ -270,12 +245,10 @@ function showResult(){
 }
 function animatePercent(target){
  const text=document.getElementById("percentText");
- const circle=document.getElementById("circleFill");
  let cur=0;
  function step(){
    cur++;
    text.textContent=cur+"%";
-   circle.style.transform=`rotate(${cur*3.6}deg)`;
    if(cur<target)requestAnimationFrame(step);
    else text.textContent=target+"%";
  }
