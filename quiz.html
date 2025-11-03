@@ -94,28 +94,27 @@
       }
     ];
 
-    // ---- Mappage profils -> bières de TA carte
+    // ---- Profils -> Bières (UNIQUEMENT celles déjà sur ton site) avec ORIGINE & DEGRÉS CORRIGÉS
     const SUGGEST = {
-      douce:   { name:"Blanche Bernardus", desc:"Blanche rafraîchissante, légère et douce.", link:"carte.html#menu" },
-      amere:   { name:"Delta IPA",         desc:"IPA belge bien houblonnée, fraîche et vive.", link:"carte.html#menu" },
-      fruitee: { name:"Rouge Max",         desc:"Rouge douce aux notes de cerise et de malt.", link:"carte.html#menu" },
-      maltee:  { name:"Prior Bernardus",   desc:"Abbaye belge ronde, maltée et équilibrée.", link:"carte.html#menu" },
-      blonde:  { name:"Trappe Blonde",     desc:"Blonde trappiste florale et apaisante.", link:"carte.html#menu" },
-      ambree:  { name:"Ibex",              desc:"Ambrée française douce et caramélisée.", link:"carte.html#menu" },
-      brune:   { name:"Blackheart",        desc:"Stout intense, café & chocolat noir.", link:"carte.html#menu" },
-      surprise:{ name:"Whisky Infused",    desc:"Ambrée infusée au whisky, unique et chaleureuse.", link:"carte.html#menu" },
-      legere:  { name:"Estaminet",         desc:"Pils fine, nette et très désaltérante.", link:"carte.html#menu" },
-      ronde:   { name:"Trappe Blonde",     desc:"Blonde trappiste équilibrée, ronde et douce.", link:"carte.html#menu" },
-      forte:   { name:"Triple Bernardus",  desc:"Triple dense et généreuse, énergie dorée.", link:"carte.html#menu" },
-      originale:{name:"Timut",             desc:"IPA au poivre Timut — exotique et surprenante.", link:"carte.html#menu" },
-      conviviale:{name:"Fouillote Blonde", desc:"Blonde locale simple, conviviale et accessible.", link:"carte.html#menu" }
+      douce:   { name:"Blanche Bernardus (6° – Belgique)",  desc:"Blanche douce et épicée, notes d’agrumes & coriandre.", link:"carte.html#menu" },
+      amere:   { name:"Delta IPA (6° – Belgique)",           desc:"IPA fruitée et houblonnée, belle amertume citronnée.", link:"carte.html#menu" },
+      fruitee: { name:"Rouge Max (8° – Belgique)",           desc:"Rouge douce & fruitée, cerise et fruits rouges.", link:"carte.html#menu" },
+      maltee:  { name:"Prior Bernardus (8° – Belgique)",     desc:"Double ronde et maltée, touches de caramel & fruits secs.", link:"carte.html#menu" },
+      blonde:  { name:"Trappe Blonde (6.5° – Pays-Bas)",     desc:"Blonde trappiste florale, équilibrée et légèrement sucrée.", link:"carte.html#menu" },
+      ambree:  { name:"Whisky Infused (12.7° – France)",     desc:"Ambrée infusée au whisky, intense, boisée & chaleureuse.", link:"carte.html#menu" },
+      brune:   { name:"Blackheart (4.1° – Écosse)",          desc:"Stout légère & crémeuse, cacao et café torréfié.", link:"carte.html#menu" },
+      surprise:{ name:"Ypra Lefort (10° – Belgique)",        desc:"Triple belge complexe, fruitée, finale caramélisée.", link:"carte.html#menu" },
+      legere:  { name:"Estaminet (5.9° – Nord-Pas-de-Calais)",desc:"Pils fine et très désaltérante, malt subtil.", link:"carte.html#menu" },
+      ronde:   { name:"Trappe Blonde (6.5° – Pays-Bas)",     desc:"Ronde, douce et florale — facile à aimer.", link:"carte.html#menu" },
+      forte:   { name:"Triple Bernardus (8° – Belgique)",    desc:"Triple dorée, généreuse, douceur & épices.", link:"carte.html#menu" },
+      originale:{name:"Timut (4° – France)",                 desc:"IPA au poivre Timut : exotique, citronnée & épicée.", link:"carte.html#menu" },
+      conviviale:{name:"Fouillotte Blonde (4° – Vosges)",    desc:"Blonde locale brassée avec des branches d’épicéa — petit côté résineux & boisé unique. 🌲", link:"carte.html#menu" }
     };
 
     let step = 0;
     const picks = [];
     const $stage = document.getElementById("stage");
 
-    // Rendu d'une question
     function renderQuestion(){
       const q = QUESTIONS[step];
       $stage.innerHTML = `
@@ -137,17 +136,14 @@
       else { renderResult(); }
     }
 
-    // Calcul du "profil" majoritaire
     function majority(arr){
       const counts = arr.reduce((acc,v)=> (acc[v]=(acc[v]||0)+1, acc), {});
-      // prend la clé avec le max
       return Object.entries(counts).sort((a,b)=>b[1]-a[1])[0]?.[0] || "surprise";
     }
 
-    // Rendu du résultat (solide + text clair)
     function renderResult(){
       const key = majority(picks);
-      const data = SUGGEST[key] || SUGGEST.surprise; // vrai fallback
+      const data = SUGGEST[key] || SUGGEST.surprise;
       $stage.innerHTML = `
         <div class="q-title">Ta bière idéale 🍺</div>
         <div class="beer-name">${data.name}</div>
@@ -163,7 +159,6 @@
       step = 0; picks.length = 0; renderQuestion();
     }
 
-    // Lancement (toujours une question en premier)
     renderQuestion();
   </script>
 </body>
