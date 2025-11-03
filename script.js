@@ -49,3 +49,15 @@ function showResult() {
 }
 
 showQuestion();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const hash = window.location.hash.replace("#", "");
+  if (hash) {
+    const targetBeer = document.getElementById(hash);
+    if (targetBeer) {
+      targetBeer.scrollIntoView({ behavior: "smooth", block: "center" });
+      const body = targetBeer.querySelector(".beer-body");
+      if (body) body.style.display = "block";
+    }
+  }
+});
