@@ -14,227 +14,76 @@
       color: #2b1a0a;
       scroll-behavior: smooth;
     }
-
-    h1, h2 {
-      font-family: 'Merriweather', serif;
-    }
-
+    h1, h2 { font-family: 'Merriweather', serif; }
     header {
-      position: relative;
-      min-height: 100dvh;
+      position: relative; min-height: 55vh;
       background: url('IMG_0768.jpeg') center/cover no-repeat;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; color: white; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
-
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: 0;
-    }
-
-    header h1 {
-      position: relative;
-      z-index: 1;
-      font-size: 2.2rem;
-      color: #ffcc00;
-      padding: 0 1rem;
-    }
-
+    header::before { content:""; position:absolute; inset:0; background:rgba(0,0,0,0.45); z-index:0; }
+    header h1 { position:relative; z-index:1; font-size:2.2rem; color:#ffcc00; padding:0 1rem; }
     .scroll-button {
-      margin-top: 2rem;
-      background-color: #ffcc00;
-      border: none;
-      color: #2b1a0a;
-      padding: 1rem 2rem;
-      border-radius: 30px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      font-weight: 600;
-      position: relative;
-      z-index: 1;
+      margin-top: 1.2rem; background-color: #ffcc00; border: none; color: #2b1a0a;
+      padding: 0.8rem 1.6rem; border-radius: 30px; font-size: 1rem; cursor: pointer;
+      transition: background 0.3s ease; font-weight: 600; position: relative; z-index: 1;
     }
+    .scroll-button:hover { background-color: #ffdb4d; }
 
-    .scroll-button:hover {
-      background-color: #ffdb4d;
-    }
-
-    /* --- Section menu --- */
+    /* Section menu */
     .menu {
       background: rgba(255,255,240,0.97);
-      max-width: 1000px;
-      margin: 3rem auto;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      max-width: 1000px; margin: 2rem auto; padding: 2rem;
+      border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
-
-    .menu h2 {
-      text-align: center;
-      color: #b8860b;
-      margin-bottom: 1rem;
-    }
-
-    .menu p.hint {
-      text-align: center;
-      color: #b8860b;
-      font-weight: 500;
-      margin-bottom: 2rem;
-      font-style: italic;
-    }
+    .menu h2 { text-align:center; color:#b8860b; margin-bottom:1rem; }
+    .menu p.hint { text-align:center; color:#b8860b; font-weight:500; margin-bottom:1.5rem; font-style:italic; }
 
     .beer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
     }
-
     .beer-card {
-      background: #fff6d6;
-      border: 2px solid #b8860b;
-      border-radius: 12px;
-      text-align: center;
-      padding: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
+      background: #fff6d6; border: 2px solid #b8860b; border-radius: 12px;
+      text-align:center; padding:1rem; cursor:pointer; transition: .3s;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
+    .beer-card:hover { background:#ffe77a; transform: translateY(-4px); box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+    .beer-card h3 { margin-bottom:0.4rem; color:#2b1a0a; font-size:1.05rem; }
+    .beer-card p { font-size:0.9rem; color:#5a4630; }
 
-    .beer-card:hover {
-      background: #ffe77a;
-      transform: translateY(-4px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .beer-card h3 {
-      margin-bottom: 0.5rem;
-      color: #2b1a0a;
-    }
-
-    .beer-card p {
-      font-size: 0.9rem;
-      color: #5a4630;
-    }
-
-    /* --- Menus déroulants --- */
+    /* Menus déroulants */
     details {
-      margin-top: 2rem;
-      background: #f8e3a2;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      margin-top: 2rem; background:#f8e3a2; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.2);
     }
-
     summary {
-      background: linear-gradient(90deg, #e0a500, #ffcc00);
-      color: #2b1a0a;
-      font-weight: bold;
-      padding: 1rem;
-      cursor: pointer;
-      list-style: none;
-      font-size: 1.1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      background: linear-gradient(90deg, #e0a500, #ffcc00); color:#2b1a0a; font-weight:bold;
+      padding:1rem; cursor:pointer; list-style:none; font-size:1.1rem; display:flex; justify-content:space-between; align-items:center;
     }
+    summary::after { content:"▼"; transition: transform .3s ease; }
+    details[open] summary::after { transform: rotate(180deg); }
+    details ul { background-color:#fff9e6; margin:0; padding:1rem 2rem; border-top:1px solid #e0c066; list-style:disc; font-size:0.95rem; }
+    details li { margin-bottom:0.4rem; }
 
-    summary::after {
-      content: "▼";
-      transition: transform 0.3s ease;
-    }
-
-    details[open] summary::after {
-      transform: rotate(180deg);
-    }
-
-    details ul {
-      background-color: #fff9e6;
-      margin: 0;
-      padding: 1rem 2rem;
-      border-top: 1px solid #e0c066;
-      list-style: disc;
-      font-size: 0.95rem;
-    }
-
-    details li {
-      margin-bottom: 0.4rem;
-    }
-
-    /* --- Modale bière --- */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
+    /* Modale */
+    .modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:1000; }
     .modal-content {
-      background: #fff9e6;
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 400px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      animation: pop 0.3s ease;
+      background:#fff9e6; padding:2rem; border-radius:12px; max-width:420px; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.5);
+      animation:pop .3s ease;
     }
+    @keyframes pop{from{transform:scale(.92); opacity:0} to{transform:scale(1); opacity:1}}
+    .modal-content h3 { color:#b8860b; margin-bottom:0.6rem; }
+    .modal-content p { margin:0.4rem 0; }
+    .modal-content button { margin-top:1rem; background:#ffcc00; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer; font-weight:600; color:#2b1a0a; }
+    .modal-content button:hover{ background:#ffdb4d; }
 
-    @keyframes pop {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .modal-content h3 {
-      color: #b8860b;
-      margin-bottom: 1rem;
-    }
-
-    .modal-content p {
-      margin: 0.5rem 0;
-    }
-
-    .modal-content button {
-      margin-top: 1rem;
-      background: #ffcc00;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      color: #2b1a0a;
-    }
-
-    .modal-content button:hover {
-      background: #ffdb4d;
-    }
-
-    footer {
-      background-color: #2b1a0a;
-      color: #ffcc00;
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-    }
+    footer { background:#2b1a0a; color:#ffcc00; text-align:center; padding:1rem; font-size:0.9rem; }
   </style>
 </head>
-
 <body>
   <header>
     <h1>Café Blondes — 24 pressions, une ambiance rustique & conviviale</h1>
-    <button class="scroll-button" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
-      Accéder au menu ↓
-    </button>
+    <button class="scroll-button" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Accéder au menu ↓</button>
   </header>
 
   <section id="menu" class="menu">
@@ -287,29 +136,29 @@
   <footer>© 2025 Café Blondes — Tous droits réservés</footer>
 
   <script>
+    // Ordre conservé (sans Ibex)
     const beers = [
-      { name: "Prior Bernardus", degre: "8%", origine: "Belgique", description: "Abbaye belge au goût malté et légèrement sucré." },
-      { name: "Blanche Bernardus", degre: "5.5%", origine: "Belgique", description: "Blanche rafraîchissante, notes d’agrumes et coriandre." },
-      { name: "Triple Bernardus", degre: "9%", origine: "Belgique", description: "Triple dense et dorée, avec une belle amertume houblonnée." },
-      { name: "Ypra Lefort", degre: "8.5%", origine: "Belgique", description: "Triple belge ambrée, arômes fruités et maltés, finale douce." },
-      { name: "Whisky Infused", degre: "7.5%", origine: "France", description: "Bière ambrée infusée au whisky, notes boisées, vanillées et fumées." },
-      { name: "Trappe Blonde", degre: "6.5%", origine: "Pays-Bas", description: "Blonde trappiste équilibrée et florale." },
-      { name: "Weihenstephaner Vitus", degre: "7.7%", origine: "Allemagne", description: "Weizenbock douce, arômes de banane et clou de girofle." },
-      { name: "Delta IPA", degre: "6.5%", origine: "Belgique", description: "IPA belge fraîche, agrumes et levure épicée." },
-      { name: "Estaminet", degre: "5.2%", origine: "Belgique", description: "Pilsner fine et désaltérante." },
-      { name: "Ibex", degre: "6%", origine: "France", description: "Ambrée aux notes de caramel et fruits secs, équilibrée." },
-      { name: "Neipa", degre: "6.8%", origine: "USA", description: "IPA trouble et juteuse, arômes tropicaux." },
-      { name: "Shorba", degre: "6.2%", origine: "France (Piggy Brewing)", description: "IPA aromatique, houblonnée et fruitée avec des touches d'épices." },
-      { name: "Bitburger 0%", degre: "0%", origine: "Allemagne", description: "Sans alcool, légère, croustillante et maltée." },
-      { name: "Cidre Noble Coz", degre: "5%", origine: "Bretagne, France", description: "Cidre artisanal brut et fruité, équilibre entre acidité et douceur." },
-      { name: "Rouge Max", degre: "8%", origine: "Belgique", description: "Rouge douce, arômes de cerise et malt sucré." },
-      { name: "Kriek", degre: "4%", origine: "Belgique", description: "Lambic à la cerise, acidulée et fruitée." },
-      { name: "Milkshake IPA", degre: "6.5%", origine: "France", description: "IPA crémeuse et fruitée, texture onctueuse." },
-      { name: "Blackheart", degre: "8.5%", origine: "Angleterre", description: "Stout intense, café torréfié et chocolat noir." },
-      { name: "St Idesbald", degre: "7.5%", origine: "Belgique", description: "Abbaye douce, maltée et épicée." },
-      { name: "Brunehaut", degre: "6.5%", origine: "Belgique", description: "Bio et sans gluten, maltée et équilibrée." },
-      { name: "Timut", degre: "6%", origine: "France", description: "IPA au poivre Timut, agrumes et épices exotiques." },
-      { name: "Fouillote Blonde", degre: "5.8%", origine: "France", description: "Locale douce et florale, légèrement amère." }
+      { name:"Prior Bernardus", degre:"8°",  origine:"Belgique", desc:"Double belge maltée et ronde, aux arômes de fruits secs et de caramel." },
+      { name:"Blanche Bernardus", degre:"6°", origine:"Belgique", desc:"Blanche douce et épicée, notes d’agrumes & coriandre." },
+      { name:"Triple Bernardus", degre:"8°", origine:"Belgique", desc:"Triple dorée, puissante et équilibrée, aux touches de miel et d’épices." },
+      { name:"Ypra Lefort", degre:"10°", origine:"Belgique", desc:"Triple belge complexe et fruitée, finale légèrement caramélisée." },
+      { name:"Whisky Infused", degre:"12.7°", origine:"France", desc:"Ambrée infusée au whisky, intense, boisée et chaleureuse." },
+      { name:"Trappe Blonde", degre:"6.5°", origine:"Pays-Bas", desc:"Blonde trappiste florale et équilibrée, légèrement sucrée." },
+      { name:"Weihenstephaner Vitus", degre:"7.7°", origine:"Allemagne (Bavière)", desc:"Weizenbock riche, banane et clou de girofle." },
+      { name:"Delta IPA", degre:"6°", origine:"Belgique", desc:"IPA belge fruitée et houblonnée, belle amertume citronnée." },
+      { name:"Estaminet", degre:"5.9°", origine:"Nord-Pas-de-Calais (FR)", desc:"Pils fine et très désaltérante, malt subtil." },
+      { name:"Neipa (Sainte Cru)", degre:"6°", origine:"Alsace (FR)", desc:"NEIPA trouble et juteuse, arômes tropicaux, amertume douce." },
+      { name:"Shorba", degre:"6°", origine:"Lorraine (FR) – Piggy Brewing", desc:"IPA fruitée et légèrement épicée." },
+      { name:"Bitburger 0%", degre:"0°", origine:"Allemagne", desc:"Pils sans alcool, nette et équilibrée." },
+      { name:"Cidre Noble Coz", degre:"8°", origine:"Bretagne (FR)", desc:"Cidre fort et acidulé, pomme mûre, pointe tannique." },
+      { name:"Rouge Max", degre:"8°", origine:"Belgique", desc:"Rouge douce et fruitée, cerise et fruits rouges." },
+      { name:"Kriek", degre:"5.5°", origine:"Belgique", desc:"Bière à la cerise, fruitée et acidulée." },
+      { name:"Milkshake IPA", degre:"5.7°", origine:"France", desc:"IPA douce et onctueuse, notes fruitées, texture veloutée." },
+      { name:"Blackheart", degre:"4.1°", origine:"Écosse", desc:"Stout légère et crémeuse, cacao & café torréfié." },
+      { name:"St Idesbald", degre:"6.5°", origine:"Belgique", desc:"Blonde dorée, équilibrée et fruitée, légère douceur." },
+      { name:"Brunehaut", degre:"5.5°", origine:"Belgique (sans gluten)", desc:"Brune douce, caramel & noisette, malt torréfié." },
+      { name:"Timut", degre:"4°", origine:"France", desc:"IPA au poivre Timut, exotique, citronnée & épicée." },
+      { name:"Fouillotte Blonde", degre:"4°", origine:"Vosges (FR)", desc:"Blonde locale brassée avec des branches d’épicéa : petit côté résineux & boisé unique. 🌲" }
     ];
 
     const beerGrid = document.getElementById('beerGrid');
@@ -321,21 +170,18 @@
       beerGrid.appendChild(card);
     });
 
-    function openBeer(beer) {
+    function openBeer(b) {
       const modal = document.getElementById("beerModal");
       const box = document.getElementById("beerDetails");
       box.innerHTML = `
-        <h3>${beer.name}</h3>
-        <p><strong>Origine :</strong> ${beer.origine}</p>
-        <p><strong>Degré :</strong> ${beer.degre}</p>
-        <p>${beer.description}</p>
-        <button onclick="closeBeer()">Fermer</button>`;
+        <h3>${b.name}</h3>
+        <p><strong>Origine :</strong> ${b.origine}</p>
+        <p><strong>Degré :</strong> ${b.degre}</p>
+        <p>${b.desc}</p>
+        <button onclick="closeModal()">Fermer</button>`;
       modal.style.display = "flex";
     }
-
-    function closeBeer() {
-      document.getElementById("beerModal").style.display = "none";
-    }
+    function closeModal(){ document.getElementById("beerModal").style.display = "none"; }
   </script>
 </body>
 </html>
