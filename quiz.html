@@ -1,145 +1,322 @@
-<script>
-/* --- Questions --- */
-const quizData = [
-  {
-    question: "🎨 Quelle couleur de bière t’attire le plus ?",
-    options: [
-      { text: "🍯 Blonde", value: "blonde" },
-      { text: "🍫 Brune", value: "brune" },
-      { text: "🌾 Blanche", value: "blanche" },
-      { text: "🍒 Rouge", value: "rouge" },
-      { text: "☕ Stout", value: "stout" },
-      { text: "🍋 Sour", value: "sour" },
-      { text: "🍏 Cidre", value: "cidre" }
-    ]
-  },
-  {
-    question: "🎉 Quel est ton mood ce soir ?",
-    options: [
-      { text: "😌 Détente tranquille", value: "detente" },
-      { text: "🍻 Soirée entre amis", value: "amis" },
-      { text: "💃 Fête et ambiance", value: "fete" },
-      { text: "🍽️ Repas gourmand", value: "repas" },
-      { text: "🧭 Découverte et curiosité", value: "decouverte" }
-    ]
-  },
-  {
-    question: "🍯 Quel goût te tente le plus ?",
-    options: [
-      { text: "🌼 Doux et facile à boire", value: "doux" },
-      { text: "🍋 Fruité et frais", value: "fruite" },
-      { text: "🌿 Amer et houblonné", value: "amer" },
-      { text: "🍞 Malté et rond", value: "malte" },
-      { text: "🍏 Acidulé et surprenant", value: "acidule" },
-      { text: "🔥 Boisé ou épicé", value: "boise" }
-    ]
-  },
-  {
-    question: "💪 Tu veux une bière…",
-    options: [
-      { text: "🍃 Légère", value: "legere" },
-      { text: "⚖️ Moyenne", value: "moyenne" },
-      { text: "🔥 Bien corsée", value: "forte" }
-    ]
-  },
-  {
-    question: "💫 Si ta bière avait une personnalité ?",
-    options: [
-      { text: "🎩 Élégante et raffinée", value: "elegante" },
-      { text: "🎉 Joyeuse et conviviale", value: "joyeuse" },
-      { text: "🧔 Sage et posée", value: "sage" },
-      { text: "🎨 Originale et créative", value: "originale" },
-      { text: "⚡ Audacieuse et intense", value: "intense" }
-    ]
-  }
-];
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🍺 Ma bière idéale | Café Blondes</title>
 
-/* --- Base de données bières corrigée et sans ambrée --- */
-const beers = [
-  { name: "Fouillotte Blonde", tags: ["blonde", "doux", "legere", "detente", "decouverte"] },
-  { name: "Blanche Bernardus", tags: ["blanche", "fruite", "moyenne", "detente", "douce"] },
-  { name: "Weihenstephaner Vitus", tags: ["blanche", "fruite", "moyenne", "repas", "elegante"] },
-  { name: "Trappe Blonde", tags: ["blonde", "malte", "moyenne", "amis", "equilibree"] },
-  { name: "Ypra Lefort", tags: ["blonde", "malte", "forte", "repas", "fete"] },
-  { name: "Timut", tags: ["blonde", "acidule", "legere", "apero", "originale"] },
-  { name: "Delta IPA", tags: ["blonde", "amer", "moyenne", "fete", "originale"] },
-  { name: "Milkshake IPA", tags: ["blonde", "fruite", "moyenne", "fete", "creative"] },
-  { name: "Whisky Infused", tags: ["brune", "malte", "forte", "decouverte", "intense"] },
-  { name: "Prior Bernardus", tags: ["brune", "malte", "forte", "repas", "sage"] },
-  { name: "Blackheart", tags: ["stout", "malte", "legere", "detente", "discrete"] },
-  { name: "Rouge Max", tags: ["rouge", "fruite", "forte", "fete", "joyeuse"] },
-  { name: "Kriek", tags: ["rouge", "fruite", "legere", "detente", "joyeuse"] },
-  { name: "Noble Coz Cidre", tags: ["cidre", "acidule", "forte", "apero", "originale"] },
-  { name: "Brunehaut", tags: ["blonde", "malte", "moyenne", "repas", "elegante"] },
-  { name: "St Idesbald Blonde", tags: ["blonde", "malte", "moyenne", "repas", "elegante"] },
-  { name: "Tarot", tags: ["blonde", "fruite", "forte", "fete", "creative"] },
-  { name: "Shorba", tags: ["sour", "acidule", "moyenne", "apero", "originale"] },
-  { name: "NEIPA", tags: ["blonde", "fruite", "moyenne", "fete", "creative"] },
-  { name: "Pils Estaminet", tags: ["blonde", "doux", "legere", "detente", "classique"] },
-  { name: "Triple Bernardus", tags: ["blonde", "malte", "forte", "repas", "elegante"] }
-];
+  <style>
+    /* --- Fond général --- */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background:
+        linear-gradient(rgba(15, 8, 3, 0.8), rgba(15, 8, 3, 0.8)),
+        url('IMG_0765.jpeg') no-repeat center/cover;
+      background-attachment: fixed;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
 
-let current = 0;
-let answers = [];
+    /* --- Conteneur du quiz --- */
+    .quiz-container {
+      background: rgba(25, 15, 5, 0.93);
+      backdrop-filter: blur(12px) saturate(140%);
+      padding: 55px 60px;
+      border-radius: 26px;
+      box-shadow:
+        0 0 80px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(244, 211, 94, 0.08);
+      width: 90%;
+      max-width: 650px;
+      text-align: center;
+      animation: fadeIn 1s ease;
+      position: relative;
+    }
 
-const quizEl = document.getElementById("quiz");
-const progressEl = document.getElementById("progress");
+    /* --- Titre --- */
+    h1 {
+      font-size: 2em;
+      color: #f4d35e;
+      margin-bottom: 0.5em;
+      text-shadow:
+        0 0 10px rgba(244, 211, 94, 0.4),
+        0 0 20px rgba(244, 211, 94, 0.2);
+    }
 
-function showQuestion() {
-  const q = quizData[current];
-  quizEl.innerHTML = `
-    <div class="question">${q.question}</div>
-    ${q.options.map(o => `<button class="option" onclick="choose('${o.value}')">${o.text}</button>`).join('')}
-  `;
-  progressEl.style.width = `${(current / quizData.length) * 100}%`;
-}
+    /* --- Texte descriptif --- */
+    p {
+      font-size: 1.05em;
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
 
-function choose(value) {
-  answers.push(value);
-  current++;
-  if (current < quizData.length) showQuestion();
-  else showResult();
-}
+    /* --- Questions --- */
+    .question {
+      font-size: 1.25em;
+      font-weight: 600;
+      margin: 1.5em 0 1em;
+      color: #fefefe;
+    }
 
-function showResult() {
-  progressEl.style.width = "100%";
-  const colorChoice = answers[0];
-  const scores = beers.map(b => ({
-    name: b.name,
-    color: b.tags[0],
-    score: answers.reduce((s, a) => s + (b.tags.includes(a) ? 1 : 0), 0)
-  }));
+    /* --- Boutons --- */
+    button.option {
+      background: #f4d35e;
+      color: #2b1a0a;
+      border: none;
+      border-radius: 14px;
+      margin: 10px;
+      padding: 12px 24px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 3px 0 #b68e0a;
+    }
 
-  let best = scores.sort((a, b) => b.score - a.score)[0];
-  let beer = beers.find(b => b.name === best.name);
+    button.option:hover {
+      transform: translateY(-2px);
+      background: #ffe47a;
+      box-shadow: 0 4px 8px rgba(244, 211, 94, 0.4);
+    }
 
-  // Si la couleur ne correspond pas, chercher une alternative de même couleur
-  if (beer.tags[0] !== colorChoice) {
-    const sameColor = scores.filter(s => s.color === colorChoice);
-    if (sameColor.length > 0) {
-      best = sameColor.sort((a, b) => b.score - a.score)[0];
-      beer = beers.find(b => b.name === best.name);
+    /* --- Barre de progression --- */
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 5px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 10px;
+      width: 0;
+      background: linear-gradient(90deg, #f4d35e, #b8860b);
+      transition: width 0.5s ease;
+    }
+
+    /* --- Résultat --- */
+    .result {
+      animation: fadeIn 1s ease;
+    }
+
+    .result h2 {
+      color: #f4d35e;
+      font-size: 1.7em;
+      margin-top: 0.5em;
+    }
+
+    .result p {
+      color: #fff;
+      font-size: 1.1em;
+      margin: 1em 0;
+      line-height: 1.5em;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #f4d35e;
+      color: #2b1a0a;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.25s;
+      box-shadow: 0 3px 0 #b68e0a;
+    }
+
+    .btn:hover {
+      background: #ffe47a;
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(244, 211, 94, 0.4);
+    }
+
+    /* --- Bouton fermer --- */
+    .close {
+      position: absolute;
+      top: 22px;
+      right: 30px;
+      font-size: 1.5em;
+      color: #f4d35e;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .close:hover {
+      transform: scale(1.2);
+    }
+
+    /* --- Animation --- */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="quiz-container">
+    <div class="close" onclick="window.location.href='index.html'">✖</div>
+    <h1>🍻 Trouve ta bière idéale</h1>
+    <p>Réponds à quelques questions et découvre la bière qui te correspond le mieux !</p>
+    <div class="progress"><div class="progress-bar" id="progress"></div></div>
+    <div id="quiz"></div>
+  </div>
+
+  <script>
+    /* --- Questions --- */
+    const quizData = [
+      {
+        question: "🎨 Quelle couleur de bière t’attire le plus ?",
+        options: [
+          { text: "🍯 Blonde", value: "blonde" },
+          { text: "🍫 Brune", value: "brune" },
+          { text: "🌾 Blanche", value: "blanche" },
+          { text: "🍒 Rouge", value: "rouge" },
+          { text: "☕ Stout", value: "stout" },
+          { text: "🍋 Sour", value: "sour" },
+          { text: "🍏 Cidre", value: "cidre" }
+        ]
+      },
+      {
+        question: "🎉 Quel est ton mood ce soir ?",
+        options: [
+          { text: "😌 Détente tranquille", value: "detente" },
+          { text: "🍻 Soirée entre amis", value: "amis" },
+          { text: "💃 Fête et ambiance", value: "fete" },
+          { text: "🍽️ Repas gourmand", value: "repas" },
+          { text: "🧭 Découverte et curiosité", value: "decouverte" }
+        ]
+      },
+      {
+        question: "🍯 Quel goût te tente le plus ?",
+        options: [
+          { text: "🌼 Doux et facile à boire", value: "doux" },
+          { text: "🍋 Fruité et frais", value: "fruite" },
+          { text: "🌿 Amer et houblonné", value: "amer" },
+          { text: "🍞 Malté et rond", value: "malte" },
+          { text: "🍏 Acidulé et surprenant", value: "acidule" },
+          { text: "🔥 Boisé ou épicé", value: "boise" }
+        ]
+      },
+      {
+        question: "💪 Tu veux une bière…",
+        options: [
+          { text: "🍃 Légère", value: "legere" },
+          { text: "⚖️ Moyenne", value: "moyenne" },
+          { text: "🔥 Bien corsée", value: "forte" }
+        ]
+      },
+      {
+        question: "💫 Si ta bière avait une personnalité ?",
+        options: [
+          { text: "🎩 Élégante et raffinée", value: "elegante" },
+          { text: "🎉 Joyeuse et conviviale", value: "joyeuse" },
+          { text: "🧔 Sage et posée", value: "sage" },
+          { text: "🎨 Originale et créative", value: "originale" },
+          { text: "⚡ Audacieuse et intense", value: "intense" }
+        ]
+      }
+    ];
+
+    /* --- Base de données bières --- */
+    const beers = [
+      { name: "Fouillotte Blonde", tags: ["blonde", "doux", "legere", "detente", "decouverte"] },
+      { name: "Blanche Bernardus", tags: ["blanche", "fruite", "moyenne", "detente", "douce"] },
+      { name: "Weihenstephaner Vitus", tags: ["blanche", "fruite", "moyenne", "repas", "elegante"] },
+      { name: "Trappe Blonde", tags: ["blonde", "malte", "moyenne", "amis", "equilibree"] },
+      { name: "Ypra Lefort", tags: ["blonde", "malte", "forte", "repas", "fete"] },
+      { name: "Timut", tags: ["blonde", "acidule", "legere", "apero", "originale"] },
+      { name: "Delta IPA", tags: ["blonde", "amer", "moyenne", "fete", "originale"] },
+      { name: "Milkshake IPA", tags: ["blonde", "fruite", "moyenne", "fete", "creative"] },
+      { name: "Whisky Infused", tags: ["brune", "malte", "forte", "decouverte", "intense"] },
+      { name: "Prior Bernardus", tags: ["brune", "malte", "forte", "repas", "sage"] },
+      { name: "Blackheart", tags: ["stout", "malte", "legere", "detente", "discrete"] },
+      { name: "Rouge Max", tags: ["rouge", "fruite", "forte", "fete", "joyeuse"] },
+      { name: "Kriek", tags: ["rouge", "fruite", "legere", "detente", "joyeuse"] },
+      { name: "Noble Coz Cidre", tags: ["cidre", "acidule", "forte", "apero", "originale"] },
+      { name: "Brunehaut", tags: ["blonde", "malte", "moyenne", "repas", "elegante"] },
+      { name: "St Idesbald Blonde", tags: ["blonde", "malte", "moyenne", "repas", "elegante"] },
+      { name: "Tarot", tags: ["blonde", "fruite", "forte", "fete", "creative"] },
+      { name: "Shorba", tags: ["sour", "acidule", "moyenne", "apero", "originale"] },
+      { name: "NEIPA", tags: ["blonde", "fruite", "moyenne", "fete", "creative"] },
+      { name: "Pils Estaminet", tags: ["blonde", "doux", "legere", "detente", "classique"] },
+      { name: "Triple Bernardus", tags: ["blonde", "malte", "forte", "repas", "elegante"] }
+    ];
+
+    let current = 0;
+    let answers = [];
+
+    const quizEl = document.getElementById("quiz");
+    const progressEl = document.getElementById("progress");
+
+    function showQuestion() {
+      const q = quizData[current];
+      quizEl.innerHTML = `
+        <div class="question">${q.question}</div>
+        ${q.options.map(o => `<button class="option" onclick="choose('${o.value}')">${o.text}</button>`).join('')}
+      `;
+      progressEl.style.width = `${(current / quizData.length) * 100}%`;
+    }
+
+    function choose(value) {
+      answers.push(value);
+      current++;
+      if (current < quizData.length) showQuestion();
+      else showResult();
+    }
+
+    function showResult() {
+      progressEl.style.width = "100%";
+      const colorChoice = answers[0];
+      const scores = beers.map(b => ({
+        name: b.name,
+        color: b.tags[0],
+        score: answers.reduce((s, a) => s + (b.tags.includes(a) ? 1 : 0), 0)
+      }));
+
+      let best = scores.sort((a, b) => b.score - a.score)[0];
+      let beer = beers.find(b => b.name === best.name);
+
+      if (beer.tags[0] !== colorChoice) {
+        const sameColor = scores.filter(s => s.color === colorChoice);
+        if (sameColor.length > 0) {
+          best = sameColor.sort((a, b) => b.score - a.score)[0];
+          beer = beers.find(b => b.name === best.name);
+          quizEl.innerHTML = `
+            <div class="result">
+              <h2>🍺 ${beer.name}</h2>
+              <p>Aucune ${colorChoice} ne correspond parfaitement à ton profil…<br>
+              Mais voici une ${colorChoice} qui devrait te plaire 👇</p>
+              <button class="btn" onclick="window.location.href='carte.html#${beer.name.replaceAll(' ', '-').toLowerCase()}'">Découvrir sur la carte</button>
+              <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
+            </div>`;
+          return;
+        }
+      }
+
       quizEl.innerHTML = `
         <div class="result">
           <h2>🍺 ${beer.name}</h2>
-          <p>Aucune ${colorChoice} ne correspond parfaitement à ton profil…<br>
-          Mais voici une ${colorChoice} qui devrait te plaire 👇</p>
+          <p>Voilà la bière qui te correspond le mieux ! Découvre-la dans notre carte 🍻</p>
           <button class="btn" onclick="window.location.href='carte.html#${beer.name.replaceAll(' ', '-').toLowerCase()}'">Découvrir sur la carte</button>
           <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
         </div>`;
-      return;
     }
-  }
 
-  // Sinon, bière parfaite
-  quizEl.innerHTML = `
-    <div class="result">
-      <h2>🍺 ${beer.name}</h2>
-      <p>Voilà la bière qui te correspond le mieux ! Découvre-la dans notre carte 🍻</p>
-      <button class="btn" onclick="window.location.href='carte.html#${beer.name.replaceAll(' ', '-').toLowerCase()}'">Découvrir sur la carte</button>
-      <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
-    </div>`;
-}
-
-showQuestion();
-</script>
+    showQuestion();
+  </script>
+</body>
+</html>
