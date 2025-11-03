@@ -9,7 +9,9 @@
   <style>
     body {
       font-family: 'Poppins', sans-serif;
-      background: url('https://images.unsplash.com/photo-1556906781-9a412961c28e?auto=format&fit=crop&w=1920&q=80') no-repeat center/cover;
+      background: 
+        linear-gradient(rgba(20,10,5,0.6), rgba(20,10,5,0.6)),
+        url('IMG_0765.jpeg') no-repeat center/cover;
       background-attachment: fixed;
       color: #fff;
       display: flex;
@@ -21,12 +23,12 @@
 
     .quiz-container {
       background: rgba(25, 15, 5, 0.92);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
       padding: 40px 50px;
       border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      box-shadow: 0 0 40px rgba(0,0,0,0.6);
       width: 90%;
-      max-width: 600px;
+      max-width: 650px;
       text-align: center;
       animation: fadeIn 0.8s ease;
     }
@@ -194,7 +196,7 @@
       }
     ];
 
-    /* --- Profils bières --- */
+    /* --- Base de données bières --- */
     const beers = [
       {name:"Fouillotte Blonde",tags:["blonde","doux","legere","detente","decouverte"]},
       {name:"Blanche Bernardus",tags:["blanche","fruite","moyenne","detente","douce"]},
@@ -202,21 +204,21 @@
       {name:"Trappe Blonde",tags:["blonde","malte","moyenne","amis","equilibree"]},
       {name:"Ypra Lefort",tags:["brune","malte","forte","repas","fete"]},
       {name:"Timut",tags:["blonde","acidule","legere","apero","originale"]},
-      {name:"Delta IPA",tags:["ipa","amer","moyenne","fete","originale"]},
-      {name:"Milkshake IPA",tags:["ipa","fruite","moyenne","fete","creative"]},
+      {name:"Delta IPA",tags:["ambree","amer","moyenne","fete","originale"]},
+      {name:"Milkshake IPA",tags:["ambree","fruite","moyenne","fete","creative"]},
       {name:"Whisky Infused",tags:["ambree","malte","forte","decouverte","intense"]},
       {name:"Prior Bernardus",tags:["brune","malte","forte","repas","sage"]},
-      {name:"Blackheart",tags:["stout","malte","legere","detente","discrete"]},
+      {name:"Blackheart",tags:["brune","malte","legere","detente","discrete"]},
       {name:"Rouge Max",tags:["rouge","fruite","forte","fete","joyeuse"]},
       {name:"Kriek",tags:["rouge","fruite","legere","detente","joyeuse"]},
       {name:"Noble Coz Cidre",tags:["cidre","acidule","forte","apero","originale"]},
       {name:"Brunehaut",tags:["blonde","malte","moyenne","repas","elegante"]},
       {name:"St Idesbald Blonde",tags:["blonde","malte","moyenne","repas","elegante"]},
       {name:"Tarot",tags:["blonde","fruite","forte","fete","creative"]},
-      {name:"Shorba",tags:["sour","acidule","moyenne","apero","originale"]},
-      {name:"NEIPA",tags:["ipa","fruite","moyenne","fete","creative"]},
+      {name:"Shorba",tags:["ambree","acidule","moyenne","apero","originale"]},
+      {name:"NEIPA",tags:["ambree","fruite","moyenne","fete","creative"]},
       {name:"Pils Estaminet",tags:["blonde","doux","legere","detente","classique"]},
-      {name:"Triple Bernardus",tags:["triple","malte","forte","repas","elegante"]},
+      {name:"Triple Bernardus",tags:["brune","malte","forte","repas","elegante"]}
     ];
 
     let current = 0;
@@ -243,12 +245,36 @@
 
     function showResult(){
       progressEl.style.width = "100%";
+      const colorChoice = answers[0]; // couleur choisie
       const scores = beers.map(b => ({
         name: b.name,
+        color: b.tags[0],
         score: answers.reduce((s,a)=> s + (b.tags.includes(a)?1:0),0)
       }));
-      const best = scores.sort((a,b)=>b.score-a.score)[0];
-      const beer = beers.find(b => b.name===best.name);
+
+      // meilleure bière
+      let best = scores.sort((a,b)=>b.score-a.score)[0];
+      let beer = beers.find(b => b.name===best.name);
+
+      // Vérifie la couleur
+      if(beer.tags[0] !== colorChoice){
+        const sameColor = scores.filter(s => s.color===colorChoice);
+        if(sameColor.length>0){
+          best = sameColor.sort((a,b)=>b.score-a.score)[0];
+          beer = beers.find(b => b.name===best.name);
+          quizEl.innerHTML = `
+            <div class="result">
+              <h2>🍺 ${beer.name}</h2>
+              <p>Aucune ${colorChoice} ne correspond parfaitement à ton profil...  
+              mais voici une ${colorChoice} qui devrait te plaire 👇</p>
+              <button class="btn" onclick="window.location.href='carte.html#${beer.name.replaceAll(' ','-').toLowerCase()}'">Découvrir sur la carte</button>
+              <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
+            </div>
+          `;
+          return;
+        }
+      }
+
       quizEl.innerHTML = `
         <div class="result">
           <h2>🍺 ${beer.name}</h2>
