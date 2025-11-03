@@ -1,272 +1,114 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ma bière idéale 🍺 | Café Blondes</title>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --gold: #f5c542;
-      --wood: #2e1d0e;
-      --text: #fffdf7;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<script>
+  const questions = [
+    { text: "Quelle couleur de bière préfères-tu ?", options: [
+      { text: "Blanche", value: "blanche" },
+      { text: "Blonde", value: "blonde" },
+      { text: "Ambrée / Brune", value: "ambrée" },
+      { text: "Rouge", value: "rouge" }
+    ]},
+    { text: "Tu veux une bière plutôt…", options: [
+      { text: "Douce et facile à boire", value: "douce" },
+      { text: "Amère et expressive", value: "amere" },
+      { text: "Fruitée et originale", value: "fruitee" },
+      { text: "Puissante et maltée", value: "forte" }
+    ]},
+    { text: "Et ton humeur du moment ?", options: [
+      { text: "Je veux me rafraîchir 🍋", value: "legere" },
+      { text: "Je veux découvrir 🌿", value: "originale" },
+      { text: "Je veux faire la fête 🔥", value: "forte" },
+      { text: "Je veux me détendre 🍂", value: "ronde" }
+    ]}
+  ];
 
-    body {
-      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), var(--wood);
-      background-size: cover;
-      color: var(--text);
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
+  const beers = {
+    blanche: {name:"Blanche Bernardus (6°, Belgique)", desc:"Blanche belge douce et épicée, aux notes d’agrumes et de coriandre."},
+    vitus: {name:"Weihenstephaner Vitus (7.7°, Allemagne)", desc:"Weizenbock riche et fruitée, banane et clou de girofle."},
+    fouillotte: {name:"Fouillotte Blonde (4°, France)", desc:"Blonde artisanale brassée avec des branches de sapin 🌲, au petit goût résineux et boisé."},
+    trappe: {name:"Trappe Blonde (6.5°, Pays-Bas)", desc:"Blonde trappiste florale et équilibrée, légèrement sucrée et ronde."},
+    timut: {name:"Timut (4°, France)", desc:"Blonde légère et citronnée au poivre de Timut, exotique et rafraîchissante."},
+    ypra: {name:"Ypra Lefort (10°, Belgique)", desc:"Triple belge dorée, complexe et fruitée, aux notes caramélisées."},
+    prior: {name:"Prior Bernardus (8°, Belgique)", desc:"Double belge maltée et ronde, arômes de fruits secs et caramel."},
+    whisky: {name:"Whisky Infused (12.7°, France)", desc:"Ambrée infusée au whisky, intense, boisée et vanillée."},
+    rouge: {name:"Rouge Max (8°, Belgique)", desc:"Rouge douce et fruitée, saveurs de cerise mûre et fruits rouges."},
+    kriek: {name:"Kriek (5.5°, Belgique)", desc:"Rouge à la cerise, acidulée et sucrée, typiquement belge."}
+  };
 
-    h1 {
-      font-family: 'Merriweather', serif;
-      color: var(--gold);
-      font-size: 2.4rem;
-      margin-top: 2rem;
-      text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
-      position: relative;
-      overflow: hidden;
-    }
-    h1::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shine 10s infinite;
-    }
-    @keyframes shine {
-      0% { left: -100%; }
-      50% { left: 100%; }
-      100% { left: 100%; }
-    }
+  const phrases = {
+    incoherent: [
+      "Ah, ça c’est rare chez nous 😄 On est un gros bar à bières, mais ce style-là on ne le fait pas vraiment.",
+      "Pas commun ça 😅 Chez nous, on reste sur des classiques bien faits, pas de mélange improbable !",
+      "Ouh, pas sûr que ça existe vraiment 😆 Mais j’ai mieux à te proposer…",
+      "Hmm, même avec nos 24 pressions, celle-là on ne l’a pas encore inventée 🍻"
+    ]
+  };
 
-    .quiz-container {
-      margin: 2rem auto;
-      max-width: 600px;
-      background: rgba(0,0,0,0.6);
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      position: relative;
-      overflow: hidden;
-    }
+  let step = 0;
+  const answers = [];
+  const quiz = document.getElementById("quiz");
 
-    .progress {
-      font-size: 1rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      border-bottom: 1px solid var(--gold);
-      padding-bottom: .5rem;
-    }
+  function renderQuestion() {
+    const q = questions[step];
+    quiz.innerHTML = `
+      <div class="progress">Question ${step+1} / ${questions.length}</div>
+      <div class="question">${q.text}</div>
+      <div class="options">
+        ${q.options.map(o => `<button onclick="select('${o.value}')">${o.text}</button>`).join('')}
+      </div>`;
+  }
 
-    .question {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      animation: slideIn 0.6s ease;
-    }
+  function select(v) {
+    answers.push(v);
+    step++;
+    if (step < questions.length) renderQuestion();
+    else showResult();
+  }
 
-    @keyframes slideIn {
-      from {opacity: 0; transform: translateX(40px);}
-      to {opacity: 1; transform: translateX(0);}
-    }
+  function showResult() {
+    const combo = answers.join('-');
+    let beer, note = "";
 
-    .options button {
-      display: block;
-      width: 100%;
-      margin: 0.5rem auto;
-      padding: 1rem;
-      border: none;
-      border-radius: 10px;
-      background: var(--gold);
-      color: var(--wood);
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
+    // logiques réalistes
+    if (combo.includes("blanche")) {
+      if (combo.includes("forte")) { note = phrases.incoherent[1]; beer = beers.vitus; }
+      else beer = beers.blanche;
+    } else if (combo.includes("blonde")) {
+      if (combo.includes("forte")) beer = beers.ypra;
+      else if (combo.includes("legere")) beer = beers.fouillotte;
+      else if (combo.includes("fruitee") || combo.includes("originale")) beer = beers.timut;
+      else beer = beers.trappe;
+    } else if (combo.includes("ambrée")) {
+      if (combo.includes("forte")) beer = beers.whisky;
+      else beer = beers.prior;
+    } else if (combo.includes("rouge")) {
+      if (combo.includes("douce")) beer = beers.rouge;
+      else beer = beers.kriek;
+    } else {
+      note = phrases.incoherent[3];
+      beer = beers.trappe;
     }
 
-    .options button:hover {
-      background: #ffd966;
-      transform: translateY(-2px);
-      box-shadow: 0 0 10px rgba(255, 230, 150, 0.6);
-    }
+    quiz.innerHTML = `
+      <h2 class="beer-result">${beer.name}</h2>
+      ${note ? `<div class="note">${note}</div>` : ""}
+      <div class="options">
+        <button onclick="toggleDesc()">📖 Détails de la bière</button>
+        <button onclick="location.href='carte.html#menu'">📜 Voir sur la carte</button>
+        <button onclick="restartQuiz()">🔄 Refaire le quiz</button>
+      </div>
+      <div class="desc" id="desc">${beer.desc}</div>
+    `;
+  }
 
-    .beer-result {
-      font-family: 'Merriweather', serif;
-      color: var(--gold);
-      font-size: 1.4rem;
-      cursor: pointer;
-      margin-top: 1rem;
-      transition: all 0.3s;
-    }
-    .beer-result:hover {
-      color: #fff4a3;
-      text-shadow: 0 0 8px rgba(255, 220, 120, 0.8);
-    }
+  function toggleDesc() {
+    const desc = document.getElementById("desc");
+    desc.style.display = desc.style.display === "block" ? "none" : "block";
+  }
 
-    .desc {
-      display: none;
-      background: rgba(255,255,240,0.9);
-      color: var(--wood);
-      border-radius: 10px;
-      padding: 1rem;
-      margin-top: 1rem;
-      font-size: 1rem;
-      text-align: left;
-      animation: fadeIn 0.6s ease;
-    }
-
-    .cta {
-      display: none;
-      background: var(--gold);
-      color: var(--wood);
-      font-weight: bold;
-      border: none;
-      border-radius: 30px;
-      padding: 0.8rem 1.5rem;
-      margin-top: 1.2rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .cta:hover {
-      background: #ffd966;
-      transform: scale(1.05);
-    }
-
-    .note {
-      margin-top: 1rem;
-      font-style: italic;
-      color: #ffdb7a;
-    }
-
-    footer {
-      color: var(--gold);
-      font-size: 0.8rem;
-      margin-top: 2rem;
-      opacity: 0.8;
-    }
-  </style>
-</head>
-<body>
-  <h1>Ma bière idéale 🍺</h1>
-  <div class="quiz-container" id="quiz">
-    <div class="progress" id="progress">Question 1 / 3</div>
-  </div>
-
-  <footer>© 2025 Café Blondes — Nancy</footer>
-
-  <script>
-    const questions = [
-      { text: "Quelle couleur de bière préfères-tu ?", options: [
-        { text: "Blanche", value: "blanche" },
-        { text: "Blonde", value: "blonde" },
-        { text: "Ambrée / Brune", value: "ambrée" },
-        { text: "Rouge", value: "rouge" }
-      ]},
-      { text: "Tu veux une bière plutôt…", options: [
-        { text: "Douce et facile à boire", value: "douce" },
-        { text: "Amère et expressive", value: "amere" },
-        { text: "Fruitée et originale", value: "fruitee" },
-        { text: "Puissante et maltée", value: "forte" }
-      ]},
-      { text: "Et ton humeur du moment ?", options: [
-        { text: "Je veux me rafraîchir 🍋", value: "legere" },
-        { text: "Je veux découvrir 🌿", value: "originale" },
-        { text: "Je veux faire la fête 🔥", value: "forte" },
-        { text: "Je veux me détendre 🍂", value: "ronde" }
-      ]}
-    ];
-
-    const beers = {
-      blanche: {name:"Blanche Bernardus (6°, Belgique)", desc:"Blanche belge douce et épicée, aux notes d’agrumes et de coriandre."},
-      vitus: {name:"Weihenstephaner Vitus (7.7°, Allemagne)", desc:"Weizenbock riche et fruitée, banane et clou de girofle."},
-      fouillotte: {name:"Fouillotte Blonde (4°, France)", desc:"Blonde artisanale brassée avec des branches de sapin 🌲, au petit goût résineux et boisé."},
-      trappe: {name:"Trappe Blonde (6.5°, Pays-Bas)", desc:"Blonde trappiste florale et équilibrée, légèrement sucrée et ronde."},
-      timut: {name:"Timut (4°, France)", desc:"Blonde légère et citronnée au poivre de Timut, exotique et rafraîchissante."},
-      ypra: {name:"Ypra Lefort (10°, Belgique)", desc:"Triple belge dorée, complexe et fruitée, aux notes caramélisées."},
-      prior: {name:"Prior Bernardus (8°, Belgique)", desc:"Double belge maltée et ronde, arômes de fruits secs et caramel."},
-      whisky: {name:"Whisky Infused (12.7°, France)", desc:"Ambrée infusée au whisky, intense, boisée et vanillée."},
-      rouge: {name:"Rouge Max (8°, Belgique)", desc:"Rouge douce et fruitée, saveurs de cerise mûre et fruits rouges."},
-      kriek: {name:"Kriek (5.5°, Belgique)", desc:"Rouge à la cerise, acidulée et sucrée, typiquement belge."}
-    };
-
-    const phrases = {
-      incoherent: [
-        "Ah, ça c’est rare chez nous 😄 On est un gros bar à bières, mais ce style-là on ne le fait pas vraiment.",
-        "Pas commun ça 😅 Chez nous, on reste sur des classiques bien faits, pas de mélange improbable !",
-        "Ouh, pas sûr que ça existe vraiment 😆 Mais j’ai mieux à te proposer…",
-        "Hmm, même avec nos 24 pressions, celle-là on ne l’a pas encore inventée 🍻"
-      ]
-    };
-
-    let step = 0;
-    const answers = [];
-    const quiz = document.getElementById("quiz");
-
-    function renderQuestion() {
-      const q = questions[step];
-      quiz.innerHTML = `
-        <div class="progress">Question ${step+1} / ${questions.length}</div>
-        <div class="question">${q.text}</div>
-        <div class="options">
-          ${q.options.map(o => `<button onclick="select('${o.value}')">${o.text}</button>`).join('')}
-        </div>`;
-    }
-
-    function select(v) {
-      answers.push(v);
-      step++;
-      if (step < questions.length) renderQuestion();
-      else showResult();
-    }
-
-    function showResult() {
-      const combo = answers.join('-');
-      let beer, note = "";
-
-      // Couleur cohérente
-      if (combo.includes("blanche")) {
-        if (combo.includes("forte")) { note = phrases.incoherent[1]; beer = beers.vitus; }
-        else beer = beers.blanche;
-      } else if (combo.includes("blonde")) {
-        if (combo.includes("forte")) beer = beers.ypra;
-        else if (combo.includes("legere")) beer = beers.fouillotte;
-        else if (combo.includes("fruitee") || combo.includes("originale")) beer = beers.timut;
-        else beer = beers.trappe;
-      } else if (combo.includes("ambrée")) {
-        if (combo.includes("legere")) { note = phrases.incoherent[0]; beer = beers.prior; }
-        else if (combo.includes("forte")) beer = beers.whisky;
-        else beer = beers.prior;
-      } else if (combo.includes("rouge")) {
-        if (combo.includes("douce")) beer = beers.rouge;
-        else beer = beers.kriek;
-      } else {
-        note = phrases.incoherent[3];
-        beer = beers.trappe;
-      }
-
-      quiz.innerHTML = `
-        <h2 class="beer-result" onclick="revealDesc()">${beer.name}</h2>
-        ${note ? `<div class="note">${note}</div>` : ""}
-        <div class="desc" id="desc">${beer.desc}</div>
-        <button class="cta" id="cta" onclick="location.href='carte.html#menu'">📜 Voir sur la carte</button>
-      `;
-    }
-
-    function revealDesc() {
-      document.getElementById("desc").style.display = "block";
-      document.getElementById("cta").style.display = "inline-block";
-    }
-
+  function restartQuiz() {
+    step = 0;
+    answers.length = 0;
     renderQuestion();
-  </script>
-</body>
-</html>
+  }
+
+  renderQuestion();
+</script>
