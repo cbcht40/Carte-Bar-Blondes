@@ -10,7 +10,6 @@
       --gold: #f5c542;
       --wood: #2e1d0e;
       --text: #fffdf7;
-      --lightwood: #fff8dc;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -23,13 +22,14 @@
       overflow-x: hidden;
       min-height: 100vh;
     }
+
     h1 {
       font-family: 'Merriweather', serif;
       color: var(--gold);
       font-size: 2.4rem;
       margin-top: 2rem;
-      position: relative;
       text-shadow: 1px 1px 8px rgba(0,0,0,0.6);
+      position: relative;
       overflow: hidden;
     }
     h1::after {
@@ -59,10 +59,18 @@
       overflow: hidden;
     }
 
-    .question {
-      font-size: 1.2rem;
+    .progress {
+      font-size: 1rem;
+      color: var(--gold);
       margin-bottom: 1rem;
-      animation: slideIn 0.5s ease;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: .5rem;
+    }
+
+    .question {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      animation: slideIn 0.6s ease;
     }
 
     @keyframes slideIn {
@@ -89,20 +97,6 @@
       background: #ffd966;
       transform: translateY(-2px);
       box-shadow: 0 0 10px rgba(255, 230, 150, 0.6);
-    }
-
-    .progress {
-      font-size: 1rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      border-bottom: 1px solid var(--gold);
-      padding-bottom: .5rem;
-      animation: fadeIn 0.6s ease;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
     }
 
     .beer-result {
@@ -147,6 +141,12 @@
       transform: scale(1.05);
     }
 
+    .note {
+      margin-top: 1rem;
+      font-style: italic;
+      color: #ffdb7a;
+    }
+
     footer {
       color: var(--gold);
       font-size: 0.8rem;
@@ -186,30 +186,35 @@
     ];
 
     const beers = {
-      "blanche": {name:"Blanche Bernardus (6°, Belgique)", desc:"Blanche belge douce et épicée, aux notes d’agrumes et de coriandre."},
-      "blanche-forte": {name:"Weihenstephaner Vitus (7.7°, Allemagne)", desc:"Weizenbock riche, aux arômes de banane, miel et clou de girofle."},
-      "blonde-douce": {name:"Trappe Blonde (6.5°, Pays-Bas)", desc:"Blonde trappiste florale et équilibrée, légèrement sucrée et ronde."},
-      "blonde-legere": {name:"Fouillotte Blonde (4°, France)", desc:"Blonde artisanale brassée avec des branches de sapin 🌲, au petit goût résineux et boisé."},
-      "blonde-forte": {name:"Ypra Lefort (10°, Belgique)", desc:"Triple belge dorée, complexe et fruitée, aux notes caramélisées."},
-      "ambrée": {name:"Prior Bernardus (8°, Belgique)", desc:"Double belge maltée et ronde, arômes de fruits secs et caramel."},
-      "ambrée-forte": {name:"Whisky Infused (12.7°, France)", desc:"Ambrée infusée au whisky, intense, boisée et vanillée."},
-      "stout": {name:"Blackheart (4.1°, Écosse)", desc:"Stout légère et crémeuse, arômes de café et cacao."},
-      "ipa": {name:"Delta IPA (6°, Belgique)", desc:"IPA fruitée et houblonnée, arômes d’agrumes et de fruits tropicaux."},
-      "fruitée": {name:"Rouge Max (8°, Belgique)", desc:"Rouge douce et fruitée, saveurs de cerise mûre et fruits rouges."},
-      "neipa": {name:"NEIPA Sainte Cru (6°, France)", desc:"IPA trouble et juteuse, avec une belle fin de bouche florale."},
-      "cidre": {name:"Noble Coz (8°, France)", desc:"Cidre fort et acidulé, goût de pomme mûre et pointe tannique."}
+      blanche: {name:"Blanche Bernardus (6°, Belgique)", desc:"Blanche belge douce et épicée, aux notes d’agrumes et de coriandre."},
+      vitus: {name:"Weihenstephaner Vitus (7.7°, Allemagne)", desc:"Weizenbock riche et fruitée, banane et clou de girofle."},
+      fouillotte: {name:"Fouillotte Blonde (4°, France)", desc:"Blonde artisanale brassée avec des branches de sapin 🌲, au petit goût résineux et boisé."},
+      trappe: {name:"Trappe Blonde (6.5°, Pays-Bas)", desc:"Blonde trappiste florale et équilibrée, légèrement sucrée et ronde."},
+      timut: {name:"Timut (4°, France)", desc:"Blonde légère et citronnée au poivre de Timut, exotique et rafraîchissante."},
+      ypra: {name:"Ypra Lefort (10°, Belgique)", desc:"Triple belge dorée, complexe et fruitée, aux notes caramélisées."},
+      prior: {name:"Prior Bernardus (8°, Belgique)", desc:"Double belge maltée et ronde, arômes de fruits secs et caramel."},
+      whisky: {name:"Whisky Infused (12.7°, France)", desc:"Ambrée infusée au whisky, intense, boisée et vanillée."},
+      rouge: {name:"Rouge Max (8°, Belgique)", desc:"Rouge douce et fruitée, saveurs de cerise mûre et fruits rouges."},
+      kriek: {name:"Kriek (5.5°, Belgique)", desc:"Rouge à la cerise, acidulée et sucrée, typiquement belge."}
+    };
+
+    const phrases = {
+      incoherent: [
+        "Ah, ça c’est rare chez nous 😄 On est un gros bar à bières, mais ce style-là on ne le fait pas vraiment.",
+        "Pas commun ça 😅 Chez nous, on reste sur des classiques bien faits, pas de mélange improbable !",
+        "Ouh, pas sûr que ça existe vraiment 😆 Mais j’ai mieux à te proposer…",
+        "Hmm, même avec nos 24 pressions, celle-là on ne l’a pas encore inventée 🍻"
+      ]
     };
 
     let step = 0;
     const answers = [];
     const quiz = document.getElementById("quiz");
-    const progress = document.getElementById("progress");
 
     function renderQuestion() {
-      progress.textContent = `Question ${step+1} / ${questions.length}`;
       const q = questions[step];
       quiz.innerHTML = `
-        <div class="progress">${progress.textContent}</div>
+        <div class="progress">Question ${step+1} / ${questions.length}</div>
         <div class="question">${q.text}</div>
         <div class="options">
           ${q.options.map(o => `<button onclick="select('${o.value}')">${o.text}</button>`).join('')}
@@ -224,23 +229,34 @@
     }
 
     function showResult() {
-      const val = answers.join('-');
-      let key = "blonde-douce";
+      const combo = answers.join('-');
+      let beer, note = "";
 
-      if (val.includes("blanche")) key = val.includes("forte") ? "blanche-forte" : "blanche";
-      else if (val.includes("blonde") && val.includes("forte")) key = "blonde-forte";
-      else if (val.includes("blonde") && val.includes("legere")) key = "blonde-legere";
-      else if (val.includes("blonde")) key = "blonde-douce";
-      else if (val.includes("ambrée") && val.includes("forte")) key = "ambrée-forte";
-      else if (val.includes("ambrée")) key = "ambrée";
-      else if (val.includes("stout")) key = "stout";
-      else if (val.includes("ipa") || val.includes("amere") || val.includes("originale")) key = "ipa";
-      else if (val.includes("rouge")) key = "fruitée";
+      // Couleur cohérente
+      if (combo.includes("blanche")) {
+        if (combo.includes("forte")) { note = phrases.incoherent[1]; beer = beers.vitus; }
+        else beer = beers.blanche;
+      } else if (combo.includes("blonde")) {
+        if (combo.includes("forte")) beer = beers.ypra;
+        else if (combo.includes("legere")) beer = beers.fouillotte;
+        else if (combo.includes("fruitee") || combo.includes("originale")) beer = beers.timut;
+        else beer = beers.trappe;
+      } else if (combo.includes("ambrée")) {
+        if (combo.includes("legere")) { note = phrases.incoherent[0]; beer = beers.prior; }
+        else if (combo.includes("forte")) beer = beers.whisky;
+        else beer = beers.prior;
+      } else if (combo.includes("rouge")) {
+        if (combo.includes("douce")) beer = beers.rouge;
+        else beer = beers.kriek;
+      } else {
+        note = phrases.incoherent[3];
+        beer = beers.trappe;
+      }
 
-      const b = beers[key];
       quiz.innerHTML = `
-        <h2 class="beer-result" onclick="revealDesc()">${b.name}</h2>
-        <div class="desc" id="desc">${b.desc}</div>
+        <h2 class="beer-result" onclick="revealDesc()">${beer.name}</h2>
+        ${note ? `<div class="note">${note}</div>` : ""}
+        <div class="desc" id="desc">${beer.desc}</div>
         <button class="cta" id="cta" onclick="location.href='carte.html#menu'">📜 Voir sur la carte</button>
       `;
     }
