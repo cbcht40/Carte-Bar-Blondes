@@ -1,214 +1,64 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Café Blondes — Carte</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-      color: #2b1a0a;
-    }
+<div class="section" onclick="toggleSection('bieres')">🍻 Bières pression</div>
+<div id="bieres" class="content">
+  <ul>
+    <li><strong>Fouillotte Blonde</strong> — 🇫🇷 4°  
+      <br><em>Blonde légère brassée avec des branches de sapin 🌲, au goût résineux et boisé.</em>
+    </li>
 
-    h1 {
-      text-align: center;
-      color: #ffcc00;
-      font-family: 'Merriweather', serif;
-      font-size: 2.5rem;
-      margin: 2rem 0 0.5rem;
-    }
+    <li><strong>Blanche Bernardus</strong> — 🇧🇪 6°  
+      <br><em>Blanche douce et épicée, aux notes d’agrumes et de coriandre.</em>
+    </li>
 
-    h2 {
-      text-align: center;
-      color: #ffcc00;
-      font-weight: 500;
-      margin-bottom: 2rem;
-    }
+    <li><strong>Weihenstephaner Vitus</strong> — 🇩🇪 7.7°  
+      <br><em>Blanche riche et fruitée, aux arômes de banane et clou de girofle.</em>
+    </li>
 
-    .menu-container {
-      max-width: 800px;
-      margin: 0 auto 4rem;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      padding: 1rem 1.5rem;
-    }
+    <li><strong>Trappe Blonde</strong> — 🇳🇱 6.5°  
+      <br><em>Blonde trappiste florale, fine et équilibrée.</em>
+    </li>
 
-    .section {
-      background: #ffcc00;
-      border-radius: 10px;
-      padding: 0.8rem 1.2rem;
-      margin-top: 1.5rem;
-      cursor: pointer;
-      font-weight: 600;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-      transition: 0.3s;
-    }
+    <li><strong>Ypra Lefort</strong> — 🇧🇪 10°  
+      <br><em>Triple belge dorée, fruitée et généreuse, finale puissante et douce.</em>
+    </li>
 
-    .section:hover {
-      background: #ffdb4d;
-      transform: scale(1.01);
-    }
+    <li><strong>Timut</strong> — 🇫🇷 4°  
+      <br><em>Blonde légère au citron et poivre de Timut, fraîche et surprenante.</em>
+    </li>
 
-    .content {
-      display: none;
-      padding: 1rem;
-      background: rgba(255,255,255,0.95);
-      border-radius: 8px;
-      margin-top: 0.5rem;
-    }
+    <li><strong>Delta IPA</strong> — 🇧🇪 6°  
+      <br><em>IPA équilibrée, amertume florale et notes d’agrumes.</em>
+    </li>
 
-    ul { list-style: none; padding: 0; }
-    li { margin: 8px 0; cursor: pointer; transition: color 0.3s; }
-    li:hover { color: #ffcc00; }
+    <li><strong>Milkshake IPA</strong> — 🇫🇷 5.7°  
+      <br><em>IPA douce et crémeuse, avec des notes de vanille et fruits tropicaux.</em>
+    </li>
 
-    .beer-info {
-      display: none;
-      font-size: 0.9rem;
-      background: rgba(255, 240, 180, 0.7);
-      padding: 0.8rem;
-      margin-top: 4px;
-      border-radius: 8px;
-      line-height: 1.4;
-      animation: slideDown 0.3s ease forwards;
-    }
+    <li><strong>Whisky Infused</strong> — 🇫🇷 12.7°  
+      <br><em>Ambrée infusée au whisky, intense, ronde et boisée.</em>
+    </li>
 
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    <li><strong>Prior Bernardus</strong> — 🇧🇪 8°  
+      <br><em>Brune double maltée et ronde, typiquement belge.</em>
+    </li>
 
-    footer {
-      text-align: center;
-      background: #1a1005;
-      color: #ffcc00;
-      padding: 1.5rem 0;
-      font-size: 0.9rem;
-    }
+    <li><strong>Blackheart</strong> — 🏴 4.4°  
+      <br><em>Stout écossaise légère, torréfiée et sèche.</em>
+    </li>
 
-    footer a {
-      color: #ffcc00;
-      text-decoration: none;
-    }
-    footer a:hover { text-decoration: underline; }
+    <li><strong>Rouge Max</strong> — 🇧🇪 8°  
+      <br><em>Rouge douce et fruitée, aux arômes de cerise et mûre.</em>
+    </li>
 
-  </style>
-</head>
-<body>
+    <li><strong>Kriek</strong> — 🇧🇪 5.5°  
+      <br><em>Rouge à la cerise, acidulée et sucrée.</em>
+    </li>
 
-  <h1>Café Blondes</h1>
-  <h2>24 pressions — Une ambiance rustique & conviviale 🍺</h2>
+    <li><strong>Noble Coz Cidre</strong> — 🇫🇷 8°  
+      <br><em>Cidre artisanal breton, puissant et sec.</em>
+    </li>
 
-  <div class="menu-container">
-
-    <div class="section" onclick="toggleSection('bieres')">🍻 Bières pression</div>
-    <div id="bieres" class="content">
-      <ul>
-        <li onclick="toggleBeer(this)">Fouillotte Blonde</li>
-        <div class="beer-info">4°, France — Blonde légère brassée avec des branches de sapin 🌲, goût résineux et boisé.</div>
-
-        <li onclick="toggleBeer(this)">Blanche Bernardus</li>
-        <div class="beer-info">6°, Belgique — Blanche douce et épicée, aux notes d’agrumes et de coriandre.</div>
-
-        <li onclick="toggleBeer(this)">Weihenstephaner Vitus</li>
-        <div class="beer-info">7.7°, Allemagne — Blanche riche et fruitée, banane et clou de girofle.</div>
-
-        <li onclick="toggleBeer(this)">Trappe Blonde</li>
-        <div class="beer-info">6.5°, Pays-Bas — Trappiste florale et équilibrée.</div>
-
-        <li onclick="toggleBeer(this)">Ypra Lefort</li>
-        <div class="beer-info">10°, Belgique — Triple belge dorée, fruitée et généreuse.</div>
-
-        <li onclick="toggleBeer(this)">Timut</li>
-        <div class="beer-info">4°, France — Blonde légère au citron et poivre de Timut.</div>
-
-        <li onclick="toggleBeer(this)">Delta IPA</li>
-        <div class="beer-info">6°, Belgique — IPA équilibrée, amertume florale et agrumes.</div>
-
-        <li onclick="toggleBeer(this)">Milkshake IPA</li>
-        <div class="beer-info">5.7°, France — IPA douce et crémeuse, notes vanillées et fruitées.</div>
-
-        <li onclick="toggleBeer(this)">Whisky Infused</li>
-        <div class="beer-info">12.7°, France — Ambrée infusée au whisky, intense et boisée.</div>
-
-        <li onclick="toggleBeer(this)">Prior Bernardus</li>
-        <div class="beer-info">8°, Belgique — Brune double maltée et ronde.</div>
-
-        <li onclick="toggleBeer(this)">Blackheart</li>
-        <div class="beer-info">4.4°, Écosse — Stout légère, torréfiée et sèche.</div>
-
-        <li onclick="toggleBeer(this)">Rouge Max</li>
-        <div class="beer-info">8°, Belgique — Rouge douce et fruitée, cerise et mûre.</div>
-
-        <li onclick="toggleBeer(this)">Kriek</li>
-        <div class="beer-info">5.5°, Belgique — Rouge à la cerise, sucrée et acidulée.</div>
-
-        <li onclick="toggleBeer(this)">Noble Coz Cidre</li>
-        <div class="beer-info">8°, France — Cidre artisanal breton, puissant et sec.</div>
-
-        <li onclick="toggleBeer(this)">Brunehaut</li>
-        <div class="beer-info">5°, Belgique — Blonde sans gluten, ronde et équilibrée.</div>
-      </ul>
-    </div>
-
-    <div class="section" onclick="toggleSection('softs')">🥤 Softs</div>
-    <div id="softs" class="content">
-      <ul>
-        <li>Coca, Coca Zéro, Coca Cherry</li>
-        <li>Ginger Beer</li>
-        <li>Diabolos (citron, fraise, menthe...)</li>
-        <li>Sirop (pêche, cassis...)</li>
-        <li>Thés glacés (pêche, citron...)</li>
-        <li>Schweppes Tonic, Agrum</li>
-        <li>Spunky</li>
-        <li>Jus (abricot, ananas, pomme...)</li>
-      </ul>
-    </div>
-
-    <div class="section" onclick="toggleSection('cocktails')">🍹 Cocktails</div>
-    <div id="cocktails" class="content">
-      <ul>
-        <li>Aperol Spritz</li>
-        <li>Ugo Spritz</li>
-        <li>Spritz Framboise</li>
-        <li>Lillet (rouge, blanc, rosé) Spritz</li>
-      </ul>
-    </div>
-
-    <div class="section" onclick="toggleSection('vins')">🍷 Vins</div>
-    <div id="vins" class="content">
-      <ul>
-        <li>Blanc sec : St Véran, Chardonnay</li>
-        <li>Blanc fruité : Viognier</li>
-        <li>Blanc sucré : Horgelus</li>
-        <li>Rosé : Château Beaulieu</li>
-        <li>Rouge : Côtes du Rhône, Pinot Noir</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <footer>
-    <p>📍 18 rue de la Faïencerie, Nancy</p>
-    <p>🕐 Lun–Mer : 17h30–00h | Jeu–Ven : 17h30–2h | Sam : 14h–2h</p>
-    <p><a href="https://www.instagram.com/blonde_beer_bar/" target="_blank">📸 Suis-nous sur Instagram</a></p>
-    <p>© 2025 Café Blondes — Nancy</p>
-  </footer>
-
-  <script>
-    function toggleSection(id) {
-      const section = document.getElementById(id);
-      section.style.display = section.style.display === "block" ? "none" : "block";
-    }
-
-    function toggleBeer(el) {
-      const info = el.nextElementSibling;
-      info.style.display = info.style.display === "block" ? "none" : "block";
-    }
-  </script>
-
-</body>
-</html>
+    <li><strong>Brunehaut</strong> — 🇧🇪 5°  
+      <br><em>Blonde sans gluten, ronde et équilibrée.</em>
+    </li>
+  </ul>
+</div>
