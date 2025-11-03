@@ -21,18 +21,47 @@ body {
   overflow: hidden;
 }
 
+/* ---------- INTRO ---------- */
+.intro {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(10,5,2,0.9);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeOut 1.5s ease 2s forwards;
+}
+.intro h1 {
+  font-size: 2.5em;
+  color: #f4d35e;
+  text-shadow:
+    0 0 10px rgba(244,211,94,0.8),
+    0 0 25px rgba(244,211,94,0.6),
+    0 0 40px rgba(244,211,94,0.3);
+  animation: neon 2s ease-in-out infinite alternate;
+}
+@keyframes neon {
+  from { text-shadow: 0 0 10px rgba(244,211,94,0.5), 0 0 20px rgba(244,211,94,0.3); }
+  to { text-shadow: 0 0 20px rgba(244,211,94,0.9), 0 0 50px rgba(244,211,94,0.6); }
+}
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+
+/* ---------- QUIZ ---------- */
 .quiz-container {
+  opacity: 0;
   background: rgba(25,15,5,0.93);
   backdrop-filter: blur(12px) saturate(140%);
   padding: 55px 60px;
   border-radius: 26px;
-  box-shadow:
-    0 0 80px rgba(0,0,0,0.7),
-    0 0 20px rgba(244,211,94,0.08);
+  box-shadow: 0 0 80px rgba(0,0,0,0.7), 0 0 20px rgba(244,211,94,0.08);
   width: 90%;
   max-width: 650px;
   text-align: center;
-  animation: fadeIn 1s ease;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 2.3s;
   position: relative;
 }
 
@@ -40,8 +69,7 @@ h1 {
   font-size: 2em;
   color: #f4d35e;
   margin-bottom: 0.5em;
-  text-shadow: 0 0 10px rgba(244,211,94,0.4),
-               0 0 20px rgba(244,211,94,0.2);
+  text-shadow: 0 0 10px rgba(244,211,94,0.4), 0 0 20px rgba(244,211,94,0.2);
 }
 
 p {
@@ -59,10 +87,7 @@ p {
   transform: translateY(15px);
   animation: fadeSlide 0.6s forwards;
 }
-
-@keyframes fadeSlide {
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeSlide { to { opacity: 1; transform: translateY(0); } }
 
 button.option {
   background: #f4d35e;
@@ -79,43 +104,58 @@ button.option {
   transform: translateY(10px);
   animation: appear 0.6s forwards;
 }
-
 button.option:hover {
   transform: translateY(-2px);
   background: #ffe47a;
   box-shadow: 0 4px 8px rgba(244,211,94,0.4);
 }
-
-@keyframes appear {
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes appear { to { opacity: 1; transform: translateY(0); } }
 
 .progress {
-  width: 100%;
-  height: 10px;
+  width: 100%; height: 10px;
   background: rgba(255,255,255,0.15);
   border-radius: 5px;
-  margin-top: 20px;
-  overflow: hidden;
+  margin-top: 20px; overflow: hidden;
 }
 .progress-bar {
-  height: 10px;
-  width: 0;
+  height: 10px; width: 0;
   background: linear-gradient(90deg, #f4d35e, #b8860b);
   transition: width 0.5s ease;
 }
 
-.result h2 {
+/* ---------- RESULT ---------- */
+.percent-container {
+  position: relative;
+  width: 130px; height: 130px;
+  margin: 25px auto;
+}
+.circle {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  border: 5px solid rgba(244,211,94,0.2);
+  position: absolute; top: 0; left: 0;
+}
+.circle-fill {
+  width: 130px; height: 130px;
+  border-radius: 50%;
+  border: 5px solid #f4d35e;
+  clip-path: polygon(50% 50%, 50% 0, 100% 0, 100% 100%, 0 100%, 0 0, 50% 0);
+  transform: rotate(0deg);
+  transform-origin: center;
+  transition: transform 1s ease-out;
+}
+.percent-text {
+  position: absolute;
+  top: 45%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 2em;
+  font-weight: bold;
   color: #f4d35e;
-  font-size: 1.7em;
-  margin-top: 0.5em;
+  text-shadow: 0 0 10px rgba(244,211,94,0.4);
 }
-.result p {
-  color: #fff;
-  font-size: 1.1em;
-  margin: 1em 0;
-  line-height: 1.5em;
-}
+
+.result h2 { color: #f4d35e; font-size: 1.7em; margin-top: 0.5em; }
+.result p { color: #fff; font-size: 1.1em; margin: 1em 0; line-height: 1.5em; }
 
 .btn {
   display: inline-block;
@@ -138,8 +178,7 @@ button.option:hover {
 
 .close {
   position: absolute;
-  top: 22px;
-  right: 30px;
+  top: 22px; right: 30px;
   font-size: 1.5em;
   color: #f4d35e;
   cursor: pointer;
@@ -147,47 +186,15 @@ button.option:hover {
 }
 .close:hover { transform: scale(1.2); }
 
-.percent-container {
-  position: relative;
-  width: 130px;
-  height: 130px;
-  margin: 25px auto;
-}
-.circle {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 5px solid rgba(244,211,94,0.2);
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.circle-fill {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  border: 5px solid #f4d35e;
-  clip-path: polygon(50% 50%, 50% 0, 100% 0, 100% 100%, 0 100%, 0 0, 50% 0);
-  transform: rotate(0deg);
-  transform-origin: center;
-  transition: transform 1s ease-out;
-}
-.percent-text {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  font-size: 2em;
-  font-weight: bold;
-  color: #f4d35e;
-  text-shadow: 0 0 10px rgba(244,211,94,0.4);
-}
-
 @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
 </style>
 </head>
 
 <body>
+  <div class="intro">
+    <h1>🍻 Trouve ta bière idéale 🍻</h1>
+  </div>
+
   <div class="quiz-container">
     <div class="close" onclick="window.location.href='index.html'">✖</div>
     <h1>🍻 Trouve ta bière idéale</h1>
@@ -197,134 +204,85 @@ button.option:hover {
   </div>
 
 <script>
-const quizData = [
-  {
-    question: "🎨 Quel type de bière t’attire le plus ?",
-    options: [
-      { text: "🍯 Blonde", value: "blonde" },
-      { text: "🌿 IPA", value: "ipa" },
-      { text: "🍫 Brune", value: "brune" },
-      { text: "🌾 Blanche", value: "blanche" },
-      { text: "🍒 Rouge", value: "rouge" },
-      { text: "☕ Stout", value: "stout" },
-      { text: "🍋 Sour", value: "sour" },
-      { text: "🍏 Cidre", value: "cidre" }
-    ]
-  },
-  {
-    question: "🎉 Quel est ton mood ce soir ?",
-    options: [
-      { text: "😌 Détente tranquille", value: "detente" },
-      { text: "🍻 Soirée entre amis", value: "amis" },
-      { text: "💃 Fête et ambiance", value: "fete" },
-      { text: "🍽️ Repas gourmand", value: "repas" },
-      { text: "🧭 Découverte et curiosité", value: "decouverte" }
-    ]
-  },
-  {
-    question: "🍯 Quel goût te tente le plus ?",
-    options: [
-      { text: "🌼 Doux et facile à boire", value: "doux" },
-      { text: "🍋 Fruité et frais", value: "fruite" },
-      { text: "🌿 Amer et houblonné", value: "amer" },
-      { text: "🍞 Malté et rond", value: "malte" },
-      { text: "🍏 Acidulé et surprenant", value: "acidule" },
-      { text: "🔥 Boisé ou épicé", value: "boise" }
-    ]
-  },
-  {
-    question: "💪 Tu veux une bière…",
-    options: [
-      { text: "🍃 Légère", value: "legere" },
-      { text: "⚖️ Moyenne", value: "moyenne" },
-      { text: "🔥 Bien corsée", value: "forte" }
-    ]
-  },
-  {
-    question: "💫 Si ta bière avait une personnalité ?",
-    options: [
-      { text: "🎩 Élégante et raffinée", value: "elegante" },
-      { text: "🎉 Joyeuse et conviviale", value: "joyeuse" },
-      { text: "🧔 Sage et posée", value: "sage" },
-      { text: "🎨 Originale et créative", value: "originale" },
-      { text: "⚡ Audacieuse et intense", value: "intense" }
-    ]
-  }
-];
+const quizData=[ /* mêmes questions que précédemment */ 
+{question:"🎨 Quel type de bière t’attire le plus ?",options:[
+{text:"🍯 Blonde",value:"blonde"},{text:"🌿 IPA",value:"ipa"},
+{text:"🍫 Brune",value:"brune"},{text:"🌾 Blanche",value:"blanche"},
+{text:"🍒 Rouge",value:"rouge"},{text:"☕ Stout",value:"stout"},
+{text:"🍋 Sour",value:"sour"},{text:"🍏 Cidre",value:"cidre"}]},
+{question:"🎉 Quel est ton mood ce soir ?",options:[
+{text:"😌 Détente tranquille",value:"detente"},{text:"🍻 Soirée entre amis",value:"amis"},
+{text:"💃 Fête et ambiance",value:"fete"},{text:"🍽️ Repas gourmand",value:"repas"},
+{text:"🧭 Découverte et curiosité",value:"decouverte"}]},
+{question:"🍯 Quel goût te tente le plus ?",options:[
+{text:"🌼 Doux et facile à boire",value:"doux"},{text:"🍋 Fruité et frais",value:"fruite"},
+{text:"🌿 Amer et houblonné",value:"amer"},{text:"🍞 Malté et rond",value:"malte"},
+{text:"🍏 Acidulé et surprenant",value:"acidule"},{text:"🔥 Boisé ou épicé",value:"boise"}]},
+{question:"💪 Tu veux une bière…",options:[
+{text:"🍃 Légère",value:"legere"},{text:"⚖️ Moyenne",value:"moyenne"},
+{text:"🔥 Bien corsée",value:"forte"}]},
+{question:"💫 Si ta bière avait une personnalité ?",options:[
+{text:"🎩 Élégante et raffinée",value:"elegante"},{text:"🎉 Joyeuse et conviviale",value:"joyeuse"},
+{text:"🧔 Sage et posée",value:"sage"},{text:"🎨 Originale et créative",value:"originale"},
+{text:"⚡ Audacieuse et intense",value:"intense"}]}];
 
-const beers = [
-  { name: "Fouillotte Blonde", type: "blonde", phrase: "Tu brilles sans en faire trop ☀️" },
-  { name: "Delta IPA", type: "ipa", phrase: "Tu ne fais jamais dans la demi-mesure 🌿" },
-  { name: "Whisky Infused", type: "brune", phrase: "Fort à l’extérieur, doux à l’intérieur 🍫" },
-  { name: "Blanche Bernardus", type: "blanche", phrase: "Toujours frais, jamais stress 🍋" },
-  { name: "Rouge Max", type: "rouge", phrase: "Tu mets de la couleur partout où tu passes 🍒" },
-  { name: "Blackheart", type: "stout", phrase: "Mystérieux mais attachant ☕" },
-  { name: "Shorba", type: "sour", phrase: "Un petit grain d’acidité bien placé 🍓" },
-  { name: "Noble Coz Cidre", type: "cidre", phrase: "Simple, pétillant et toujours cool 🍏" }
-];
+const beers=[
+{name:"Fouillotte Blonde",type:"blonde",phrase:"Tu brilles sans en faire trop ☀️"},
+{name:"Delta IPA",type:"ipa",phrase:"Tu ne fais jamais dans la demi-mesure 🌿"},
+{name:"Whisky Infused",type:"brune",phrase:"Fort à l’extérieur, doux à l’intérieur 🍫"},
+{name:"Blanche Bernardus",type:"blanche",phrase:"Toujours frais, jamais stress 🍋"},
+{name:"Rouge Max",type:"rouge",phrase:"Tu mets de la couleur partout où tu passes 🍒"},
+{name:"Blackheart",type:"stout",phrase:"Mystérieux mais attachant ☕"},
+{name:"Shorba",type:"sour",phrase:"Un petit grain d’acidité bien placé 🍓"},
+{name:"Noble Coz Cidre",type:"cidre",phrase:"Simple, pétillant et toujours cool 🍏"}];
 
-let current = 0;
-let answers = [];
-const quizEl = document.getElementById("quiz");
-const progressEl = document.getElementById("progress");
+let current=0,answers=[];
+const quizEl=document.getElementById("quiz");
+const progressEl=document.getElementById("progress");
 
-function showQuestion() {
-  const q = quizData[current];
-  quizEl.innerHTML = `
-    <div class="question">${q.question}</div>
-    ${q.options.map((o,i)=>`<button class="option" style="animation-delay:${i*0.1}s" onclick="choose('${o.value}')">${o.text}</button>`).join('')}
-  `;
-  progressEl.style.width = `${(current/quizData.length)*100}%`;
+function showQuestion(){
+ const q=quizData[current];
+ quizEl.innerHTML=`
+ <div class="question">${q.question}</div>
+ ${q.options.map((o,i)=>`<button class="option" style="animation-delay:${i*0.1}s" onclick="choose('${o.value}')">${o.text}</button>`).join('')}
+ `;
+ progressEl.style.width=`${(current/quizData.length)*100}%`;
 }
-
-function choose(value) {
-  answers.push(value);
-  current++;
-  if(current<quizData.length) showQuestion();
-  else showResult();
-}
-
+function choose(v){answers.push(v);current++;if(current<quizData.length)showQuestion();else showResult();}
 function showResult(){
-  progressEl.style.width="100%";
-  const colorChoice = answers[0];
-  const beer = beers.find(b=>b.type===colorChoice) || beers[Math.floor(Math.random()*beers.length)];
-  const percent = Math.floor(Math.random()*(100-70+1))+70;
-  
-  quizEl.innerHTML = `
-    <div class="result">
-      <h2>🍺 ${beer.name}</h2>
-      <div class="percent-container">
-        <div class="circle"></div>
-        <div class="circle-fill" id="circleFill"></div>
-        <div class="percent-text" id="percentText">0%</div>
-      </div>
-      <p>${beer.phrase}</p>
-      <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
-      <button class="btn" onclick="restartQuiz()">🔁 Recommencer</button>
-    </div>
-  `;
-  animatePercent(percent);
+ progressEl.style.width="100%";
+ const colorChoice=answers[0];
+ const beer=beers.find(b=>b.type===colorChoice)||beers[Math.floor(Math.random()*beers.length)];
+ const percent=Math.floor(Math.random()*(100-70+1))+70;
+ quizEl.innerHTML=`
+ <div class="result">
+   <h2>🍺 ${beer.name}</h2>
+   <div class="percent-container">
+     <div class="circle"></div>
+     <div class="circle-fill" id="circleFill"></div>
+     <div class="percent-text" id="percentText">0%</div>
+   </div>
+   <p>${beer.phrase}</p>
+   <button class="btn" onclick="window.location.href='carte.html'">Voir tout le menu</button>
+   <button class="btn" onclick="restartQuiz()">🔁 Recommencer</button>
+ </div>`;
+ animatePercent(percent);
 }
-
 function animatePercent(target){
-  const text = document.getElementById("percentText");
-  const circle = document.getElementById("circleFill");
-  let current = 0;
-  function step(){
-    current++;
-    text.textContent = current+"%";
-    circle.style.transform = `rotate(${current*3.6}deg)`;
-    if(current<target) requestAnimationFrame(step);
-    else text.textContent = target+"%";
-  }
-  requestAnimationFrame(step);
+ const text=document.getElementById("percentText");
+ const circle=document.getElementById("circleFill");
+ let cur=0;
+ function step(){
+   cur++;
+   text.textContent=cur+"%";
+   circle.style.transform=`rotate(${cur*3.6}deg)`;
+   if(cur<target)requestAnimationFrame(step);
+   else text.textContent=target+"%";
+ }
+ requestAnimationFrame(step);
 }
-
-function restartQuiz(){
-  current=0; answers=[]; progressEl.style.width="0%"; showQuestion();
-}
-
-showQuestion();
+function restartQuiz(){current=0;answers=[];progressEl.style.width="0%";showQuestion();}
+setTimeout(showQuestion,2300); // après intro
 </script>
 </body>
 </html>
