@@ -3,118 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Café Blondes — Choisissez votre expérience</title>
+  <title>Café Blondes — Carte</title>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
+      background: url('https://www.transparenttextures.com/patterns/wood-pattern.png'), #2e1d0e;
+      background-size: cover;
+      color: #fffdf7;
       font-family: 'Poppins', sans-serif;
-      background: url('IMG_0768.jpeg') center/cover no-repeat fixed;
-      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    header {
       text-align: center;
+      padding: 3rem 1rem 2rem;
+      color: #f5c542;
+      text-shadow: 1px 1px 5px black;
+    }
+    h1 { font-family: 'Merriweather', serif; font-size: 2.5rem; }
+    section { max-width: 800px; margin: 0 auto; padding: 1rem; }
+    details {
+      background: #f5c542;
+      color: #2e1d0e;
+      margin: 1rem 0;
+      border-radius: 12px;
       overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(3px);
-      z-index: 0;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    summary {
       padding: 1rem;
-    }
-
-    h1 {
-      font-family: 'Merriweather', serif;
-      color: #ffcc00;
-      font-size: 2.6rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      font-size: 1.1rem;
-      max-width: 600px;
-      color: #f8f8f8;
-      margin-bottom: 2.5rem;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-
-    .btn {
-      background-color: #ffcc00;
-      color: #2b1a0a;
-      border: none;
-      border-radius: 50px;
-      padding: 1.2rem 2.5rem;
-      font-size: 1.1rem;
-      font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      list-style: none;
     }
-
-    .btn:hover {
-      transform: scale(1.05);
-      background-color: #ffdb4d;
-      box-shadow: 0 0 20px rgba(255,204,0,0.5);
+    details[open] summary { background: #ffda5c; }
+    ul {
+      background: rgba(255,255,255,0.9);
+      color: #2e1d0e;
+      margin: 0;
+      padding: 1rem 2rem;
+      list-style-type: none;
     }
-
-    .btn.secondary {
-      background-color: #2b1a0a;
-      color: #ffcc00;
-      border: 2px solid #ffcc00;
-    }
-
-    .btn.secondary:hover {
-      background-color: #3e2a16;
-      box-shadow: 0 0 20px rgba(255,204,0,0.3);
-    }
-
+    li { padding: 0.2rem 0; }
     footer {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
       text-align: center;
-      color: #ffcc00;
+      color: #f5c542;
+      margin: 2rem 0 1rem;
       font-size: 0.9rem;
-    }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 2rem; }
-      p { font-size: 1rem; }
-      .btn { padding: 1rem 2rem; font-size: 1rem; }
+      opacity: 0.8;
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <h1>Bienvenue au Café Blondes</h1>
-    <p>24 pressions, des histoires à raconter, et peut-être... la bière qui vous ressemble 🍺</p>
 
-    <div class="buttons">
-      <a href="carte.html#menu" class="btn secondary">📜 Voir la carte</a>
-      <a href="quiz.html" class="btn">🧩 Trouver ma bière idéale</a>
-    </div>
-  </div>
+<header id="menu">
+  <h1>Café Blondes</h1>
+  <p>24 pressions – Une ambiance rustique & conviviale 🍺</p>
+</header>
 
-  <footer>© 2025 Café Blondes — Nancy</footer>
+<section>
+  <details open>
+    <summary>🍺 Bières pression</summary>
+    <ul>
+      <li><strong>Fouillotte Blonde</strong> — 4°, France – Blonde légère brassée avec des branches de sapin 🌲, au petit goût résineux et boisé.</li>
+      <li><strong>Blanche Bernardus</strong> — 6°, Belgique – Blanche douce et épicée, aux notes d’agrumes et de coriandre.</li>
+      <li><strong>Weihenstephaner Vitus</strong> — 7.7°, Allemagne – Blanche riche, fruitée, banane et clou de girofle.</li>
+      <li><strong>Trappe Blonde</strong> — 6.5°, Pays-Bas – Blonde trappiste florale et équilibrée.</li>
+      <li><strong>Ypra Lefort</strong> — 10°, Belgique – Triple belge dorée, fruitée et généreuse.</li>
+      <li><strong>Timut</strong> — 4°, France – Blonde légère au citron et poivre de Timut.</li>
+      <li><strong>Delta IPA</strong> — 6°, Belgique – IPA équilibrée, amertume florale et agrumes.</li>
+      <li><strong>Milkshake IPA</strong> — 5.7°, France – IPA douce et crémeuse, notes de vanille et fruits tropicaux.</li>
+      <li><strong>Whisky Infused</strong> — 12.7°, France – Ambrée infusée au whisky, intense et boisée.</li>
+      <li><strong>Prior Bernardus</strong> — 8°, Belgique – Brune double maltée et ronde.</li>
+      <li><strong>Blackheart</strong> — 4.4°, Écosse – Stout légère, torréfiée et sèche.</li>
+      <li><strong>Rouge Max</strong> — 8°, Belgique – Rouge douce et fruitée, cerise mûre et fruits rouges.</li>
+      <li><strong>Kriek</strong> — 5.5°, Belgique – Rouge à la cerise, acidulée et sucrée.</li>
+      <li><strong>Noble Coz Cidre</strong> — 8°, Bretagne – Cidre artisanal sec et vif.</li>
+      <li><strong>Brunehaut Blonde</strong> — 5°, Belgique – Blonde bio sans gluten, légère et maltée.</li>
+      <li><strong>St Idesbald</strong> — 6.5°, Belgique – Blonde d’abbaye douce et ronde.</li>
+      <li><strong>Bitburger 0%</strong> — 0°, Allemagne – Pilsner sans alcool, légère et désaltérante.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>🥤 Softs</summary>
+    <ul>
+      <li>Coca, Coca Zéro, Coca Cherry</li>
+      <li>Ginger Beer</li>
+      <li>Diabolos (citron, fraise, menthe, grenadine...)</li>
+      <li>Sirop (pêche, cerise, cassis...)</li>
+      <li>Thés glacés (pêche, citron...)</li>
+      <li>Schweppes tonic, agrum</li>
+      <li>Spunky</li>
+      <li>Jus (abricot, ananas, orange, tomate, pomme)</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>🍸 Cocktails</summary>
+    <ul>
+      <li>Aperol Spritz</li>
+      <li>Ugo Spritz</li>
+      <li>Spritz Framboise</li>
+      <li>Lillet (rouge, blanc, rosé) Spritz</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>🍷 Vins</summary>
+    <ul>
+      <li>Blanc sec : St Véran, Chardonnay</li>
+      <li>Blanc fruité : Viognier</li>
+      <li>Blanc sucré : Horgelus</li>
+      <li>Rosé : Château Beaulieu</li>
+      <li>Rouge : Côtes du Rhône, Pinot Noir</li>
+    </ul>
+  </details>
+</section>
+
+<footer>
+  <p>18 rue de la Faïencerie, Nancy — lun-mer : 17h30-00h | jeu-ven : 17h30-2h | sam : 14h-2h</p>
+  <p><a href="https://www.instagram.com/blonde_beer_bar/" target="_blank" style="color:#f5c542;text-decoration:none;">📸 @blonde_beer_bar</a></p>
+  <p>© 2025 Café Blondes</p>
+</footer>
+
 </body>
 </html>
