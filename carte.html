@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Café Blondes — Carte</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(rgba(15, 10, 5, 0.8), rgba(0, 0, 0, 0.95)),
+      background: radial-gradient(rgba(10, 6, 3, 0.85), rgba(0, 0, 0, 0.95)),
                   url('IMG_0768.jpeg') center/cover no-repeat fixed;
       backdrop-filter: blur(6px);
       color: #fdfdfd;
@@ -31,32 +31,13 @@
       margin-bottom: 1rem;
     }
 
-    .hint {
-      display: none;
-      text-align: center;
-      background: rgba(255, 204, 0, 0.9);
-      color: #2b1a0a;
-      font-weight: 600;
-      max-width: 450px;
-      margin: 0.5rem auto 2rem;
-      padding: 0.7rem 1rem;
-      border-radius: 10px;
-      animation: pulse 2s infinite ease-in-out;
-      box-shadow: 0 0 20px rgba(255, 204, 0, 0.4);
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 15px rgba(255, 204, 0, 0.3); }
-      50% { box-shadow: 0 0 25px rgba(255, 204, 0, 0.7); }
-    }
-
     .menu-container {
       max-width: 900px;
       margin: 0 auto 4rem;
-      background: rgba(20, 12, 5, 0.85);
+      background: rgba(25, 15, 8, 0.88);
       border-radius: 15px;
       padding: 1.5rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
     }
 
     .section {
@@ -69,6 +50,7 @@
       cursor: pointer;
       transition: 0.3s;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+      text-align: center;
     }
 
     .section:hover {
@@ -119,7 +101,6 @@
       align-items: center;
       color: #f8f8f8;
       font-weight: 600;
-      position: relative;
     }
 
     .beer-body {
@@ -168,11 +149,10 @@
 <body>
   <h1>Café Blondes</h1>
   <h2>24 pressions — Une ambiance rustique & conviviale 🍺</h2>
-  <p class="hint" id="beer-hint">👉 Clique sur une bière pour découvrir sa description 🍺</p>
 
   <div class="menu-container">
     <!-- BIÈRES -->
-    <div class="section" onclick="toggleSection('bieres')">🍻 Bières pression</div>
+    <div class="section" id="beer-title" onclick="toggleSection('bieres')">🍻 Bières pression</div>
     <div id="bieres" class="content">
       <div class="beer-list">
         <div class="beer-item" onclick="toggleBeer(this)">
@@ -300,17 +280,21 @@
   <script>
     function toggleSection(id) {
       const section = document.getElementById(id);
-      const hint = document.getElementById('beer-hint');
+      const beerTitle = document.getElementById('beer-title');
       const isBeer = id === 'bieres';
+
+      document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
 
       if (section.style.display === 'block') {
         section.style.display = 'none';
-        if (isBeer) hint.style.display = 'none';
+        if (isBeer) beerTitle.innerHTML = "🍻 Bières pression";
       } else {
-        document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
         section.style.display = 'block';
-        if (isBeer) hint.style.display = 'block';
-        else hint.style.display = 'none';
+        if (isBeer) {
+          beerTitle.innerHTML = "👉 Clique sur une bière pour découvrir sa description 🍺";
+        } else {
+          beerTitle.innerHTML = "🍻 Bières pression";
+        }
       }
     }
 
