@@ -80,7 +80,15 @@
     .menu h2 {
       text-align: center;
       color: #b8860b;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .menu p.hint {
+      text-align: center;
+      color: #b8860b;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      font-style: italic;
     }
 
     .beer-grid {
@@ -114,6 +122,50 @@
     .beer-card p {
       font-size: 0.9rem;
       color: #5a4630;
+    }
+
+    /* --- Autres catégories --- */
+    details {
+      margin-top: 2rem;
+      background: #f8e3a2;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    summary {
+      background: linear-gradient(90deg, #e0a500, #ffcc00);
+      color: #2b1a0a;
+      font-weight: bold;
+      padding: 1rem;
+      cursor: pointer;
+      list-style: none;
+      font-size: 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    summary::after {
+      content: "▼";
+      transition: transform 0.3s ease;
+    }
+
+    details[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    details ul {
+      background-color: #fff9e6;
+      margin: 0;
+      padding: 1rem 2rem;
+      border-top: 1px solid #e0c066;
+      list-style: disc;
+      font-size: 0.95rem;
+    }
+
+    details li {
+      margin-bottom: 0.4rem;
     }
 
     /* --- Modale bière --- */
@@ -187,7 +239,43 @@
 
   <section id="menu" class="menu">
     <h2>🍺 Bières pression</h2>
+    <p class="hint">👉 Cliquez sur une bière pour découvrir ses détails (degré, origine, saveurs...)</p>
     <div class="beer-grid" id="beerGrid"></div>
+
+    <details>
+      <summary>🥤 Softs</summary>
+      <ul>
+        <li>Coca, Coca Zéro, Coca Cherry</li>
+        <li>Ginger Beer</li>
+        <li>Diabolos (citron, fraise, menthe, grenadine...)</li>
+        <li>Sirop (pêche, cerise, cassis...)</li>
+        <li>Thés glacés (pêche, citron...)</li>
+        <li>Schweppes tonic, agrum</li>
+        <li>Spunky</li>
+        <li>Jus (abricot, ananas, orange, tomate, pomme)</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>🍹 Cocktails</summary>
+      <ul>
+        <li>Aperol Spritz</li>
+        <li>Ugo Spritz</li>
+        <li>Spritz Framboise</li>
+        <li>Lillet (rouge, blanc, rosé) Spritz</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>🍷 Vins</summary>
+      <ul>
+        <li>Blanc sec : St Véran, Chardonnay</li>
+        <li>Blanc fruité : Viognier</li>
+        <li>Blanc sucré : Horgelus</li>
+        <li>Rosé : Château Beaulieu</li>
+        <li>Rouge : Côtes du Rhône, Pinot Noir</li>
+      </ul>
+    </details>
   </section>
 
   <div class="modal" id="beerModal">
