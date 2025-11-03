@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Café Blondes — Carte</title>
+  <title>Café Blondes — 24 pressions, une ambiance rustique & conviviale</title>
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   <style>
     body {
@@ -19,7 +19,6 @@
       font-family: 'Merriweather', serif;
     }
 
-    /* --- Accueil --- */
     header {
       position: relative;
       min-height: 100dvh;
@@ -28,9 +27,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: white;
       text-align: center;
-      padding: 0 1rem;
+      color: white;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
 
@@ -38,23 +36,16 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0,0,0,0.45);
       z-index: 0;
     }
 
-    header h1, header p, .scroll-button {
+    header h1 {
       position: relative;
       z-index: 1;
-    }
-
-    header h1 {
-      font-size: 3rem;
+      font-size: 2.2rem;
       color: #ffcc00;
-      margin-bottom: 0.5rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
+      padding: 0 1rem;
     }
 
     .scroll-button {
@@ -68,82 +59,61 @@
       cursor: pointer;
       transition: background 0.3s ease;
       font-weight: 600;
+      position: relative;
+      z-index: 1;
     }
 
     .scroll-button:hover {
       background-color: #ffdb4d;
     }
 
-    /* --- Section carte --- */
+    /* --- Section menu --- */
     .menu {
       background: rgba(255,255,240,0.97);
-      max-width: 800px;
-      margin: 2rem auto;
+      max-width: 1000px;
+      margin: 3rem auto;
       padding: 2rem;
       border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      position: relative;
-      z-index: 2;
     }
 
-    details {
-      margin-bottom: 1rem;
-      background: #f8e3a2;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    .menu h2 {
+      text-align: center;
+      color: #b8860b;
+      margin-bottom: 1.5rem;
     }
 
-    summary {
-      background: linear-gradient(90deg, #e0a500, #ffcc00);
-      color: #2b1a0a;
-      font-weight: bold;
+    .beer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .beer-card {
+      background: #fff6d6;
+      border: 2px solid #b8860b;
+      border-radius: 12px;
+      text-align: center;
       padding: 1rem;
       cursor: pointer;
-      list-style: none;
-      font-size: 1.1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      transition: 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    summary::after {
-      content: "▼";
-      transition: transform 0.3s ease;
+    .beer-card:hover {
+      background: #ffe77a;
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
-    details[open] summary::after {
-      transform: rotate(180deg);
+    .beer-card h3 {
+      margin-bottom: 0.5rem;
+      color: #2b1a0a;
     }
 
-    details ul {
-      background-color: #fff9e6;
-      margin: 0;
-      padding: 1rem 2rem;
-      border-top: 1px solid #e0c066;
-      list-style: disc;
-      font-size: 0.95rem;
-      opacity: 0;
-      transform: translateY(-10px);
-      animation: slideDown 0.4s ease forwards;
-    }
-
-    @keyframes slideDown {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    details li {
-      margin-bottom: 0.4rem;
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-
-    details li:hover {
-      color: #b8860b;
-      text-decoration: underline;
+    .beer-card p {
+      font-size: 0.9rem;
+      color: #5a4630;
     }
 
     /* --- Modale bière --- */
@@ -165,11 +135,21 @@
       max-width: 400px;
       text-align: center;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     .modal-content h3 {
       color: #b8860b;
       margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+      margin: 0.5rem 0;
     }
 
     .modal-content button {
@@ -180,94 +160,11 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
+      color: #2b1a0a;
     }
 
     .modal-content button:hover {
       background: #ffdb4d;
-    }
-
-    /* --- Carrousel ambiance --- */
-    .carrousel {
-      margin-top: 3rem;
-      background-color: rgba(20,20,20,0.95);
-      color: white;
-      padding: 2rem 0;
-      text-align: center;
-    }
-
-    .carrousel h2 {
-      color: #ffcc00;
-      margin-bottom: 1rem;
-    }
-
-    .carrousel-images {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding: 1rem;
-    }
-
-    .carrousel-images img {
-      width: 300px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin: 0 10px;
-      flex-shrink: 0;
-      transition: transform 0.4s ease, filter 0.4s ease;
-    }
-
-    .carrousel-images img:hover {
-      transform: scale(1.05);
-      filter: brightness(1.2);
-    }
-
-    /* --- À propos --- */
-    .about {
-      background: rgba(255,255,240,0.95);
-      max-width: 900px;
-      margin: 3rem auto;
-      padding: 2rem;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-
-    .about img {
-      width: 100%;
-      max-width: 500px;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-
-    .about h2 {
-      color: #b8860b;
-      margin-bottom: 1rem;
-    }
-
-    .about p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .info {
-      font-weight: 500;
-      color: #3e2a16;
-      margin-bottom: 0.5rem;
-    }
-
-    .socials a {
-      margin: 0 10px;
-      color: #b8860b;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s ease;
-    }
-
-    .socials a:hover {
-      color: #ffcc00;
     }
 
     footer {
@@ -277,202 +174,78 @@
       padding: 1rem;
       font-size: 0.9rem;
     }
-
-    #topBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #ffcc00;
-      color: #2b1a0a;
-      border: none;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: none;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
   </style>
 </head>
 
 <body>
-
   <header>
-    <h1>Café Blondes</h1>
-    <p>24 pressions –  Une ambiance rustique & conviviale 🍻</p>
+    <h1>Café Blondes — 24 pressions, une ambiance rustique & conviviale</h1>
     <button class="scroll-button" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
       Accéder au menu ↓
     </button>
   </header>
 
   <section id="menu" class="menu">
-    <details>
-      <summary>🍺 Bières pression</summary>
-      <ul id="beerList">
-        <li>Prior Bernardus</li>
-        <li>Blanche Bernardus</li>
-        <li>Triple Bernardus</li>
-        <li>Ypra Lefort</li>
-        <li>Whisky Infused</li>
-        <li>Trappe Blonde</li>
-        <li>Weihenstephaner Vitus</li>
-        <li>Delta IPA</li>
-        <li>Estaminet</li>
-        <li>Ibex</li>
-        <li>Neipa</li>
-        <li>Shorba</li>
-        <li>Bitburger 0%</li>
-        <li>Cidre Noble Coz</li>
-        <li>Rouge Max</li>
-        <li>Kriek</li>
-        <li>Milkshake IPA</li>
-        <li>Blackheart</li>
-        <li>St Idesbald</li>
-        <li>Brunehaut</li>
-        <li>Timut</li>
-        <li>Fouillote Blonde</li>
-      </ul>
-    </details>
-
-    <details>
-      <summary>🥤 Softs</summary>
-      <ul>
-        <li>Coca, Coca Zéro, Coca Cherry</li>
-        <li>Ginger Beer</li>
-        <li>Diabolos (citron, fraise, menthe, grenadine...)</li>
-        <li>Sirop (pêche, cerise, cassis...)</li>
-        <li>Thés glacés (pêche, citron...)</li>
-        <li>Schweppes tonic, agrum</li>
-        <li>Spunky</li>
-        <li>Jus (abricot, ananas, orange, tomate, pomme)</li>
-      </ul>
-    </details>
-
-    <details>
-      <summary>🍹 Cocktails</summary>
-      <ul>
-        <li>Aperol Spritz</li>
-        <li>Ugo Spritz</li>
-        <li>Spritz Framboise</li>
-        <li>Lillet (rouge, blanc, rosé) Spritz</li>
-      </ul>
-    </details>
-
-    <details>
-      <summary>🍷 Vins</summary>
-      <ul>
-        <li>Blanc sec : St Véran, Chardonnay</li>
-        <li>Blanc fruité : Viognier</li>
-        <li>Blanc sucré : Horgelus</li>
-        <li>Rosé : Château Beaulieu</li>
-        <li>Rouge : Côtes du Rhône, Pinot Noir</li>
-      </ul>
-    </details>
+    <h2>🍺 Bières pression</h2>
+    <div class="beer-grid" id="beerGrid"></div>
   </section>
 
   <div class="modal" id="beerModal">
     <div class="modal-content" id="beerDetails"></div>
   </div>
 
-  <section class="carrousel">
-    <h2>Ambiance du bar</h2>
-    <div class="carrousel-images" id="carrousel">
-      <img src="IMG_0765.jpeg" alt="Bar Café Blondes">
-      <img src="IMG_0766.jpeg" alt="Ambiance Café Blondes">
-      <img src="IMG_0768.jpeg" alt="Comptoir Café Blondes">
-      <img src="IMG_0769.jpeg" alt="Détails du bar">
-      <img src="IMG_0773.jpeg" alt="Décor rustique">
-      <img src="IMG_0775.jpeg" alt="Panneaux bière">
-      <img src="IMG_0776.jpeg" alt="Enseigne Brewdog">
-    </div>
-  </section>
-
-<section class="about" id="about">
-  <h2>À propos du Café Blondes</h2>
-  <img src="IMG_0765.jpeg" alt="Photo du bar">
-  <p>Situé au cœur de Nancy, le <strong>Café Blondes</strong> est un bar à bières d’exception où l’on célèbre la convivialité et le goût authentique. Avec ses 24 pressions et son ambiance boisée et rustique, c’est le lieu idéal pour découvrir des bières uniques, partager un bon moment et profiter d’un service chaleureux.</p>
-
-  <div class="info">📍 18 rue de la Faïencerie — Nancy</div>
-  <div class="info">
-    <a href="https://www.google.com/maps?q=18+rue+de+la+Faïencerie,+Nancy" target="_blank" 
-       style="display: inline-flex; align-items: center; color:#b8860b; text-decoration:none; font-weight:600;">
-      🗺️ <span style="margin-left: 6px;">Voir sur Google Maps</span>
-    </a>
-  </div>
-
-  <div class="info">🕓 Horaires :</div>
-  <p>🗓️ Lundi–Mercredi : 17h30–00h<br>
-     🗓️ Jeudi–Vendredi : 17h30–2h<br>
-     🗓️ Samedi : 14h–2h</p>
-
-
-    <div class="socials">
-      <a href="https://www.instagram.com/blonde_beer_bar/" target="_blank">📸 Instagram</a>
-    </div>
-  </section>
-
-  <footer>© 2025 Café Blondes - Bar à bière d'exception </footer>
-
-  <button id="topBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+  <footer>© 2025 Café Blondes — Tous droits réservés</footer>
 
   <script>
-    window.onscroll = () => {
-      document.getElementById("topBtn").style.display = window.scrollY > 400 ? "block" : "none";
-    };
+    const beers = [
+      { name: "Prior Bernardus", degre: "8%", origine: "Belgique", description: "Abbaye belge au goût malté et légèrement sucré." },
+      { name: "Blanche Bernardus", degre: "5.5%", origine: "Belgique", description: "Blanche rafraîchissante, notes d’agrumes et coriandre." },
+      { name: "Triple Bernardus", degre: "9%", origine: "Belgique", description: "Triple dense et dorée, avec une belle amertume houblonnée." },
+      { name: "Ypra Lefort", degre: "8.5%", origine: "Belgique", description: "Triple belge ambrée, arômes fruités et maltés, finale douce." },
+      { name: "Whisky Infused", degre: "7.5%", origine: "France", description: "Bière ambrée infusée au whisky, notes boisées, vanillées et fumées." },
+      { name: "Trappe Blonde", degre: "6.5%", origine: "Pays-Bas", description: "Blonde trappiste équilibrée et florale." },
+      { name: "Weihenstephaner Vitus", degre: "7.7%", origine: "Allemagne", description: "Weizenbock douce, arômes de banane et clou de girofle." },
+      { name: "Delta IPA", degre: "6.5%", origine: "Belgique", description: "IPA belge fraîche, agrumes et levure épicée." },
+      { name: "Estaminet", degre: "5.2%", origine: "Belgique", description: "Pilsner fine et désaltérante." },
+      { name: "Ibex", degre: "6%", origine: "France", description: "Ambrée aux notes de caramel et fruits secs, équilibrée." },
+      { name: "Neipa", degre: "6.8%", origine: "USA", description: "IPA trouble et juteuse, arômes tropicaux." },
+      { name: "Shorba", degre: "6.2%", origine: "France (Piggy Brewing)", description: "IPA aromatique, houblonnée et fruitée avec des touches d'épices." },
+      { name: "Bitburger 0%", degre: "0%", origine: "Allemagne", description: "Sans alcool, légère, croustillante et maltée." },
+      { name: "Cidre Noble Coz", degre: "5%", origine: "Bretagne, France", description: "Cidre artisanal brut et fruité, équilibre entre acidité et douceur." },
+      { name: "Rouge Max", degre: "8%", origine: "Belgique", description: "Rouge douce, arômes de cerise et malt sucré." },
+      { name: "Kriek", degre: "4%", origine: "Belgique", description: "Lambic à la cerise, acidulée et fruitée." },
+      { name: "Milkshake IPA", degre: "6.5%", origine: "France", description: "IPA crémeuse et fruitée, texture onctueuse." },
+      { name: "Blackheart", degre: "8.5%", origine: "Angleterre", description: "Stout intense, café torréfié et chocolat noir." },
+      { name: "St Idesbald", degre: "7.5%", origine: "Belgique", description: "Abbaye douce, maltée et épicée." },
+      { name: "Brunehaut", degre: "6.5%", origine: "Belgique", description: "Bio et sans gluten, maltée et équilibrée." },
+      { name: "Timut", degre: "6%", origine: "France", description: "IPA au poivre Timut, agrumes et épices exotiques." },
+      { name: "Fouillote Blonde", degre: "5.8%", origine: "France", description: "Locale douce et florale, légèrement amère." }
+    ];
 
-    const beers = {
-      "Prior Bernardus": { degre: "8%", origine: "Belgique", description: "Abbaye belge au goût malté et légèrement sucré." },
-      "Blanche Bernardus": { degre: "5.5%", origine: "Belgique", description: "Blanche rafraîchissante, notes d’agrumes et coriandre." },
-      "Triple Bernardus": { degre: "9%", origine: "Belgique", description: "Triple dense et dorée, avec une belle amertume houblonnée." },
-      "Ypra Lefort": { degre: "8.5%", origine: "Belgique", description: "Triple belge ambrée, arômes fruités et maltés, finale douce." },
-      "Whisky Infused": { degre: "7.5%", origine: "France", description: "Bière ambrée infusée au whisky, notes boisées, vanillées et fumées." },
-      "Trappe Blonde": { degre: "6.5%", origine: "Pays-Bas", description: "Blonde trappiste équilibrée et florale." },
-      "Weihenstephaner Vitus": { degre: "7.7%", origine: "Allemagne", description: "Weizenbock douce, arômes de banane et clou de girofle." },
-      "Delta IPA": { degre: "6.5%", origine: "Belgique", description: "IPA belge fraîche, agrumes et levure épicée." },
-      "Estaminet": { degre: "5.2%", origine: "Belgique", description: "Pilsner fine et désaltérante." },
-      "Ibex": { degre: "6%", origine: "France", description: "Ambrée aux notes de caramel et fruits secs, équilibrée." },
-      "Neipa": { degre: "6.8%", origine: "USA", description: "IPA trouble et juteuse, arômes tropicaux." },
-      "Shorba": { degre: "6.2%", origine: "France (Piggy Brewing)", description: "IPA aromatique, houblonnée et fruitée avec des touches d'épices." },
-      "Bitburger 0%": { degre: "0%", origine: "Allemagne", description: "Sans alcool, légère, croustillante et maltée." },
-      "Cidre Noble Coz": { degre: "5%", origine: "Bretagne, France", description: "Cidre artisanal brut et fruité, équilibre entre acidité et douceur." },
-      "Rouge Max": { degre: "8%", origine: "Belgique", description: "Rouge douce, arômes de cerise et malt sucré." },
-      "Kriek": { degre: "4%", origine: "Belgique", description: "Lambic à la cerise, acidulée et fruitée." },
-      "Milkshake IPA": { degre: "6.5%", origine: "France", description: "IPA crémeuse et fruitée, texture onctueuse." },
-      "Blackheart": { degre: "8.5%", origine: "Angleterre", description: "Stout intense, café torréfié et chocolat noir." },
-      "St Idesbald": { degre: "7.5%", origine: "Belgique", description: "Abbaye douce, maltée et épicée." },
-      "Brunehaut": { degre: "6.5%", origine: "Belgique", description: "Bio et sans gluten, maltée et équilibrée." },
-      "Timut": { degre: "6%", origine: "France", description: "IPA au poivre Timut, agrumes et épices exotiques." },
-      "Fouillote Blonde": { degre: "5.8%", origine: "France", description: "Locale douce et florale, légèrement amère." }
-    };
-
-    document.querySelectorAll("#beerList li").forEach(li => {
-      li.addEventListener("click", () => {
-        const b = beers[li.textContent];
-        if (!b) return;
-        const modal = document.getElementById("beerModal");
-        const box = document.getElementById("beerDetails");
-        box.innerHTML = `
-          <h3>${li.textContent}</h3>
-          <p><strong>Origine :</strong> ${b.origine}</p>
-          <p><strong>Degré :</strong> ${b.degre}</p>
-          <p><strong>Description :</strong> ${b.description}</p>
-          <button onclick="closeModal()">Fermer</button>`;
-        modal.style.display = "flex";
-      });
+    const beerGrid = document.getElementById('beerGrid');
+    beers.forEach(b => {
+      const card = document.createElement('div');
+      card.className = 'beer-card';
+      card.innerHTML = `<h3>${b.name}</h3><p>${b.origine} – ${b.degre}</p>`;
+      card.onclick = () => openBeer(b);
+      beerGrid.appendChild(card);
     });
 
-    function closeModal() {
-      document.getElementById("beerModal").style.display = "none";
+    function openBeer(beer) {
+      const modal = document.getElementById("beerModal");
+      const box = document.getElementById("beerDetails");
+      box.innerHTML = `
+        <h3>${beer.name}</h3>
+        <p><strong>Origine :</strong> ${beer.origine}</p>
+        <p><strong>Degré :</strong> ${beer.degre}</p>
+        <p>${beer.description}</p>
+        <button onclick="closeBeer()">Fermer</button>`;
+      modal.style.display = "flex";
     }
 
-    const carrousel = document.getElementById("carrousel");
-    setInterval(() => {
-      carrousel.scrollBy({ left: 310, behavior: "smooth" });
-      if (carrousel.scrollLeft + carrousel.clientWidth >= carrousel.scrollWidth)
-        carrousel.scrollTo({ left: 0, behavior: "smooth" });
-    }, 2500);
+    function closeBeer() {
+      document.getElementById("beerModal").style.display = "none";
+    }
   </script>
-
 </body>
 </html>
