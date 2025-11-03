@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trouver ma bière idéale 🍺 | Café Blondes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('IMG_0768.jpeg') center/cover no-repeat fixed;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(4px);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-family: 'Merriweather', serif;
+      color: #ffcc00;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #f8f8f8;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .quiz-card {
+      background: rgba(255,255,240,0.95);
+      color: #2b1a0a;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 500px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      text-align: center;
+      display: none;
+      animation: fade 0.4s ease;
+    }
+
+    @keyframes fade {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .quiz-card.active {
+      display: block;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    button.option {
+      background: #ffcc00;
+      border: none;
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #2b1a0a;
+      transition: all 0.2s;
+    }
+
+    button.option:hover {
+      background: #ffdb4d;
+      transform: scale(1.03);
+    }
+
+    .result {
+      background: rgba(255,255,240,0.97);
+      color: #2b1a0a;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      display: none;
+    }
+
+    .result h2 {
+      color: #b8860b;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background-color: #ffcc00;
+      border-radius: 50px;
+      text-decoration: none;
+      color: #2b1a0a;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ffdb4d;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      color: #ffcc00;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🍺 Trouve ta bière idéale</h1>
+    <p>Réponds à quelques questions, et découvre la bière qui te correspond le mieux…</p>
+
+    <div id="quiz"></div>
+
+    <div id="result" class="result"></div>
+  </div>
+
+  <footer>© 2025 Café Blondes — Nancy</footer>
+
+  <script>
+    const questions = [
+      {
+        text: "Tu veux une bière plutôt…",
+        options: [
+          { text: "Douce et facile à boire", value: "douce" },
+          { text: "Amère et puissante", value: "amere" },
+          { text: "Fruitée et originale", value: "fruitee" },
+          { text: "Ronde et maltée", value: "maltee" }
+        ]
+      },
+      {
+        text: "Tu préfères une couleur…",
+        options: [
+          { text: "Blonde", value: "blonde" },
+          { text: "Ambrée", value: "ambree" },
+          { text: "Brune", value: "brune" },
+          { text: "Peu importe, surprends-moi !", value: "surprise" }
+        ]
+      },
+      {
+        text: "Ton humeur du moment ?",
+        options: [
+          { text: "Je veux me rafraîchir 🍋", value: "legere" },
+          { text: "Je veux me détendre 🍂", value: "ronde" },
+          { text: "Je veux faire la fête 🔥", value: "forte" },
+          { text: "Je veux goûter quelque chose d'unique 🌿", value: "originale" }
+        ]
+      },
+      {
+        text: "Tu bois ta bière…",
+        options: [
+          { text: "Avec des amis", value: "conviviale" },
+          { text: "En amoureux", value: "douce" },
+          { text: "En solo tranquille", value: "ronde" },
+          { text: "Pour accompagner un bon repas", value: "maltee" }
+        ]
+      }
+    ];
+
+    const results = {
+      douce: { name: "Blanche Bernardus", desc: "Une blanche rafraîchissante, légère et pleine de douceur.", link: "carte.html#menu" },
+      amere: { name: "Delta IPA", desc: "Une IPA belge fraîche et bien houblonnée pour les amateurs de caractère.", link: "carte.html#menu" },
+      fruitee: { name: "Rouge Max", desc: "Une rouge douce, cerise et maltée, parfaite pour une touche sucrée.", link: "carte.html#menu" },
+      maltee: { name: "Prior Bernardus", desc: "Une abbaye belge maltée, ronde et équilibrée.", link: "carte.html#menu" },
+      ambree: { name: "Ibex", desc: "Ambrée française, douce et caramélisée.", link: "carte.html#menu" },
+      brune: { name: "Blackheart", desc: "Stout intense, arômes de café et chocolat noir.", link: "carte.html#menu" },
+      surprise: { name: "Whisky Infused", desc: "Une ambrée infusée au whisky, unique et chaleureuse.", link: "carte.html#menu" },
+      legere: { name: "Estaminet", desc: "Une pils belge fine et désaltérante.", link: "carte.html#menu" },
+      ronde: { name: "Trappe Blonde", desc: "Une blonde trappiste équilibrée, florale et apaisante.", link: "carte.html#menu" },
+      forte: { name: "Triple Bernardus", desc: "Une triple dense, dorée et pleine d’énergie.", link: "carte.html#menu" },
+      originale: { name: "Timut", desc: "IPA au poivre Timut — surprenante et exotique !", link: "carte.html#menu" },
+      conviviale: { name: "Fouillote Blonde", desc: "Une blonde locale, simple et conviviale.", link: "carte.html#menu" }
+    };
+
+    let current = 0;
+    const answers = [];
+
+    const quizDiv = document.getElementById("quiz");
+    const resultDiv = document.getElementById("result");
+
+    function renderQuestion() {
+      const q = questions[current];
+      quizDiv.innerHTML = `
+        <div class="quiz-card active">
+          <h2>${q.text}</h2>
+          <div class="options">
+            ${q.options.map(o => `<button class="option" onclick="selectOption('${o.value}')">${o.text}</button>`).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function selectOption(value) {
+      answers.push(value);
+      current++;
+      if (current < questions.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      quizDiv.innerHTML = "";
+      const mostCommon = mode(answers);
+      const res = results[mostCommon] || results.surprise;
+      resultDiv.style.display = "block";
+      resultDiv.innerHTML = `
+        <h2>Ta bière idéale 🍺</h2>
+        <p><strong>${res.name}</strong></p>
+        <p>${res.desc}</p>
+        <a href="${res.link}" class="btn">📜 Voir sur la carte</a>
+      `;
+    }
+
+    function mode(arr) {
+      return arr.sort((a,b) =>
+        arr.filter(v => v===a).length - arr.filter(v => v===b).length
+      ).pop();
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>
