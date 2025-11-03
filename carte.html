@@ -6,16 +6,15 @@
   <title>Café Blondes — Carte</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Merriweather:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* ======== GLOBAL ======== */
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom, rgba(35,20,10,0.95), rgba(15,8,4,0.97)),
-                  url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-      background-color: #1b0f07;
-      color: #fdfdfd;
+      background: radial-gradient(rgba(25, 15, 8, 0.8), rgba(10, 6, 3, 0.95)), 
+                  url('IMG_0768.jpeg') center/cover no-repeat fixed;
       background-attachment: fixed;
-      background-size: cover;
+      backdrop-filter: blur(6px);
+      color: #fdfdfd;
+      transition: background 1s ease;
     }
 
     h1 {
@@ -35,26 +34,31 @@
 
     .hint {
       text-align: center;
-      color: #f0e4b3;
-      font-style: italic;
-      margin-bottom: 2rem;
+      color: #2b1a0a;
+      background: rgba(255, 204, 0, 0.9);
+      border-radius: 8px;
       display: none;
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      font-weight: 600;
+      max-width: 400px;
+      margin: 0 auto 1.5rem;
+      padding: 0.6rem 1rem;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+      animation: pulse 2s infinite ease-in-out;
     }
-    .hint.visible {
-      display: block;
-      opacity: 1;
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 10px rgba(255, 204, 0, 0.4); }
+      50% { box-shadow: 0 0 20px rgba(255, 204, 0, 0.8); }
     }
 
     .menu-container {
       max-width: 850px;
       margin: 0 auto 4rem;
-      background: rgba(255,255,255,0.05);
+      background: rgba(40, 25, 10, 0.7);
       border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
       padding: 1rem 1.5rem;
-      backdrop-filter: blur(4px);
+      backdrop-filter: blur(3px);
     }
 
     .section {
@@ -68,6 +72,7 @@
       box-shadow: 0 3px 6px rgba(0,0,0,0.4);
       transition: 0.3s;
     }
+
     .section:hover {
       background: #ffdb4d;
       transform: scale(1.01);
@@ -79,14 +84,15 @@
       background: rgba(255,255,255,0.05);
       border-radius: 8px;
       margin-top: 0.5rem;
-      animation: fadeIn 0.4s ease forwards;
+      animation: fadeSlide 0.5s ease forwards;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(-15px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ======== BIÈRES ======== */
+    /* BIÈRES */
     .beer-list {
       display: flex;
       flex-direction: column;
@@ -100,11 +106,22 @@
       transition: all 0.3s ease;
       border-left: 4px solid transparent;
       cursor: pointer;
+      position: relative;
     }
+
     .beer-item:hover {
-      background: rgba(255,204,0,0.1);
+      background: rgba(255,204,0,0.12);
       border-left-color: #ffcc00;
-      box-shadow: 0 0 10px rgba(255,204,0,0.2);
+      box-shadow: 0 0 12px rgba(255,204,0,0.3);
+    }
+
+    .beer-item:hover .beer-header span:first-child {
+      color: #ffcc00;
+    }
+
+    .beer-item:hover .icon {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .beer-header {
@@ -113,6 +130,14 @@
       align-items: center;
       font-weight: 600;
       color: #f8f8f8;
+      position: relative;
+    }
+
+    .icon {
+      color: #ffcc00;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s ease;
     }
 
     .beer-body {
@@ -121,10 +146,16 @@
       color: #f0e4b3;
       font-size: 0.9rem;
       line-height: 1.4;
-      transition: all 0.4s ease;
+      transition: all 0.5s ease;
       opacity: 0;
       margin-top: 0.3rem;
     }
+
+    .beer-item.active {
+      background: rgba(255,204,0,0.12);
+      box-shadow: 0 0 15px rgba(255,204,0,0.3);
+    }
+
     .beer-item.active .beer-body {
       max-height: 200px;
       opacity: 1;
@@ -136,28 +167,30 @@
       padding: 0;
       margin: 0;
     }
+
     li { margin-bottom: 8px; color: #f0e4b3; }
 
     footer {
       text-align: center;
-      background: #1a1005;
+      background: rgba(0,0,0,0.85);
       color: #ffcc00;
       padding: 2rem 1rem;
       font-size: 0.9rem;
     }
+
     footer a {
       color: #ffcc00;
       text-decoration: none;
     }
-    footer a:hover { text-decoration: underline; }
 
+    footer a:hover { text-decoration: underline; }
   </style>
 </head>
 
 <body>
   <h1>Café Blondes</h1>
   <h2>24 pressions — Une ambiance rustique & conviviale 🍺</h2>
-  <p class="hint" id="beer-hint">Clique sur une bière pour découvrir sa description 🍺</p>
+  <p class="hint" id="beer-hint">👉 Clique sur une bière pour découvrir sa description 🍺</p>
 
   <div class="menu-container">
     <!-- BIÈRES -->
@@ -165,64 +198,30 @@
     <div id="bieres" class="content">
       <div class="beer-list">
         <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Fouillotte Blonde</span><span>🇫🇷 4°</span></div>
+          <div class="beer-header">
+            <span>Fouillotte Blonde</span><span>🇫🇷 4°</span><span class="icon">👉</span>
+          </div>
           <div class="beer-body">Blonde légère brassée avec des branches de sapin 🌲, goût résineux et boisé.</div>
         </div>
+
         <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Blanche Bernardus</span><span>🇧🇪 6°</span></div>
+          <div class="beer-header"><span>Blanche Bernardus</span><span>🇧🇪 6°</span><span class="icon">👉</span></div>
           <div class="beer-body">Blanche douce et épicée, aux notes d’agrumes et de coriandre.</div>
         </div>
+
         <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Weihenstephaner Vitus</span><span>🇩🇪 7.7°</span></div>
+          <div class="beer-header"><span>Weihenstephaner Vitus</span><span>🇩🇪 7.7°</span><span class="icon">👉</span></div>
           <div class="beer-body">Blanche riche et fruitée, banane et clou de girofle.</div>
         </div>
+
         <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Trappe Blonde</span><span>🇳🇱 6.5°</span></div>
+          <div class="beer-header"><span>Trappe Blonde</span><span>🇳🇱 6.5°</span><span class="icon">👉</span></div>
           <div class="beer-body">Blonde trappiste florale, fine et équilibrée.</div>
         </div>
+
         <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Ypra Lefort</span><span>🇧🇪 10°</span></div>
+          <div class="beer-header"><span>Ypra Lefort</span><span>🇧🇪 10°</span><span class="icon">👉</span></div>
           <div class="beer-body">Triple belge dorée, fruitée et généreuse, finale puissante et douce.</div>
-        </div>
-        <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Timut</span><span>🇫🇷 4°</span></div>
-          <div class="beer-body">Blonde légère au citron et poivre de Timut, fraîche et surprenante.</div>
-        </div>
-        <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Delta IPA</span><span>🇧🇪 6°</span></div>
-          <div class="beer-body">IPA équilibrée, amertume florale et notes d’agrumes.</div>
-        </div>
-        <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Milkshake IPA</span><span>🇫🇷 5.7°</span></div>
-          <div class="beer-body">IPA douce et crémeuse, notes de vanille et fruits tropicaux.</div>
-        </div>
-        <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Whisky Infused</span><span>🇫🇷 12.7°</span></div>
-          <div class="beer-body">Ambrée infusée au whisky, intense, ronde et boisée.</div>
-        </div>
-        <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Prior Bernardus</span><span>🇧🇪 8°</span></div>
-          <div class="beer-body">Brune double maltée et ronde, typiquement belge.</div>
-        </div>
-        <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Blackheart</span><span>🏴 4.4°</span></div>
-          <div class="beer-body">Stout écossaise légère, torréfiée et sèche.</div>
-        </div>
-        <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Rouge Max</span><span>🇧🇪 8°</span></div>
-          <div class="beer-body">Rouge douce et fruitée, aux arômes de cerise et mûre.</div>
-        </div>
-        <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Kriek</span><span>🇧🇪 5.5°</span></div>
-          <div class="beer-body">Rouge à la cerise, acidulée et sucrée.</div>
-        </div>
-        <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Noble Coz Cidre</span><span>🇫🇷 8°</span></div>
-          <div class="beer-body">Cidre artisanal breton, puissant et sec.</div>
-        </div>
-        <div class="beer-item" onclick="toggleBeer(this)">
-          <div class="beer-header"><span>Brunehaut</span><span>🇧🇪 5°</span></div>
-          <div class="beer-body">Blonde sans gluten, ronde et équilibrée.</div>
         </div>
       </div>
     </div>
@@ -276,14 +275,16 @@
     function toggleSection(id) {
       const section = document.getElementById(id);
       const hint = document.getElementById('beer-hint');
-      const isBeerSection = id === 'bieres';
+      const isBeer = id === 'bieres';
 
       if (section.style.display === 'block') {
         section.style.display = 'none';
-        if (isBeerSection) hint.classList.remove('visible');
+        if (isBeer) hint.style.display = 'none';
       } else {
+        document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
         section.style.display = 'block';
-        if (isBeerSection) hint.classList.add('visible');
+        if (isBeer) hint.style.display = 'block';
+        else hint.style.display = 'none';
       }
     }
 
