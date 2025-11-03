@@ -176,12 +176,33 @@
     <div class="section" id="beer-title" onclick="toggleSection('bieres')">🍻 Bières pression</div>
     <div id="bieres" class="content">
       <div class="beer-list">
-        <!-- [tes bières inchangées ici] -->
+        <!-- Liste complète des bières -->
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Fouillotte Blonde</span><span>🇫🇷 4°</span></div><div class="beer-body">Blonde légère brassée avec des branches de sapin 🌲, goût boisé et résineux.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Blanche Bernardus</span><span>🇧🇪 6°</span></div><div class="beer-body">Blanche douce et épicée, aux notes d’agrumes et de coriandre.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Weihenstephaner Vitus</span><span>🇩🇪 7.7°</span></div><div class="beer-body">Blanche riche et fruitée, avec des arômes de banane et de clou de girofle.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Trappe Blonde</span><span>🇳🇱 6.5°</span></div><div class="beer-body">Blonde trappiste équilibrée, florale et légèrement sucrée.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Ypra Lefort</span><span>🇧🇪 10°</span></div><div class="beer-body">Triple belge dorée, fruitée et généreuse, avec une belle rondeur.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Timut</span><span>🇫🇷 4°</span></div><div class="beer-body">Blonde légère au citron et poivre de Timut, rafraîchissante et subtilement épicée.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Delta IPA</span><span>🇧🇪 6°</span></div><div class="beer-body">IPA équilibrée, amertume florale et notes d’agrumes.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Milkshake IPA</span><span>🇫🇷 5.7°</span></div><div class="beer-body">IPA douce et crémeuse, aux notes de vanille et fruits tropicaux.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Whisky Infused</span><span>🇫🇷 12.7°</span></div><div class="beer-body">Ambrée infusée au whisky, intense et boisée.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Prior Bernardus</span><span>🇧🇪 8°</span></div><div class="beer-body">Brune double maltée, généreuse, ronde et légèrement caramélisée.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Blackheart</span><span>🏴 4.4°</span></div><div class="beer-body">Stout écossaise, torréfiée et sèche avec des notes de café.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Rouge Max</span><span>🇧🇪 8°</span></div><div class="beer-body">Rouge douce et fruitée, cerise mûre et fruits rouges.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Kriek</span><span>🇧🇪 5.5°</span></div><div class="beer-body">Rouge à la cerise, acidulée et sucrée.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Noble Coz Cidre</span><span>🇫🇷 8°</span></div><div class="beer-body">Cidre artisanal breton, puissant, sec et légèrement tannique.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Brunehaut</span><span>🇧🇪 5°</span></div><div class="beer-body">Blonde sans gluten, ronde et équilibrée.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>St Idesbald Blonde</span><span>🇧🇪 6.5°</span></div><div class="beer-body">Blonde d’abbaye douce et maltée, aux notes légèrement épicées et fruitées.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Tarot</span><span>🇧🇪 8°</span></div><div class="beer-body">Bière belge aux goûts de mangue et de fruit de la passion.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Shorba</span><span>🇫🇷 6°</span></div><div class="beer-body">Sour à la framboise joliment acidulée.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>NEIPA</span><span>🇫🇷 6.5°</span></div><div class="beer-body">IPA trouble et fruitée, à l’amertume douce et une fin de bouche florale.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Pils Estaminet</span><span>🇫🇷 5.2°</span></div><div class="beer-body">Pils française classique, légère, sèche et désaltérante.</div></div>
+        <div class="beer-item" onclick="toggleBeer(this)"><div class="beer-header"><span>Triple Bernardus</span><span>🇧🇪 8°</span></div><div class="beer-body">Triple belge dorée et puissante où l’amertume et la douceur se côtoient en parfaite harmonie.</div></div>
       </div>
       <div class="quiz-btn" onclick="location.href='quiz.html'">🎯 Trouve ta bière idéale</div>
     </div>
 
-    <!-- 🧀 PLANCHES -->
+    <!-- PLANCHES -->
     <div class="section" id="planche-title" onclick="toggleSection('planches')">🧀 Planches à partager</div>
     <div id="planches" class="content">
       <div class="beer-list">
@@ -189,17 +210,14 @@
           <div class="beer-header"><span>Planche saucisson</span></div>
           <div class="beer-body">Saucisson provençal, girolle, et lardon fumé 🥓 — un trio parfait pour l’apéro !</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Planche fromage</span></div>
           <div class="beer-body">Comté affiné et Morbier fondant 🧀 — pour les amoureux de fromage authentique.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Planche mixte</span></div>
           <div class="beer-body">Un équilibre entre saucisson et fromage 🧀🥩 — la planche parfaite pour tous les goûts.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Planche terrine</span></div>
           <div class="beer-body">Terrine maison accompagnée de pain de campagne 🍞 — généreuse et savoureuse.</div>
@@ -272,12 +290,13 @@
       section.style.display = 'block';
       if (isBeer) beerTitle.innerHTML = "👉 Clique sur une bière pour découvrir sa description 🍺";
     }
-
-    function toggleBeer(item) {
-      const active = item.classList.contains('active');
-      document.querySelectorAll('.beer-item').forEach(el => el.classList.remove('active'));
-      if (!active) item.classList.add('active');
-    }
-  </script>
+function toggleBeer(item) {
+  const active = item.classList.contains('active');
+  document.querySelectorAll('.beer-item').forEach(el => el.classList.remove('active'));
+  if (!active) item.classList.add('active');
+}
+</script>
 </body>
 </html>
+
+
