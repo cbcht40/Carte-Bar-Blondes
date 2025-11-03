@@ -119,6 +119,27 @@
       opacity: 1;
     }
 
+    .quiz-btn {
+      display: block;
+      background: #ffcc00;
+      color: #2b1a0a;
+      text-align: center;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      margin: 2rem auto 0;
+      width: fit-content;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+    }
+
+    .quiz-btn:hover {
+      background: #ffdb4d;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+    }
+
     ul {
       list-style: none;
       padding: 0;
@@ -159,76 +180,67 @@
           <div class="beer-header"><span>Fouillotte Blonde</span><span>🇫🇷 4°</span></div>
           <div class="beer-body">Blonde légère brassée avec des branches de sapin 🌲, goût boisé et résineux.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Blanche Bernardus</span><span>🇧🇪 6°</span></div>
           <div class="beer-body">Blanche douce et épicée, aux notes d’agrumes et de coriandre.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Weihenstephaner Vitus</span><span>🇩🇪 7.7°</span></div>
           <div class="beer-body">Blanche riche et fruitée, banane et clou de girofle.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Trappe Blonde</span><span>🇳🇱 6.5°</span></div>
           <div class="beer-body">Blonde trappiste florale, fine et équilibrée.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Ypra Lefort</span><span>🇧🇪 10°</span></div>
           <div class="beer-body">Triple belge dorée, fruitée et généreuse.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Timut</span><span>🇫🇷 4°</span></div>
           <div class="beer-body">Blonde légère au citron et poivre de Timut, rafraîchissante et subtilement épicée.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Delta IPA</span><span>🇧🇪 6°</span></div>
           <div class="beer-body">IPA équilibrée, amertume florale et notes d’agrumes.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Milkshake IPA</span><span>🇫🇷 5.7°</span></div>
           <div class="beer-body">IPA douce et crémeuse, aux notes de vanille et fruits tropicaux.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Whisky Infused</span><span>🇫🇷 12.7°</span></div>
           <div class="beer-body">Ambrée infusée au whisky, intense et boisée.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Prior Bernardus</span><span>🇧🇪 8°</span></div>
           <div class="beer-body">Brune double maltée, ronde et puissante.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Blackheart</span><span>🏴 4.4°</span></div>
           <div class="beer-body">Stout légère, torréfiée et sèche.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Rouge Max</span><span>🇧🇪 8°</span></div>
           <div class="beer-body">Rouge douce et fruitée, cerise mûre et fruits rouges.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Kriek</span><span>🇧🇪 5.5°</span></div>
           <div class="beer-body">Rouge à la cerise, acidulée et sucrée.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Noble Coz Cidre</span><span>🇫🇷 8°</span></div>
           <div class="beer-body">Cidre artisanal de Bretagne, puissant et sec.</div>
         </div>
-
         <div class="beer-item" onclick="toggleBeer(this)">
           <div class="beer-header"><span>Brunehaut</span><span>🇧🇪 5°</span></div>
           <div class="beer-body">Blonde sans gluten, ronde et équilibrée.</div>
         </div>
+      </div>
+
+      <!-- Bouton Quiz -->
+      <div class="quiz-btn" onclick="location.href='quiz.html'">
+        🎯 Trouve ta bière idéale
       </div>
     </div>
 
@@ -283,18 +295,23 @@
       const beerTitle = document.getElementById('beer-title');
       const isBeer = id === 'bieres';
 
-      document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
-
+      // Si la section est déjà visible → on la ferme
       if (section.style.display === 'block') {
         section.style.display = 'none';
         if (isBeer) beerTitle.innerHTML = "🍻 Bières pression";
-      } else {
-        section.style.display = 'block';
-        if (isBeer) {
-          beerTitle.innerHTML = "👉 Clique sur une bière pour découvrir sa description 🍺";
-        } else {
-          beerTitle.innerHTML = "🍻 Bières pression";
-        }
+        return;
+      }
+
+      // Ferme toutes les autres sections
+      document.querySelectorAll('.content').forEach(c => c.style.display = 'none');
+      document.querySelectorAll('.section').forEach(s => {
+        if (s.id === 'beer-title') s.innerHTML = "🍻 Bières pression";
+      });
+
+      // Ouvre la section choisie
+      section.style.display = 'block';
+      if (isBeer) {
+        beerTitle.innerHTML = "👉 Clique sur une bière pour découvrir sa description 🍺";
       }
     }
 
