@@ -6,7 +6,6 @@
   <title>🍺 Ma bière idéale | Café Blondes</title>
 
   <style>
-    /* --- Fond général --- */
     body {
       font-family: 'Poppins', sans-serif;
       background:
@@ -21,7 +20,6 @@
       margin: 0;
     }
 
-    /* --- Conteneur du quiz --- */
     .quiz-container {
       background: rgba(25, 15, 5, 0.93);
       backdrop-filter: blur(12px) saturate(140%);
@@ -37,7 +35,6 @@
       position: relative;
     }
 
-    /* --- Titre --- */
     h1 {
       font-size: 2em;
       color: #f4d35e;
@@ -47,14 +44,12 @@
         0 0 20px rgba(244, 211, 94, 0.2);
     }
 
-    /* --- Texte descriptif --- */
     p {
       font-size: 1.05em;
       opacity: 0.9;
       margin-bottom: 25px;
     }
 
-    /* --- Questions --- */
     .question {
       font-size: 1.25em;
       font-weight: 600;
@@ -62,7 +57,6 @@
       color: #fefefe;
     }
 
-    /* --- Boutons --- */
     button.option {
       background: #f4d35e;
       color: #2b1a0a;
@@ -82,7 +76,6 @@
       box-shadow: 0 4px 8px rgba(244, 211, 94, 0.4);
     }
 
-    /* --- Barre de progression --- */
     .progress {
       width: 100%;
       height: 10px;
@@ -99,7 +92,6 @@
       transition: width 0.5s ease;
     }
 
-    /* --- Résultat --- */
     .result {
       animation: fadeIn 1s ease;
     }
@@ -137,7 +129,6 @@
       box-shadow: 0 4px 8px rgba(244, 211, 94, 0.4);
     }
 
-    /* --- Bouton fermer --- */
     .close {
       position: absolute;
       top: 22px;
@@ -152,16 +143,9 @@
       transform: scale(1.2);
     }
 
-    /* --- Animation --- */
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -179,9 +163,10 @@
     /* --- Questions --- */
     const quizData = [
       {
-        question: "🎨 Quelle couleur de bière t’attire le plus ?",
+        question: "🎨 Quelle type de bière t’attire le plus ?",
         options: [
           { text: "🍯 Blonde", value: "blonde" },
+          { text: "🌿 IPA", value: "ipa" },
           { text: "🍫 Brune", value: "brune" },
           { text: "🌾 Blanche", value: "blanche" },
           { text: "🍒 Rouge", value: "rouge" },
@@ -239,8 +224,10 @@
       { name: "Trappe Blonde", tags: ["blonde", "malte", "moyenne", "amis", "equilibree"] },
       { name: "Ypra Lefort", tags: ["blonde", "malte", "forte", "repas", "fete"] },
       { name: "Timut", tags: ["blonde", "acidule", "legere", "apero", "originale"] },
-      { name: "Delta IPA", tags: ["blonde", "amer", "moyenne", "fete", "originale"] },
-      { name: "Milkshake IPA", tags: ["blonde", "fruite", "moyenne", "fete", "creative"] },
+      { name: "Delta IPA", tags: ["ipa", "amer", "moyenne", "fete", "originale"] },
+      { name: "Milkshake IPA", tags: ["ipa", "fruite", "moyenne", "fete", "creative"] },
+      { name: "NEIPA", tags: ["ipa", "fruite", "moyenne", "fete", "creative"] },
+      { name: "Tarot", tags: ["ipa", "fruite", "forte", "fete", "creative"] },
       { name: "Whisky Infused", tags: ["brune", "malte", "forte", "decouverte", "intense"] },
       { name: "Prior Bernardus", tags: ["brune", "malte", "forte", "repas", "sage"] },
       { name: "Blackheart", tags: ["stout", "malte", "legere", "detente", "discrete"] },
@@ -249,9 +236,7 @@
       { name: "Noble Coz Cidre", tags: ["cidre", "acidule", "forte", "apero", "originale"] },
       { name: "Brunehaut", tags: ["blonde", "malte", "moyenne", "repas", "elegante"] },
       { name: "St Idesbald Blonde", tags: ["blonde", "malte", "moyenne", "repas", "elegante"] },
-      { name: "Tarot", tags: ["blonde", "fruite", "forte", "fete", "creative"] },
       { name: "Shorba", tags: ["sour", "acidule", "moyenne", "apero", "originale"] },
-      { name: "NEIPA", tags: ["blonde", "fruite", "moyenne", "fete", "creative"] },
       { name: "Pils Estaminet", tags: ["blonde", "doux", "legere", "detente", "classique"] },
       { name: "Triple Bernardus", tags: ["blonde", "malte", "forte", "repas", "elegante"] }
     ];
