@@ -124,7 +124,7 @@
       color: #5a4630;
     }
 
-    /* --- Autres catégories --- */
+    /* --- Menus déroulants --- */
     details {
       margin-top: 2rem;
       background: #f8e3a2;
@@ -238,9 +238,11 @@
   </header>
 
   <section id="menu" class="menu">
-    <h2>🍺 Bières pression</h2>
-    <p class="hint">👉 Cliquez sur une bière pour découvrir ses détails (degré, origine, saveurs...)</p>
-    <div class="beer-grid" id="beerGrid"></div>
+    <details>
+      <summary>🍺 Bières pression</summary>
+      <p class="hint">👉 Cliquez sur une bière pour découvrir ses détails (degré, origine, saveurs...)</p>
+      <div class="beer-grid" id="beerGrid"></div>
+    </details>
 
     <details>
       <summary>🥤 Softs</summary>
